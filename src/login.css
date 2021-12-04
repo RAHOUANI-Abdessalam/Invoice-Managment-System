@@ -1,0 +1,16 @@
+.text-field{
+    -fx-text-fill: #ffffff
+}
+
+.jfx-snackbar-content{
+    -fx-background-color:#F00;
+    -fx-pref-width:486
+    
+}
+
+.jfx-snackbar-toast{
+    -fx-text-fill: #FFF;
+    -fx-font-size: 18px;
+    -fx-font-family:Tahoma
+    
+}
