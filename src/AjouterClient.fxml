@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #333333; -fx-border-color: #1BA1E2; -fx-border-width: 8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="200.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="540.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Add%20User%20Male.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Client">
+                     <font>
+                        <Font name="Rockwell Bold" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <ImageView accessibleRole="BUTTON" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-close-100.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0">
+         <VBox.margin>
+            <Insets left="40.0" right="40.0" />
+         </VBox.margin>
+      </Separator>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="540.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="N° Client :">
+               <font>
+                  <Font name="Rockwell Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #00FF0B;" text="0000">
+               <font>
+                  <Font name="Rockwell Bold" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0">
+         <VBox.margin>
+            <Insets left="40.0" right="40.0" />
+         </VBox.margin>
+      </Separator>
+      <HBox prefHeight="260.0" prefWidth="600.0">
+         <children>
+            <VBox prefWidth="300.0" spacing="3.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Raison scocial :">
+                     <font>
+                        <Font name="Rockwell Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="75.0" top="32.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse :">
+                     <font>
+                        <Font name="Rockwell Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="75.0" top="20.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Matricule Fiscal :">
+                     <font>
+                        <Font name="Rockwell Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="75.0" top="22.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nº Article :">
+                     <font>
+                        <Font name="Rockwell Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="75.0" top="22.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registre de Commerce :">
+                     <font>
+                        <Font name="Rockwell Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="75.0" top="20.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox prefWidth="300.0" spacing="3.0">
+               <children>
+                  <JFXTextField prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                     <VBox.margin>
+                        <Insets left="5.0" right="50.0" top="22.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                     <VBox.margin>
+                        <Insets left="5.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                     <VBox.margin>
+                        <Insets left="5.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                     <VBox.margin>
+                        <Insets left="5.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                     <VBox.margin>
+                        <Insets left="5.0" right="50.0" top="5.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0">
+         <VBox.margin>
+            <Insets left="40.0" right="40.0" />
+         </VBox.margin>
+      </Separator>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="66.0" prefWidth="200.0">
+         <children>
+            <JFXButton prefHeight="30.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Réinitialiser" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="15.0" right="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/reset.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="116.0" style="-fx-background-color: #00FF0B; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="15.0" right="25.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Ok.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </HBox>
+   </children>
+</VBox>
