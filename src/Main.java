@@ -16,14 +16,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
       
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         
         Scene scene = new Scene(root);
         
         primaryStage.setTitle("Se Connecter");
         primaryStage.setScene(scene);
+        //for the not resizable windows
+        //primaryStage.setResizable(false);
         primaryStage.show();
-        //nta rkhis
     }
 
     /**
