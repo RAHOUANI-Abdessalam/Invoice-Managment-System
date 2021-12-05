@@ -11,10 +11,11 @@
     }
     .table-view {
         -fx-border-color: #1ba1e2 ;
-        
+      
     }
     .lable-empty{
         -fx-text-fill: white ;
+        -fx-prompt-text-fill: white ;
     }
     .sup-btn{
         -fx-background-color: red;
@@ -46,4 +47,12 @@
     .val-btn{
             -fx-background-color: #00FF0B ;
         -fx-background-radius: 10px;
+    }
+    .faclab{
+        -fx-text-fill: #00FF0B ;
+        -fx-border-radius:10px;
+        -fx-border-width:2px;
+        -fx-border-color: #1BA1E2;
+        -fx-text-fill: white ;
+        -fx-font-size: 18px;
     }
