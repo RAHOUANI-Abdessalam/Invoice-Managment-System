@@ -29,12 +29,12 @@
                            </HBox.margin>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Client">
-                           <font>
-                              <Font name="Rockwell Bold" size="24.0" />
-                           </font>
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
                         </Text>
                      </children>
                   </HBox>
@@ -106,7 +106,10 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Rockwell; -fx-font-size: 18;" text="Raison scocial :                  " />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Raison scocial :               ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Text>
                   <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
@@ -119,23 +122,10 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="560.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Rockwell; -fx-font-size: 18;" text="Adresse :                            " />
-                  <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
-                     <padding>
-                        <Insets left="5.0" right="5.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </JFXTextField>
-               </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="560.0">
-               <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Rockwell; -fx-font-size: 18;" text="Matricule Fiscal :              " />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse :                         ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Text>
                   <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
@@ -151,7 +141,10 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="560.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Rockwell; -fx-font-size: 18;" text="Nº Article :                         " />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Matricule Fiscal :            ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Text>
                   <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
@@ -167,7 +160,29 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="560.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Rockwell; -fx-font-size: 18;" text="Registre de Commerce :" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nº Article :                      ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Text>
+                  <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="560.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Registre de Commerce :">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Text>
                   <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
