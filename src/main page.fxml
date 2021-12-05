@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Blend?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: rgba(51, 51, 51, 1);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-min-height: 720; -fx-min-width: 1280;" styleClass="mainFxmlClass" stylesheets="@main%20page.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="50.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
          <children>
@@ -125,7 +126,7 @@
       </HBox>
       <HBox prefHeight="50.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox prefHeight="50.0" prefWidth="736.0" spacing="10.0">
+            <HBox prefHeight="50.0" prefWidth="736.0" spacing="10.0" HBox.hgrow="ALWAYS">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -155,12 +156,12 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="625.0">
                <children>
-                  <Label prefHeight="27.0" prefWidth="52.0" text="Date :" textFill="WHITE">
+                  <Label prefHeight="27.0" prefWidth="52.0" text="Date :" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00/00/0000" wrappingWidth="127.61752767808366">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00/00/0000" wrappingWidth="127.61752767808366" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -242,9 +243,9 @@
             <Insets top="10.0" />
          </VBox.margin>
       </HBox>
-      <HBox prefHeight="400.0" prefWidth="1280.0" spacing="20.0" VBox.vgrow="ALWAYS">
+      <HBox prefHeight="400.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="table" editable="true" pickOnBounds="false" prefHeight="397.0" prefWidth="1004.0" style="-fx-background-color: black;" stylesheets="@main%20page.css" tableMenuButtonVisible="true">
+            <TableView fx:id="table" editable="true" pickOnBounds="false" prefHeight="397.0" prefWidth="1004.0" style="-fx-background-color: black;" stylesheets="@main%20page.css" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="code" minWidth="-1.0" prefWidth="106.13155746459961" style="-fx-background-color: rgba(51, 51, 51, 1);" text="code produit" />
                   <TableColumn fx:id="PrixT" minWidth="-1.0" prefWidth="199.36180114746094" style="-fx-background-color: rgba(51, 51, 51, 1);" styleClass="r" text="Désignation" />
@@ -267,8 +268,10 @@
                   <Insets left="32.0" />
                </HBox.margin>
             </TableView>
+            <Separator orientation="VERTICAL" prefWidth="200.0" />
             <VBox prefHeight="400.0" prefWidth="528.0">
                <children>
+                  <Separator prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
