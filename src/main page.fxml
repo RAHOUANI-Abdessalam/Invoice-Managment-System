@@ -21,7 +21,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="background" prefHeight="720.0" prefWidth="1280.0" style="-fx-text-fill: white;" styleClass="mainFxmlClass" stylesheets="@main%20page.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainPageController">
    <children>
-      <ButtonBar prefHeight="50.0" prefWidth="1230.0" style="-fx-background-color: grey; -fx-border-radius: 20;">
+      <ButtonBar prefHeight="50.0" prefWidth="1230.0" style="-fx-background-color: grey; -fx-border-radius: 20;" AnchorPane.rightAnchor="50.0">
         <buttons>
             <JFXButton alignment="TOP_CENTER" graphicTextGap="0.0" style="-fx-background-color: grey;" text="List des clients" textFill="WHITE">
                <graphic>
@@ -158,7 +158,7 @@
             <Font size="13.0" />
          </font>
       </JFXTextField>
-      <TableView fx:id="table" editable="true" layoutX="69.0" layoutY="208.0" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: black;" stylesheets="@main%20page.css" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="211.0">
+      <TableView fx:id="table" editable="true" layoutX="69.0" layoutY="208.0" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: black;" stylesheets="@main%20page.css" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="211.0">
          <columns>
             <TableColumn fx:id="code" prefWidth="106.13155746459961" style="-fx-background-color: rgba(51, 51, 51, 1);" styleClass="r" text="code produit" />
             <TableColumn fx:id="PrixT" prefWidth="199.36180114746094" style="-fx-background-color: rgba(51, 51, 51, 1);" styleClass="r" text="Désignation" />
@@ -184,22 +184,22 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="733.0" layoutY="127.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Client Non Séléctionné" textFill="RED" AnchorPane.bottomAnchor="578.0" AnchorPane.leftAnchor="625.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="115.0">
+      <Label layoutX="733.0" layoutY="127.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Client Non Séléctionné" textFill="RED" AnchorPane.leftAnchor="625.0" AnchorPane.topAnchor="115.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="1029.0" layoutY="97.0" prefHeight="27.0" prefWidth="64.0" text="Date :" textFill="WHITE" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="89.0">
+      <Label layoutX="1029.0" layoutY="97.0" prefHeight="27.0" prefWidth="64.0" text="Date :" textFill="WHITE" AnchorPane.leftAnchor="1106.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="89.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="912.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="1005.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="164.0">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="912.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="164.0">
          <image>
             <Image url="@images/Estimates.png" />
          </image>
       </ImageView>
-      <JFXTextField editable="false" focusColor="WHITE" labelFloat="true" layoutX="1095.0" layoutY="168.0" prefHeight="35.51" prefWidth="90.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="  Quantité" unFocusColor="#1ba1e2" AnchorPane.leftAnchor="1045.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="158.0">
+      <JFXTextField editable="false" focusColor="WHITE" labelFloat="true" layoutX="1095.0" layoutY="168.0" prefHeight="35.51" prefWidth="90.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="  Quantité" unFocusColor="#1ba1e2" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="158.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -216,22 +216,14 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Line endX="203.853271484375" endY="-1.52587890625E-5" layoutX="1045.0" layoutY="213.0" startX="-193.87322998046875" startY="-1.52587890625E-5" stroke="RED" strokeWidth="4.0" AnchorPane.leftAnchor="846.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="218.0" />
-      <Line endX="-100.00054931640625" endY="298.74749755859375" layoutX="947.0" layoutY="306.0" startX="-100.0" startY="-75.58131408691406" stroke="RED" strokeWidth="4.0" AnchorPane.bottomAnchor="112.42408752441406" />
-      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" labelFloat="true" layoutX="1123.0" layoutY="386.0" prefHeight="22.0" prefWidth="150.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.leftAnchor="1123.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="386.0">
+      <Line endX="203.853271484375" endY="-1.52587890625E-5" layoutX="1045.0" layoutY="213.0" startX="-193.87322998046875" startY="-1.52587890625E-5" stroke="RED" strokeWidth="4.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="218.0" />
+      <Line endX="-100.00054931640625" endY="298.74749755859375" layoutX="947.0" layoutY="306.0" startX="-100.0" startY="-75.58131408691406" stroke="RED" strokeWidth="4.0" AnchorPane.rightAnchor="430.17156982421875" AnchorPane.topAnchor="227.5902557373047" />
+      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" labelFloat="true" layoutX="1123.0" layoutY="386.0" prefHeight="22.0" prefWidth="150.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="386.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </JFXTextField>
-      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" labelFloat="true" layoutX="1104.0" layoutY="430.0" prefHeight="22.0" prefWidth="160.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.leftAnchor="1104.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="431.0">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <font>
-            <Font size="13.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" labelFloat="true" layoutX="1091.0" layoutY="466.0" prefHeight="22.0" prefWidth="170.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.leftAnchor="1091.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="476.0">
+      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" labelFloat="true" layoutX="1104.0" layoutY="430.0" prefHeight="22.0" prefWidth="160.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="431.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -239,7 +231,15 @@
             <Font size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" labelFloat="true" layoutX="1048.0" layoutY="499.0" prefHeight="22.0" prefWidth="190.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.leftAnchor="1048.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="509.0">
+      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" labelFloat="true" layoutX="1091.0" layoutY="466.0" prefHeight="22.0" prefWidth="170.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="476.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" labelFloat="true" layoutX="1048.0" layoutY="499.0" prefHeight="22.0" prefWidth="190.0" styleClass="lable-empty" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="509.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -247,7 +247,7 @@
             <Font size="18.0" />
          </font>
       </JFXTextField>
-      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="#12d712" labelFloat="true" layoutX="1046.0" layoutY="533.0" prefHeight="51.0" prefWidth="228.0" styleClass="lable-emptym" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.leftAnchor="1046.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="545.0">
+      <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="#12d712" labelFloat="true" layoutX="1046.0" layoutY="533.0" prefHeight="51.0" prefWidth="228.0" styleClass="lable-emptym" stylesheets="@main%20page.css" text="0.00" unFocusColor="#1ba1e2" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="545.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -255,50 +255,50 @@
             <Font size="24.0" />
          </font>
       </JFXTextField>
-      <Label layoutX="1003.0" layoutY="353.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" styleClass="calc" stylesheets="@main%20page.css" text="Calculation :" textFill="WHITE" AnchorPane.leftAnchor="854.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="345.0">
+      <Label layoutX="1003.0" layoutY="353.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" styleClass="calc" stylesheets="@main%20page.css" text="Calculation :" textFill="WHITE" AnchorPane.rightAnchor="224.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="1065.0" layoutY="250.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Mode de Règlement :" textFill="WHITE" AnchorPane.leftAnchor="854.0" AnchorPane.rightAnchor="224.0">
+      <Label layoutX="1065.0" layoutY="250.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Mode de Règlement :" textFill="WHITE" AnchorPane.rightAnchor="224.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="857.0" layoutY="284.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="N° Chèque :" textFill="WHITE" AnchorPane.leftAnchor="857.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="294.0">
+      <Label layoutX="851.0" layoutY="301.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="N° Chèque :" textFill="WHITE" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="290.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="861.0" layoutY="381.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Total H.T :" textFill="WHITE" AnchorPane.leftAnchor="854.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="400.0">
+      <Label layoutX="861.0" layoutY="381.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Total H.T :" textFill="WHITE" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="400.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="847.0" layoutY="566.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Montant Total :" textFill="WHITE" AnchorPane.leftAnchor="854.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="580.0">
+      <Label layoutX="847.0" layoutY="566.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Montant Total :" textFill="WHITE" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="580.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="859.0" layoutY="538.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Remise :" textFill="WHITE" AnchorPane.leftAnchor="854.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="535.0">
+      <Label layoutX="859.0" layoutY="538.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Remise :" textFill="WHITE" AnchorPane.rightAnchor="224.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="864.0" layoutY="478.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Totale T.T.C :" textFill="WHITE" AnchorPane.leftAnchor="854.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="490.0">
+      <Label layoutX="864.0" layoutY="478.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Totale T.T.C :" textFill="WHITE" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="490.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="856.0" layoutY="430.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Total T.V.A :" textFill="WHITE" AnchorPane.leftAnchor="854.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="444.0">
+      <Label layoutX="856.0" layoutY="430.0" prefHeight="21.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Total T.V.A :" textFill="WHITE" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="440.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <CheckBox layoutX="1049.0" layoutY="256.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="85.0" text="CheckBox" AnchorPane.leftAnchor="1065.0" />
-      <CheckBox layoutX="1138.0" layoutY="256.0" mnemonicParsing="false" text="CheckBox" />
-      <JFXTextField layoutX="1073.0" layoutY="291.0" prefHeight="25.0" prefWidth="276.0" style="-fx-border-color: #1BA1E2; -fx-border-width: 2px; -fx-border-radius: 10px;" styleClass="faclab" stylesheets="@main%20page.css" AnchorPane.rightAnchor="30.0" />
-      <HBox layoutX="1044.0" layoutY="594.0" prefHeight="48.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+      <CheckBox layoutX="1049.0" layoutY="256.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="85.0" text="CheckBox" AnchorPane.rightAnchor="130.0" />
+      <CheckBox layoutX="1138.0" layoutY="256.0" mnemonicParsing="false" text="CheckBox" AnchorPane.rightAnchor="65.0" />
+      <JFXTextField layoutX="1027.0" layoutY="291.0" prefHeight="29.0" prefWidth="223.0" style="-fx-border-color: #1BA1E2; -fx-border-width: 2px; -fx-border-radius: 10px;" styleClass="faclab" stylesheets="@main%20page.css" AnchorPane.rightAnchor="30.0" />
+      <HBox layoutX="1028.0" layoutY="594.0" prefHeight="48.0" prefWidth="238.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1028.0" AnchorPane.rightAnchor="14.0">
          <children>
             <JFXButton alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="122.0" styleClass="ren-btn" stylesheets="@main%20page.css" text="Réinitialiser" textFill="WHITE">
                <graphic>
@@ -326,15 +326,15 @@
             </JFXButton>
          </children>
       </HBox>
-      <Label layoutX="61.0" layoutY="673.0" prefHeight="21.0" prefWidth="148.0" style="-fx-font-weight: bold;" text="Total en Lettres :" textFill="WHITE" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="678.0">
+      <Label layoutX="61.0" layoutY="673.0" prefHeight="21.0" prefWidth="148.0" style="-fx-font-weight: bold;" text="Total en Lettres :" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="27.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXTextField layoutX="313.0" layoutY="676.0" prefHeight="25.0" prefWidth="653.0" style="-fx-border-color: #1BA1E2; -fx-border-width: 2px; -fx-border-radius: 10px;" styleClass="faclab" stylesheets="@main%20page.css" AnchorPane.leftAnchor="184.0" AnchorPane.topAnchor="676.0" />
-      <Label layoutX="1088.0" layoutY="251.0" prefHeight="27.0" prefWidth="47.0" text="Chèque" textFill="WHITE" />
+      <JFXTextField layoutX="313.0" layoutY="676.0" prefHeight="25.0" prefWidth="653.0" style="-fx-border-color: #1BA1E2; -fx-border-width: 2px; -fx-border-radius: 10px;" styleClass="faclab" stylesheets="@main%20page.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="184.0" />
+      <Label layoutX="1088.0" layoutY="251.0" prefHeight="27.0" prefWidth="47.0" text="Chèque" textFill="WHITE" AnchorPane.rightAnchor="145.0" />
       <Label layoutX="1170.0" layoutY="251.0" prefHeight="27.0" prefWidth="47.0" text="Espèces" textFill="WHITE" AnchorPane.rightAnchor="63.0" />
-      <Text fill="WHITE" layoutX="1131.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00/00/0000" wrappingWidth="101.48605795152116" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="89.0">
+      <Text fill="WHITE" layoutX="1131.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00/00/0000" wrappingWidth="101.48605795152116" AnchorPane.leftAnchor="1148.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="89.0">
          <font>
             <Font size="18.0" />
          </font>
