@@ -16,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
       
-        Parent root = FXMLLoader.load(getClass().getResource("main page.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AjouterClient2.fxml"));
         
         Scene scene = new Scene(root);
         
