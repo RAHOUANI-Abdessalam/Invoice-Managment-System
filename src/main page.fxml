@@ -162,7 +162,7 @@
             <Font size="13.0" />
          </font>
       </JFXTextField>
-      <TableView fx:id="table" editable="true" layoutX="69.0" layoutY="208.0" pickOnBounds="false" style="-fx-background-color: black;" stylesheets="@main%20page.css" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="211.0">
+      <TableView fx:id="table" editable="true" layoutX="69.0" layoutY="208.0" pickOnBounds="false" style="-fx-background-color: black;" stylesheets="@main%20page.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="211.0">
          <columns>
             <TableColumn fx:id="code" minWidth="-1.0" prefWidth="106.13155746459961" style="-fx-background-color: rgba(51, 51, 51, 1);" text="code produit" />
             <TableColumn fx:id="PrixT" minWidth="-1.0" prefWidth="199.36180114746094" style="-fx-background-color: rgba(51, 51, 51, 1);" styleClass="r" text="Désignation" />
@@ -178,6 +178,9 @@
          <effect>
             <Blend />
          </effect>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <JFXButton layoutX="150.0" layoutY="646.0" prefHeight="30.0" prefWidth="111.96" styleClass="sup-btn" stylesheets="@main%20page.css" text="Supprimer" textFill="WHITE" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="27.0">
          <graphic>
