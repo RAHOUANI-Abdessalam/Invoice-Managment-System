@@ -251,7 +251,7 @@
          <children>
             <HBox fillHeight="false" prefHeight="397.0" prefWidth="1068.0" spacing="20.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TableView fx:id="table" editable="true" pickOnBounds="false" prefHeight="397.0" prefWidth="871.0" style="-fx-background-color: black;" stylesheets="@main%20page.css" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="table" editable="true" pickOnBounds="false" style="-fx-background-color: black;" stylesheets="@main%20page.css" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="code" minWidth="-1.0" prefWidth="106.13155746459961" style="-fx-background-color: rgba(51, 51, 51, 1);" text="code produit" />
                         <TableColumn fx:id="PrixT" minWidth="-1.0" prefWidth="199.36180114746094" style="-fx-background-color: rgba(51, 51, 51, 1);" styleClass="r" text="Désignation" />
