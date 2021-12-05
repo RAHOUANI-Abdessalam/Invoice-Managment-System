@@ -16,12 +16,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
       
-        Parent root = FXMLLoader.load(getClass().getResource("AjouterClient2.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         
         Scene scene = new Scene(root);
         
         primaryStage.setTitle("Se Connecter");
         primaryStage.setScene(scene);
+//        primaryStage.setMinHeight(720);
+//        primaryStage.setMinWidth(1280);
         //for the not resizable windows
         //primaryStage.setResizable(false);
         primaryStage.show();

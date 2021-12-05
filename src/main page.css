@@ -38,7 +38,7 @@
         -fx-text-fill: white ;
     }
     .lable-emptym{
-        -fx-text-fill: #00FF0B ;
+        -fx-prompt-text-fill: #00FF0B ;
     }
     .ren-btn{
             -fx-background-color: #1ba1e2;
