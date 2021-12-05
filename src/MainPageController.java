@@ -17,7 +17,8 @@ import javafx.scene.layout.AnchorPane;
  * @author issam
  */
 public class MainPageController implements Initializable {
-@FXML
+
+    @FXML
     private AnchorPane background;
 
     @FXML
