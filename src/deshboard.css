@@ -7,6 +7,7 @@
 }
 .table-view .column-header .label {
         -fx-text-fill: white ;
+        -fx-font-size:10px;
     }
     .table-view {
         -fx-border-color: #1ba1e2 ;
