@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -97,4 +99,26 @@
          </children>
       </VBox>
    </bottom>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <TableView prefHeight="318.0" prefWidth="582.0" style="-fx-background-color: black;" stylesheets="@deshboard.css" tableMenuButtonVisible="true">
+               <columns>
+                  <TableColumn minWidth="0.0" prefWidth="62.986202239990234" style="-fx-background-color: rgba(51, 51, 51, 1);" text="N°Client" />
+                  <TableColumn minWidth="20.0" prefWidth="99.57928466796875" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Raison scocial" />
+                  <TableColumn minWidth="0.0" prefWidth="83.9310302734375" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Adresse" />
+                  <TableColumn minWidth="20.0" prefWidth="115.28274536132812" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Matricule Fiscal" />
+                  <TableColumn minWidth="0.0" prefWidth="67.94485473632812" style="-fx-background-color: rgba(51, 51, 51, 1);" text="N° Article" />
+                  <TableColumn minWidth="80.0" prefWidth="179.05514526367188" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Registre de Commerce" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </HBox>
+   </center>
 </BorderPane>

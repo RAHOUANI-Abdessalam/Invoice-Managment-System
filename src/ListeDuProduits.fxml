@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -82,4 +84,24 @@
          </children>
       </VBox>
    </bottom>
+   <center>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@deshboard.css" BorderPane.alignment="CENTER">
+         <children>
+            <TableView prefHeight="318.0" prefWidth="582.0" style="-fx-background-color: black;" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
+               <columns>
+                  <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="code produit" />
+                  <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Désignation" />
+                  <TableColumn prefWidth="112.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Prix Transport" />
+                  <TableColumn prefWidth="108.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Prix Unitaire" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </TableView>
+         </children>
+      </HBox>
+   </center>
 </BorderPane>

@@ -16,6 +16,7 @@
     .lable-empty{
         -fx-text-fill: white ;
         -fx-prompt-text-fill: white ;
+      
     }
     .sup-btn{
         -fx-background-color: red;
@@ -39,6 +40,7 @@
     }
     .lable-emptym{
         -fx-prompt-text-fill: #00FF0B ;
+        
     }
     .ren-btn{
             -fx-background-color: #1ba1e2;

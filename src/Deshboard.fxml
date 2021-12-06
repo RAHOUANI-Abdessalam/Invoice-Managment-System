@@ -3,7 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -23,17 +23,21 @@
          <children>
             <VBox alignment="TOP_RIGHT" prefWidth="1230.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #C4C4C4;">
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: grey;">
                      <items>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #C4C4C4; -fx-text-fill: #FFFFFF;" text="Liste Clients">
+                        <JFXButton text="Liste Clients" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/Send%20Hot%20List.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #C4C4C4; -fx-text-fill: #FFFFFF;" text="Ajouter Client">
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton text="Ajouter Client" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -41,8 +45,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #C4C4C4; -fx-text-fill: #FFFFFF;" text="Modifier Client">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton text="Modifier Client" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -50,8 +57,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #C4C4C4; -fx-text-fill: #FFFFFF;" text="Supprimer Client">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton text="Supprimer Client" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -59,8 +69,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #C4C4C4; -fx-text-fill: #FFFFFF;" text="Liste Produits">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton text="Liste Produits" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -68,8 +81,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #C4C4C4; -fx-text-fill: #FFFFFF;" text="Ajouter Produit">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton text="Ajouter Produit" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -77,8 +93,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #C4C4C4; -fx-text-fill: #FFFFFF;" text="Modifier Produit">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton text="Modifier Produit" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -86,8 +105,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #C4C4C4; -fx-text-fill: #FFFFFF;" text="Supprimer Produit">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton text="Supprimer Produit" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -95,7 +117,10 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
                      </items>
                   </ToolBar>
                </children>
@@ -251,12 +276,12 @@
                         <Image url="@images/Search%20Client.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField focusColor="RED" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField focusColor="WHITE" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </JFXTextField>
-                  <JFXTextField focusColor="RED" labelFloat="true" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -283,22 +308,22 @@
                               <Image url="@images/Search.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="130.0" promptText="Code Produit" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="130.0" promptText="Code Produit" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="18.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="200.0" promptText="Désignation " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="200.0" promptText="Désignation " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="150.0" promptText="Prix Transport " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="150.0" promptText="Prix Transport " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="150.0" promptText="Prix Unitaire" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="150.0" promptText="Prix Unitaire" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -312,7 +337,7 @@
                               <Image url="@images/Estimates.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField alignment="CENTER" focusColor="RED" labelFloat="true" prefWidth="130.0" promptText="Quantité" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField alignment="CENTER" focusColor="WHITE" labelFloat="true" prefWidth="130.0" promptText="Quantité" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -462,7 +487,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField alignment="CENTER_RIGHT" focusColor="RED" labelFloat="true" styleClass="text-field" stylesheets="@login.css" text="0.00" unFocusColor="#1ba1e2">
+                                          <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="220.0" />
                                              </HBox.margin>
@@ -482,7 +507,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField alignment="CENTER_RIGHT" focusColor="RED" labelFloat="true" styleClass="text-field" stylesheets="@login.css" text="0.00" unFocusColor="#1ba1e2">
+                                          <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="200.0" />
                                              </HBox.margin>
@@ -505,7 +530,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField alignment="CENTER_RIGHT" focusColor="RED" labelFloat="true" styleClass="text-field" stylesheets="@login.css" text="0.00" unFocusColor="#1ba1e2">
+                                          <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="180.0" />
                                              </HBox.margin>
@@ -528,7 +553,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField alignment="CENTER_RIGHT" focusColor="RED" labelFloat="true" prefWidth="190.0" styleClass="text-field" stylesheets="@login.css" text="0.00" unFocusColor="#1ba1e2">
+                                          <JFXTextField alignment="CENTER_RIGHT" focusColor="WHITE" prefWidth="190.0" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="160.0" />
                                              </HBox.margin>
@@ -551,7 +576,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField alignment="CENTER_RIGHT" focusColor="RED" labelFloat="true" prefWidth="250.0" styleClass="text-field" stylesheets="@login.css" text="0.00" unFocusColor="#1ba1e2">
+                                          <JFXTextField alignment="CENTER_RIGHT" editable="false" focusColor="#00ff0b" prefWidth="250.0" promptText="0.00" style="-fx-prompt-text-fill: #00FF0B; -fx-text-fill: #00FF0B;" stylesheets="@deshboard.css" unFocusColor="#00ff0b">
                                              <HBox.margin>
                                                 <Insets left="100.0" />
                                              </HBox.margin>
