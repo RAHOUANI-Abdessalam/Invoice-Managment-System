@@ -251,12 +251,12 @@
                         <Image url="@images/Search%20Client.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField focusColor="RED" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="text-field" stylesheets="@login.css" unFocusColor="#1ba1e2">
+                  <JFXTextField focusColor="RED" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </JFXTextField>
-                  <JFXTextField focusColor="RED" labelFloat="true" prefWidth="200.0" promptText="Raison scocial" styleClass="text-field" stylesheets="@login.css" unFocusColor="#1ba1e2">
+                  <JFXTextField focusColor="RED" labelFloat="true" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -283,22 +283,22 @@
                               <Image url="@images/Search.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="130.0" promptText="Code Produit" styleClass="text-field" stylesheets="@login.css" unFocusColor="#1ba1e2">
+                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="130.0" promptText="Code Produit" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="18.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="200.0" promptText="Désignation " styleClass="text-field" stylesheets="@login.css" unFocusColor="#1ba1e2">
+                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="200.0" promptText="Désignation " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="150.0" promptText="Prix Transport " styleClass="text-field" stylesheets="@login.css" unFocusColor="#1ba1e2">
+                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="150.0" promptText="Prix Transport " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="150.0" promptText="Prix Unitaire" styleClass="text-field" stylesheets="@login.css" unFocusColor="#1ba1e2">
+                        <JFXTextField focusColor="RED" labelFloat="true" prefWidth="150.0" promptText="Prix Unitaire" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -312,7 +312,7 @@
                               <Image url="@images/Estimates.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField alignment="CENTER" focusColor="RED" labelFloat="true" prefWidth="130.0" promptText="Quantité" styleClass="text-field" stylesheets="@login.css" text="1" unFocusColor="#1ba1e2">
+                        <JFXTextField alignment="CENTER" focusColor="RED" labelFloat="true" prefWidth="130.0" promptText="Quantité" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -346,14 +346,22 @@
                <children>
                   <VBox prefHeight="400.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TableView prefHeight="400.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+                        <TableView editable="true" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: black;" stylesheets="@deshboard.css" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="code produit" />
+                            <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Désignation" />
+                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Prix Transport" />
+                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Prix Unitaire" />
+                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="quantité" />
+                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="TVA" />
+                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Totale" />
                           </columns>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                         <JFXButton prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #ff0000; -fx-background-radius: 10;" text="Supprimer" textFill="WHITE">
                            <font>
