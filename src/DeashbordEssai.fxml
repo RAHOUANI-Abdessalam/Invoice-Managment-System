@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-min-height: 720; -fx-min-width: 1280;" styleClass="mainFxmlClass" stylesheets="@main%20page.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-min-height: 720; -fx-min-width: 1280;" styleClass="mainFxmlClass" stylesheets="@main%20page.css"  xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="1171.0">
          <children>
