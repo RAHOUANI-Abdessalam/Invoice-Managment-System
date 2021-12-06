@@ -9,10 +9,19 @@
         -fx-text-fill: white ;
         -fx-font-size:10px;
     }
+    .column-header{
+          -fx-background-color: rgba(51, 51, 51, 1);
+    }
     .table-view {
         -fx-border-color: #1ba1e2 ;
-      
+        -fx-background-color: black;
     }
+    .table-row-cell{
+       /*-fx-background-color: white;*/ 
+         -fx-text-fill: white ;
+         -fx-prompt-text-fill: white ;
+    }
+ 
     .lable-empty{
         -fx-text-fill: white ;
         -fx-prompt-text-fill: white ;

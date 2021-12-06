@@ -285,12 +285,12 @@
                         <Image url="@images/Search%20Client.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField focusColor="WHITE" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField fx:id="nclientfield" focusColor="WHITE" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </JFXTextField>
-                  <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField fx:id="raisonsocialfeild" focusColor="WHITE" labelFloat="true" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -317,22 +317,22 @@
                               <Image url="@images/Search.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="130.0" promptText="Code Produit" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="codeproduitfield" focusColor="WHITE" labelFloat="true" prefWidth="130.0" promptText="Code Produit" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="18.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="200.0" promptText="Désignation " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="designationfield" focusColor="WHITE" labelFloat="true" prefWidth="200.0" promptText="Désignation " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="150.0" promptText="Prix Transport " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="prixtransportfield" focusColor="WHITE" labelFloat="true" prefWidth="150.0" promptText="Prix Transport " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXTextField focusColor="WHITE" labelFloat="true" prefWidth="150.0" promptText="Prix Unitaire" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="priunitairefield" focusColor="WHITE" labelFloat="true" prefWidth="150.0" promptText="Prix Unitaire" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -346,12 +346,12 @@
                               <Image url="@images/Estimates.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField alignment="CENTER" focusColor="WHITE" labelFloat="true" prefWidth="130.0" promptText="Quantité" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="quantitefield" alignment="CENTER" focusColor="WHITE" labelFloat="true" prefWidth="130.0" promptText="Quantité" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXButton alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="155.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
+                        <JFXButton alignment="CENTER_RIGHT" onAction="#bntajoutall" prefHeight="28.0" prefWidth="155.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -383,15 +383,15 @@
                <children>
                   <VBox prefHeight="400.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TableView editable="true" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: black;" stylesheets="@deshboard.css" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="table" editable="true" prefHeight="400.0" prefWidth="800.0" stylesheets="@deshboard.css" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="code produit" />
-                            <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Désignation" />
-                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Prix Transport" />
-                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Prix Unitaire" />
-                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="quantité" />
-                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="TVA" />
-                              <TableColumn prefWidth="75.0" style="-fx-background-color: rgba(51, 51, 51, 1);" text="Totale" />
+                            <TableColumn fx:id="codp" prefWidth="75.0" text="code produit" />
+                            <TableColumn fx:id="des" prefWidth="75.0" text="Désignation" />
+                              <TableColumn fx:id="prixt" prefWidth="75.0" text="Prix Transport" />
+                              <TableColumn fx:id="prixu" prefWidth="75.0" text="Prix Unitaire" />
+                              <TableColumn fx:id="quant" prefWidth="75.0" text="quantité" />
+                              <TableColumn fx:id="tva" prefWidth="75.0" text="TVA" />
+                              <TableColumn fx:id="total" prefWidth="75.0" text="Totale" />
                           </columns>
                            <VBox.margin>
                               <Insets bottom="10.0" />
