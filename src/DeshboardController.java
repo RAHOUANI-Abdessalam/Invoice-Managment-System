@@ -7,9 +7,6 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,7 +41,7 @@ public class DeshboardController implements Initializable {
      
                         Stage primaryStage =new Stage();
                         FXMLLoader loader =new FXMLLoader();
-                        Parent root = loader.load(getClass().getResource("ListDuClients.fxml"));        
+                        Pane root = loader.load(getClass().getResource("ListDuClients.fxml"));        
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Se Connecter");
