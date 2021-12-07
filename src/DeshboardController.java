@@ -120,7 +120,7 @@ public class DeshboardController implements Initializable {
                   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
               }
           });      
-//           codeproduitfield
+//           codeproduitfield validation
           codeproduitfield.getValidators().add(numvad);
           codeproduitfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
               @Override
@@ -325,7 +325,7 @@ public class DeshboardController implements Initializable {
                         prixtransportfield.setText(rs.getString(6));
                         priunitairefield.setText(rs.getString(7));
                         quantitefield.setText(rs.getString(8));
-//                        nclientfield.setText(rs.getString(2));
+                        date.setText(rs.getString(3));
 //                        nclientfield.setText(rs.getString(2));
 //                        nclientfield.setText(rs.getString(2));
 //                        designationField.setText(rs.getString(2));
@@ -340,6 +340,24 @@ public class DeshboardController implements Initializable {
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,""+e.toString());
                 }
+    }
+//    btnReinitialiser
+     private void btnReinitialiser() throws IOException{
+        
+                    Stage stage = (Stage) facturefield.getScene().getWindow();
+                    stage.close();  
+                    
+               
+                    Stage primaryStage =new Stage();
+                    FXMLLoader loader =new FXMLLoader();
+                         
+                    Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
+                    Scene scene = new Scene(root);
+                    primaryStage.setTitle("Supprimer Produit");
+                    primaryStage.setScene(scene);
+                    primaryStage.setResizable(false);
+                    primaryStage.show();
+        
     }
      
 }
