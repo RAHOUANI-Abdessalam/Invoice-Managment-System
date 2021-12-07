@@ -226,7 +226,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Text>
-                        <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="131.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                        <JFXTextField fx:id="facturefield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="131.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                            <padding>
                               <Insets left="5.0" right="5.0" />
                            </padding>
@@ -234,7 +234,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXButton prefHeight="28.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Rechercher" textFill="WHITE">
+                        <JFXButton onAction="#btnRechercher" prefHeight="28.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Rechercher" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -260,7 +260,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00/00/0000">
+                        <Text fx:id="date" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00/00/0000">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
