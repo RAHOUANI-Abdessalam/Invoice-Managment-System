@@ -38,7 +38,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ImageView accessibleRole="BUTTON" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView accessibleRole="BUTTON" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#btnClose" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/icons8-close-100.png" />
                      </image>
@@ -63,7 +63,7 @@
             </Separator>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="200.0">
                <children>
-                  <JFXButton prefHeight="30.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Réinitialiser" textFill="WHITE">
+                  <JFXButton onAction="#btnReinitialiser" prefHeight="30.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Réinitialiser" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
@@ -78,7 +78,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="116.0" style="-fx-background-color: #00FF0B; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
+                  <JFXButton alignment="CENTER_RIGHT" onAction="#btnAjouterProduit" prefHeight="37.0" prefWidth="116.0" style="-fx-background-color: #00FF0B; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
@@ -108,7 +108,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #00FF0B;" text="000">
+                  <Text fx:id="codeProduitText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #00FF0B;" text="000">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -132,7 +132,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                        <JFXTextField fx:id="designationField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                            <padding>
                               <Insets left="5.0" right="5.0" />
                            </padding>
@@ -149,7 +149,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                        <JFXTextField fx:id="prixTransportField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                            <padding>
                               <Insets left="5.0" right="5.0" />
                            </padding>
@@ -166,7 +166,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <JFXTextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                        <JFXTextField fx:id="prixUnitaireField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                            <padding>
                               <Insets left="5.0" right="5.0" />
                            </padding>

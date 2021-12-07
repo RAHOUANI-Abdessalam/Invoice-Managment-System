@@ -351,7 +351,7 @@
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXButton alignment="CENTER_RIGHT" onAction="#bntajoutall" prefHeight="28.0" prefWidth="155.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
+                        <JFXButton alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="155.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

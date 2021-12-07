@@ -4,9 +4,22 @@
  * and open the template in the editor.
  */
 
+import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import project.ConnectionProvider;
 
 /**
  * FXML Controller class
@@ -15,12 +28,93 @@ import javafx.fxml.Initializable;
  */
 public class AjouterProduitController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Text codeProduitText;
+    @FXML
+    private JFXTextField designationField;
+    @FXML
+    private JFXTextField prixTransportField;
+    @FXML
+    private JFXTextField prixUnitaireField;
+    int code;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        try {
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select *from produit ORDER BY codeProduit DESC LIMIT 1");
+            if(rs.next()){
+                code = rs.getInt("codeProduit");
+                code=code+1;
+                String str = String.valueOf(code);
+                codeProduitText.setText(str);
+            }else
+                codeProduitText.setText("1");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,""+e.toString());
+        }
     }    
+    
+        @FXML
+    private void btnClose(){
+         //to close just one stage and other still running
+         Stage stage = (Stage) codeProduitText.getScene().getWindow();
+         stage.close();    
+        // Platform.exit();
+    }
+    
+        @FXML
+    private void btnReinitialiser() throws IOException{
+        
+                    Stage stage = (Stage) codeProduitText.getScene().getWindow();
+                    stage.close();  
+                    
+                    //Creat a new Satge to Show the New frame "the Deshboard"
+                    Stage primaryStage =new Stage();
+                    FXMLLoader loader =new FXMLLoader();
+                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
+                    Pane root = loader.load(getClass().getResource("AjouterProduit.fxml"));
+                    Scene scene = new Scene(root);
+                    primaryStage.setTitle("Ajouter Produit");
+                    primaryStage.setScene(scene);
+                    primaryStage.setResizable(false);
+                    primaryStage.show();
+        
+    }
+    
+        @FXML
+    private void btnAjouterProduit(){
+                if(designationField.getText().isEmpty() || prixTransportField.getText().isEmpty() || prixUnitaireField.getText().isEmpty()){
+                    Toast.makeText((Stage) designationField.getScene().getWindow(), "Veuilley saisir tout les champs SVP", 1500, 500, 500);
+                    return;
+                }
+                try {
+                    Connection con = ConnectionProvider.getCon();
+                    Statement st = con.createStatement();
+                    st.executeUpdate("insert into produit values('"+codeProduitText.getText()+"','"+designationField.getText()+"','"+prixTransportField.getText()+"','"+prixUnitaireField.getText()+"')");
+                    //Toast.makeText((Stage) raisonScocialField.getScene().getWindow(), "Clien Numéro "+id+" a été Ajouté avec succès", 2000, 500, 500);
+                   
+                    Stage stage = (Stage) designationField.getScene().getWindow();
+                    stage.close();  
+                    
+                    //Creat a new Satge to Show the New frame "the Deshboard"
+                    Stage primaryStage =new Stage();
+                    FXMLLoader loader =new FXMLLoader();
+                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
+                    Pane root = loader.load(getClass().getResource("AjouterProduit.fxml"));
+                    Scene scene = new Scene(root);
+                    primaryStage.setTitle("Ajouter Produit");
+                    primaryStage.setScene(scene);
+                    primaryStage.setResizable(false);
+                    primaryStage.show();
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                    System.out.println("Error in connection"+e.toString());
+        }
+    }
     
 }
