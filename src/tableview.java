@@ -9,20 +9,22 @@
  * @author issam
  */
 public class tableview {
-    
-    String codecodeproduit,Désignation,PrixTransport,PrixUnitaire,quantité,TVA,Totale;
+    double PrixTransport,PrixUnitaire,quantité,Totale;
+    int codecodeproduit;
+    String Désignation,TVA;
 
-    public tableview(String codecodeproduit, String Désignation, String PrixTransport, String PrixUnitaire, String quantité, String TVA, String Totale) {
+    public tableview(int codecodeproduit, String Désignation, double PrixTransport, double PrixUnitaire, double quantité) {
         this.codecodeproduit = codecodeproduit;
         this.Désignation = Désignation;
         this.PrixTransport = PrixTransport;
         this.PrixUnitaire = PrixUnitaire;
         this.quantité = quantité;
-        this.TVA = TVA;
-        this.Totale = Totale;
+  
     }
 
-    public String getCodecodeproduit() {
+
+
+    public int getCodecodeproduit() {
         return codecodeproduit;
     }
 
@@ -30,15 +32,15 @@ public class tableview {
         return Désignation;
     }
 
-    public String getPrixTransport() {
+    public double getPrixTransport() {
         return PrixTransport;
     }
 
-    public String getPrixUnitaire() {
+    public double getPrixUnitaire() {
         return PrixUnitaire;
     }
 
-    public String getQuantité() {
+    public double getQuantité() {
         return quantité;
     }
 
@@ -46,11 +48,11 @@ public class tableview {
         return TVA;
     }
 
-    public String getTotale() {
+    public double getTotale() {
         return Totale;
     }
 
-    public void setCodecodeproduit(String codecodeproduit) {
+    public void setCodecodeproduit(int codecodeproduit) {
         this.codecodeproduit = codecodeproduit;
     }
 
@@ -58,15 +60,15 @@ public class tableview {
         this.Désignation = Désignation;
     }
 
-    public void setPrixTransport(String PrixTransport) {
+    public void setPrixTransport(double PrixTransport) {
         this.PrixTransport = PrixTransport;
     }
 
-    public void setPrixUnitaire(String PrixUnitaire) {
+    public void setPrixUnitaire(double PrixUnitaire) {
         this.PrixUnitaire = PrixUnitaire;
     }
 
-    public void setQuantité(String quantité) {
+    public void setQuantité(double quantité) {
         this.quantité = quantité;
     }
 
@@ -74,7 +76,7 @@ public class tableview {
         this.TVA = TVA;
     }
 
-    public void setTotale(String Totale) {
+    public void setTotale(double Totale) {
         this.Totale = Totale;
     }
     
