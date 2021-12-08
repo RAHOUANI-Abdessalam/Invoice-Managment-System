@@ -353,52 +353,52 @@ public class DeshboardController implements Initializable {
                     Connection con= ConnectionProvider.getCon();
                     Statement st = con.createStatement();
                      
-                    ResultSet rs=st.executeQuery("select *from facture inner join quantite \n" +
+                    ResultSet rs = st.executeQuery("select *from facture inner join quantite \n" +
                                 "on '"+numeroFacture+"'=facture.numeroFacture\n" +"inner join produit\n" +
                                   "on produit.codeProduit=quantite.codeProduit and quantite.numeroFacture = '"+numeroFacture+"'");
-                    if(rs.next()){
-                        
-                        
-                                oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
+//                    if(rs.next()){
+                        while(rs.next()){
+                
+                 oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
                                       rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("totalTVA"), rs.getString("montantTotale")));
-                                                   nclientfield.setText(rs.getString(2));
-                                                   date.setText(rs.getString(3));
-                                                   numeroCheaque.setText(rs.getString(5));
-                                                   totalHT.setText(rs.getString(6));
-                                                   totalTVA.setText(rs.getString(7));
-                                                   totalTTC.setText(rs.getString(8));
-                                                   remise.setText(rs.getString(9));
-                                                   montantTotale.setText(rs.getString(10));
-                                                   montantTotale.setText(rs.getString(10));
-                                                   totaleEnLettres.setText(rs.getString(11));
-                                                     codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codeProduit"));
+                                               nclientfield.setText(rs.getString(2));
+                     date.setText(rs.getString(3));
+                     numeroCheaque.setText(rs.getString(5));
+                     totalHT.setText(rs.getString(6));
+                     totalTVA.setText(rs.getString(7));
+                     totalTTC.setText(rs.getString(8));
+                     remise.setText(rs.getString(9));
+                     montantTotale.setText(rs.getString(10));
+                     montantTotale.setText(rs.getString(10));
+                     totaleEnLettres.setText(rs.getString(11));     
+            }
+                    
+//                     rs.close();
+              
+//                            ResultSet rs2=st.executeQuery("select *from client where numeroClient='"+rs.getString(2)+"'");
+//                            if(rs2.next()){
+//                               raisonsocialfeild.setText(rs2.getString(2));
+//                            }else{
+//                                Toast.makeText((Stage) nclientfield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
+//                            }
+                            //fin de recherchment client
+   
+//                    }else{
+//                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "facture n'existe pas", 1500, 500, 500);
+//                    }
+
+            
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                }
+        codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codeProduit"));
         des.setCellValueFactory(new PropertyValueFactory<tableview, String>("designation"));
         prixt.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixTransport"));
         prixu.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixUnitaire"));
         quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("qteProduit"));
          tva.setCellValueFactory(new PropertyValueFactory<tableview, String>("totalTVA"));
         total.setCellValueFactory(new PropertyValueFactory<tableview, String>("montantTotale"));
-                 table.setItems(oblist);
-                           //                        qteProduit.setText(rs.getString(14));
-                           //                        raisonsocialfeild.setText(rs.getString(3));
-
-                           //rechercher le client par l'id
-                            ResultSet rs2=st.executeQuery("select *from client where numeroClient='"+rs.getString(2)+"'");
-                            if(rs2.next()){
-                               raisonsocialfeild.setText(rs2.getString(2));
-                            }else{
-                                Toast.makeText((Stage) nclientfield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
-                            }
-                            //fin de recherchment client
-
-                       
-                    }else{
-                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "facture n'existe pas", 1500, 500, 500);
-                    }
-
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null,""+e.toString());
-                }
+        table.setItems(oblist);
               
     }
 //    btnReinitialiser

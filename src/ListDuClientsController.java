@@ -68,8 +68,9 @@ public class ListDuClientsController implements Initializable {
 
     @FXML
     private TableColumn<historiqueClient, String> modeDeReglement;
+
     
-     ObservableList<historiqueClient> oblisT = FXCollections.observableArrayList();
+    
     
      ObservableList<tableclient> oblist = FXCollections.observableArrayList();
 
@@ -98,27 +99,7 @@ public class ListDuClientsController implements Initializable {
         ///////////////////////////
         
         
-//        try {
-//            Connection con = ConnectionProvider.getCon();
-//            Statement st = con.createStatement();
-//            ResultSet rs = st.executeQuery("select *from facture");
-//            int selectedfac = tableclient.getSelectionModel().getSelectedItem().numeroClient;
-////            
-//            while(rs.next()){
-//                
-//                oblisT.add(new historiqueClient(rs.getInt("numeroFacture"), rs.getString("date"), rs.getString("montantTotale"),
-//                        rs.getString("modeDeReglement")));
-//            }
-//      
-//           }catch (Exception e) {
-//                    JOptionPane.showMessageDialog(null,""+e.toString());
-//                }
-//             numeroFacture.setCellValueFactory(new PropertyValueFactory<historiqueClient, Integer>("numeroFacture"));
-//        date.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("date"));
-//        montantTotale.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("montantTotale"));
-//        modeDeReglement.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("modeDeReglement"));
-//      
-//        historiqueClient.setItems(oblisT);
+
     }    
     
     @FXML
