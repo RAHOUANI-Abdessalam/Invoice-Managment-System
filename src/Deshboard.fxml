@@ -127,7 +127,7 @@
             </VBox>
             <VBox alignment="TOP_RIGHT">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#btnClose" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/icons8-close-100.png" />
                      </image>
@@ -159,7 +159,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="287.0">
                <children>
-                  <JFXButton prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Réinitialiser" textFill="WHITE">
+                  <JFXButton onAction="#bntr" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Réinitialiser" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>

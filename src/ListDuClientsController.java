@@ -13,10 +13,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import project.ConnectionProvider;
@@ -30,7 +32,9 @@ public class ListDuClientsController implements Initializable {
 
     @FXML
     private ImageView close;
-     @FXML
+    @FXML
+    private HBox listeDeClientsTxt;
+    @FXML
     private TableView<tableclient> tableclient;
 
     @FXML
@@ -123,6 +127,13 @@ public class ListDuClientsController implements Initializable {
          Stage stage = (Stage) close.getScene().getWindow();
          stage.close();    
         // Platform.exit();
+    }
+    
+    @FXML
+    private void btnImprimmer(){
+            PrinterJob printerJob = PrinterJob.createPrinterJob();
+            if(printerJob.showPrintDialog((Stage) close.getScene().getWindow()) && printerJob.printPage(listeDeClientsTxt) && printerJob.printPage(tableclient))
+                printerJob.endJob();
     }
     
 }

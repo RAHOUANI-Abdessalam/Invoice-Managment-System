@@ -12,7 +12,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,6 +25,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -229,7 +233,7 @@ public class DeshboardController implements Initializable {
                         Parent root = loader.load(getClass().getResource("AjouterClient.fxml"));        
                     
                         Scene scene = new Scene(root);
-                        primaryStage.setTitle("Se Connecter");
+                        primaryStage.setTitle("Ajouter Client");
                         primaryStage.setScene(scene);
                     
                         primaryStage.show();
@@ -242,7 +246,7 @@ public class DeshboardController implements Initializable {
                         Pane root = loader.load(getClass().getResource("ListDuClients.fxml"));        
                     
                         Scene scene = new Scene(root);
-                        primaryStage.setTitle("Se Connecter");
+                        primaryStage.setTitle("Liste De Clents");
                         primaryStage.setScene(scene);
                     
                         primaryStage.show();
@@ -255,7 +259,7 @@ public class DeshboardController implements Initializable {
                         Parent root = loader.load(getClass().getResource("ModifierClient.fxml"));        
                     
                         Scene scene = new Scene(root);
-                        primaryStage.setTitle("Se Connecter");
+                        primaryStage.setTitle("Modifier Client");
                         primaryStage.setScene(scene);
                     
                         primaryStage.show();
@@ -268,7 +272,7 @@ public class DeshboardController implements Initializable {
                         Parent root = loader.load(getClass().getResource("SupprimerClient.fxml"));        
                     
                         Scene scene = new Scene(root);
-                        primaryStage.setTitle("Se Connecter");
+                        primaryStage.setTitle("Supprimer Client");
                         primaryStage.setScene(scene);
                     
                         primaryStage.show();
@@ -281,7 +285,7 @@ public class DeshboardController implements Initializable {
                         Parent root = loader.load(getClass().getResource("ListeDuProduits.fxml"));        
                     
                         Scene scene = new Scene(root);
-                        primaryStage.setTitle("Se Connecter");
+                        primaryStage.setTitle("Liste de Produits");
                         primaryStage.setScene(scene);
                     
                         primaryStage.show();
@@ -294,7 +298,7 @@ public class DeshboardController implements Initializable {
                         Parent root = loader.load(getClass().getResource("AjouterProduit.fxml"));        
                     
                         Scene scene = new Scene(root);
-                        primaryStage.setTitle("Se Connecter");
+                        primaryStage.setTitle("Ajouter Produit");
                         primaryStage.setScene(scene);
                     
                         primaryStage.show();
@@ -307,7 +311,7 @@ public class DeshboardController implements Initializable {
                         Parent root = loader.load(getClass().getResource("ModifierProduit.fxml"));        
                     
                         Scene scene = new Scene(root);
-                        primaryStage.setTitle("Se Connecter");
+                        primaryStage.setTitle("Modifier Produit");
                         primaryStage.setScene(scene);
                     
                         primaryStage.show();
@@ -320,7 +324,7 @@ public class DeshboardController implements Initializable {
                         Parent root = loader.load(getClass().getResource("SupprimerProduit.fxml"));        
                     
                         Scene scene = new Scene(root);
-                        primaryStage.setTitle("Se Connecter");
+                        primaryStage.setTitle("Supprimer Produit");
                         primaryStage.setScene(scene);
                     
                         primaryStage.show();
@@ -330,7 +334,7 @@ public class DeshboardController implements Initializable {
     @FXML
     private void btnRechercher(){
                  if(facturefield.getText().isEmpty()){
-                    Toast.makeText((Stage) facturefield.getScene().getWindow(), "Veuilley Entrer un Code Produit SVP", 1500, 500, 500);
+                    Toast.makeText((Stage) facturefield.getScene().getWindow(), "Veuilley Entrer N° de Facture SVP", 1500, 500, 500);
                     return;
                 }
                 String numeroFacture = facturefield.getText();
@@ -344,22 +348,30 @@ public class DeshboardController implements Initializable {
                     if(rs.next()){
                         
                         
-     oblist.add(new tableview(rs.getInt("codeProduit"), rs.getString("designation"), rs.getDouble("prixTransport"),
-           rs.getDouble("prixUnitaire"), rs.getDouble("qteProduit")));
-                        nclientfield.setText(rs.getString(2));
-                        date.setText(rs.getString(3));
-                        numeroCheaque.setText(rs.getString(5));
-                        totalHT.setText(rs.getString(6));
-                        totalTVA.setText(rs.getString(7));
-                        totalTTC.setText(rs.getString(8));
-                        remise.setText(rs.getString(9));
-                         montantTotale.setText(rs.getString(10));
-                        montantTotale.setText(rs.getString(10));
-                        totaleEnLettres.setText(rs.getString(11));
-//                        qteProduit.setText(rs.getString(14));
-//                        raisonsocialfeild.setText(rs.getString(3));
-                        
-                       
+                                oblist.add(new tableview(rs.getInt("codeProduit"), rs.getString("designation"), rs.getDouble("prixTransport"),
+                                      rs.getDouble("prixUnitaire"), rs.getDouble("qteProduit")));
+                                                   nclientfield.setText(rs.getString(2));
+                                                   date.setText(rs.getString(3));
+                                                   numeroCheaque.setText(rs.getString(5));
+                                                   totalHT.setText(rs.getString(6));
+                                                   totalTVA.setText(rs.getString(7));
+                                                   totalTTC.setText(rs.getString(8));
+                                                   remise.setText(rs.getString(9));
+                                                   montantTotale.setText(rs.getString(10));
+                                                   montantTotale.setText(rs.getString(10));
+                                                   totaleEnLettres.setText(rs.getString(11));
+                           //                        qteProduit.setText(rs.getString(14));
+                           //                        raisonsocialfeild.setText(rs.getString(3));
+
+                           //rechercher le client par l'id
+                            ResultSet rs2=st.executeQuery("select *from client where numeroClient='"+rs.getString(2)+"'");
+                            if(rs2.next()){
+                               raisonsocialfeild.setText(rs2.getString(2));
+                            }else{
+                                Toast.makeText((Stage) nclientfield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
+                            }
+                            //fin de recherchment client
+
                        
                     }else{
                         Toast.makeText((Stage) facturefield.getScene().getWindow(), "facture n'existe pas", 1500, 500, 500);
@@ -376,6 +388,7 @@ public class DeshboardController implements Initializable {
                  table.setItems(oblist);
     }
 //    btnReinitialiser
+    @FXML
      private void bntr() throws IOException{
         
                     Stage stage = (Stage) facturefield.getScene().getWindow();
@@ -387,11 +400,34 @@ public class DeshboardController implements Initializable {
                          
                     Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
                     Scene scene = new Scene(root);
-                    primaryStage.setTitle("Supprimer Produit");
+                    primaryStage.setTitle("Deshboard");
                     primaryStage.setScene(scene);
-                  
+         
                     primaryStage.show();
         
+    }
+     
+        @FXML
+    private void btnClose(){
+//         to close just one stage and other still running
+//         Stage stage = (Stage) motdepasseField.getScene().getWindow();
+//         stage.close();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Fermer");
+            //alert.setHeaderText("SVP, Vérifier");
+            alert.setHeaderText(null);
+            alert.setContentText("Voulez vous Vraiment fermer");
+            
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                // ... user chose OK
+                //close the entier app
+                Platform.exit();
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                alert.close();
+            }
+         
     }
      
 }
