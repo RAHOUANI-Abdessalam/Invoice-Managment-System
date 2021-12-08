@@ -5,11 +5,21 @@
  */
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import project.ConnectionProvider;
 
 /**
  * FXML Controller class
@@ -21,10 +31,11 @@ public class HistoriqueDeClientController implements Initializable {
 
     @FXML
     private ImageView close;
+   
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }    
     
     @FXML

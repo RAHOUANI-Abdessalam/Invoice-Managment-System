@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,6 +41,25 @@ public class DeshboardController implements Initializable {
     private JFXTextField facturefield;
     @FXML
     private JFXTextField nclientfield;
+    @FXML
+    private JFXTextField numeroCheaque;
+    @FXML
+    private JFXTextField totaleEnLettres;
+
+    @FXML
+    private JFXTextField totalHT;
+
+    @FXML
+    private JFXTextField totalTVA;
+
+    @FXML
+    private JFXTextField totalTTC;
+
+    @FXML
+    private JFXTextField remise;
+
+    @FXML
+    private JFXTextField montantTotale;
 
     @FXML
     private JFXTextField raisonsocialfeild;
@@ -57,7 +77,7 @@ public class DeshboardController implements Initializable {
     private JFXTextField priunitairefield;
 
     @FXML
-    private JFXTextField quantitefield;
+    private JFXTextField qteProduit;
 
     @FXML
     private TableView<tableview> table;
@@ -76,8 +96,9 @@ public class DeshboardController implements Initializable {
 
     @FXML
     private TableColumn<tableview, String> quant;
-
+ 
     @FXML
+    
   
     @Override
      public void initialize(URL url, ResourceBundle rb) {
@@ -143,12 +164,12 @@ public class DeshboardController implements Initializable {
               }
           });
 //          quantitefield validation
-          quantitefield.getValidators().add(numvad);
-          quantitefield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+          qteProduit.getValidators().add(numvad);
+          qteProduit.focusedProperty().addListener(new ChangeListener<Boolean>() {
               @Override
               public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                   if(!newValue){
-                      quantitefield.validate();
+                      qteProduit.validate();
                   }
                   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
               }
@@ -169,7 +190,7 @@ public class DeshboardController implements Initializable {
         des.setCellValueFactory(new PropertyValueFactory<tableview, String>("Désignation"));
         prixt.setCellValueFactory(new PropertyValueFactory<tableview, String>("PrixTransport"));
         prixu.setCellValueFactory(new PropertyValueFactory<tableview, String>("PrixUnitaire"));
-        quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("quantité"));
+        quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("qteProduit"));
         
     }
      
@@ -179,7 +200,7 @@ public class DeshboardController implements Initializable {
      
      if(codeproduitfield.getText().isEmpty()|| designationfield.getText().isEmpty()||
                 prixtransportfield.getText().isEmpty()||priunitairefield.getText().isEmpty()||
-             quantitefield.getText().isEmpty()){
+             qteProduit.getText().isEmpty()){
         Toast.makeText((Stage) codeproduitfield.getScene().getWindow(), "Veuilley saisir tout les champs SVP", 1500, 500, 500);
                    return;           
     }      
@@ -187,7 +208,7 @@ public class DeshboardController implements Initializable {
 //     taking value to new tab
         tableview tableview = new tableview(Integer.parseInt(codeproduitfield.getText()),designationfield.getText(),
                 Double.parseDouble(prixtransportfield.getText()),Double.parseDouble(priunitairefield.getText()),
-                Double.parseDouble(quantitefield.getText()));
+                Double.parseDouble(qteProduit.getText()));
         ObservableList<tableview> tableviews = table.getItems();
         tableviews.add(tableview);
         table.setItems(tableviews);
@@ -305,6 +326,7 @@ public class DeshboardController implements Initializable {
                         primaryStage.show();
     }
 //    cherche facture
+     ObservableList<tableview> oblist = FXCollections.observableArrayList();
     @FXML
     private void btnRechercher(){
                  if(facturefield.getText().isEmpty()){
@@ -316,23 +338,29 @@ public class DeshboardController implements Initializable {
                     Connection con= ConnectionProvider.getCon();
                     Statement st = con.createStatement();
                      
-                    ResultSet rs=st.executeQuery("select *from facture where numeroFacture='"+numeroFacture+"'");
+                    ResultSet rs=st.executeQuery("select *from facture inner join quantite \n" +
+                                "on '"+numeroFacture+"'=facture.numeroFacture\n" +"inner join produit\n" +
+                                  "on produit.codeProduit=quantite.codeProduit and quantite.numeroFacture = '"+numeroFacture+"'");
                     if(rs.next()){
+                        
+                        
+     oblist.add(new tableview(rs.getInt("codeProduit"), rs.getString("designation"), rs.getDouble("prixTransport"),
+           rs.getDouble("prixUnitaire"), rs.getDouble("qteProduit")));
                         nclientfield.setText(rs.getString(2));
-                        raisonsocialfeild.setText(rs.getString(3));
-                        codeproduitfield.setText(rs.getString(4));
-                        designationfield.setText(rs.getString(5));
-                        prixtransportfield.setText(rs.getString(6));
-                        priunitairefield.setText(rs.getString(7));
-                        quantitefield.setText(rs.getString(8));
                         date.setText(rs.getString(3));
-//                        nclientfield.setText(rs.getString(2));
-//                        nclientfield.setText(rs.getString(2));
-//                        designationField.setText(rs.getString(2));
-//                        prixTransportField.setText(rs.getString(3));
-//                        prixUnitaireField.setText(rs.getString(4));
-
-                        facturefield.setEditable(false);
+                        numeroCheaque.setText(rs.getString(5));
+                        totalHT.setText(rs.getString(6));
+                        totalTVA.setText(rs.getString(7));
+                        totalTTC.setText(rs.getString(8));
+                        remise.setText(rs.getString(9));
+                         montantTotale.setText(rs.getString(10));
+                        montantTotale.setText(rs.getString(10));
+                        totaleEnLettres.setText(rs.getString(11));
+//                        qteProduit.setText(rs.getString(14));
+//                        raisonsocialfeild.setText(rs.getString(3));
+                        
+                       
+                       
                     }else{
                         Toast.makeText((Stage) facturefield.getScene().getWindow(), "facture n'existe pas", 1500, 500, 500);
                     }
@@ -340,9 +368,15 @@ public class DeshboardController implements Initializable {
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,""+e.toString());
                 }
+                codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codeProduit"));
+        des.setCellValueFactory(new PropertyValueFactory<tableview, String>("designation"));
+        prixt.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixTransport"));
+        prixu.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixUnitaire"));
+        quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("qteProduit"));
+                 table.setItems(oblist);
     }
 //    btnReinitialiser
-     private void btnReinitialiser() throws IOException{
+     private void bntr() throws IOException{
         
                     Stage stage = (Stage) facturefield.getScene().getWindow();
                     stage.close();  
@@ -355,7 +389,7 @@ public class DeshboardController implements Initializable {
                     Scene scene = new Scene(root);
                     primaryStage.setTitle("Supprimer Produit");
                     primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
+                  
                     primaryStage.show();
         
     }

@@ -9,27 +9,27 @@
  * @author issam
  */
 public class tableview {
-    double PrixTransport,PrixUnitaire,quantité,Totale;
-    int codecodeproduit;
-    String Désignation,TVA;
+    double PrixTransport,PrixUnitaire,qteProduit,Totale;
+    int codeProduit;
+    String designation,TVA;
 
-    public tableview(int codecodeproduit, String Désignation, double PrixTransport, double PrixUnitaire, double quantité) {
-        this.codecodeproduit = codecodeproduit;
-        this.Désignation = Désignation;
+    public tableview(int codeProduit, String designation, double PrixTransport, double PrixUnitaire, double qteProduit) {
+        this.codeProduit = codeProduit;
+        this.designation = designation;
         this.PrixTransport = PrixTransport;
         this.PrixUnitaire = PrixUnitaire;
-        this.quantité = quantité;
+        this.qteProduit = qteProduit;
   
     }
 
 
 
-    public int getCodecodeproduit() {
-        return codecodeproduit;
+    public int getcodeProduit() {
+        return codeProduit;
     }
 
-    public String getDésignation() {
-        return Désignation;
+    public String getdesignation() {
+        return designation;
     }
 
     public double getPrixTransport() {
@@ -40,8 +40,8 @@ public class tableview {
         return PrixUnitaire;
     }
 
-    public double getQuantité() {
-        return quantité;
+    public double getqteProduit() {
+        return qteProduit;
     }
 
     public String getTVA() {
@@ -52,12 +52,12 @@ public class tableview {
         return Totale;
     }
 
-    public void setCodecodeproduit(int codecodeproduit) {
-        this.codecodeproduit = codecodeproduit;
+    public void setcodeProduit(int codeProduit) {
+        this.codeProduit = codeProduit;
     }
 
-    public void setDésignation(String Désignation) {
-        this.Désignation = Désignation;
+    public void setdesignation(String designation) {
+        this.designation = designation;
     }
 
     public void setPrixTransport(double PrixTransport) {
@@ -68,8 +68,8 @@ public class tableview {
         this.PrixUnitaire = PrixUnitaire;
     }
 
-    public void setQuantité(double quantité) {
-        this.quantité = quantité;
+    public void setqteProduit(double qteProduit) {
+        this.qteProduit = qteProduit;
     }
 
     public void setTVA(String TVA) {
