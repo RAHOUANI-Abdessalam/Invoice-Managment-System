@@ -93,7 +93,7 @@ public class LoginController implements Initializable {
                         Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
                         //Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
                         Scene scene = new Scene(root);
-                        primaryStage.setTitle("Se Connecter");
+                        primaryStage.setTitle("Deashbord");
                         primaryStage.setScene(scene);
                         primaryStage.setMinHeight(720);
                         primaryStage.setMinWidth(1280);
