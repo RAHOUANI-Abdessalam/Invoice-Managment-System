@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,8 +13,11 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.print.PrinterJob;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,6 +33,7 @@ import project.ConnectionProvider;
  * @author abdel
  */
 public class ListDuClientsController implements Initializable {
+    public static int idclient=0;
 
     @FXML
     private ImageView close;
@@ -115,6 +120,25 @@ public class ListDuClientsController implements Initializable {
             PrinterJob printerJob = PrinterJob.createPrinterJob();
             if(printerJob.showPrintDialog((Stage) close.getScene().getWindow()) && printerJob.printPage(listeDeClientsTxt) && printerJob.printPage(tableclient))
                 printerJob.endJob();
+    }
+    
+    @FXML
+    private void hisclientbtn() throws IOException{
+        
+            idclient = 15;
+            Stage stage = (Stage) listeDeClientsTxt.getScene().getWindow();
+            stage.close();  
+        
+            Stage primaryStage =new Stage();
+            FXMLLoader loader =new FXMLLoader();
+            Parent root = loader.load(getClass().getResource("HistoriqueDeClient.fxml"));    
+
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("Historique de Client");
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+
     }
     
 }

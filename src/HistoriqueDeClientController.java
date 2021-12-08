@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import project.ConnectionProvider;
@@ -30,9 +31,14 @@ import project.ConnectionProvider;
  */
 public class HistoriqueDeClientController implements Initializable {
 
+    //adminstatic int idClient;
 
     @FXML
     private ImageView close;
+    
+    @FXML
+    private Text nClientTxt;
+        
     @FXML
     private HBox numClientTxt;
     @FXML
@@ -41,6 +47,9 @@ public class HistoriqueDeClientController implements Initializable {
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+                String clientIDstr=Integer.toString(ListDuClientsController.idclient);
+                nClientTxt.setText(clientIDstr);
+                
 //               try {
 //            Connection con = ConnectionProvider.getCon();
 //            Statement st = con.createStatement();
@@ -61,7 +70,7 @@ public class HistoriqueDeClientController implements Initializable {
 //        montantTotale.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("montantTotale"));
 //        modeDeReglement.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("modeDeReglement"));
 //      
-//        historiqueClient.setItems(oblisT);
+//        historiqueClient.setItems(oblisT);       
     }    
     
     @FXML

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
@@ -31,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -41,6 +43,14 @@ import project.ConnectionProvider;
 public class DeshboardController implements Initializable {
     @FXML
     private Text date;
+    @FXML
+    private JFXButton validerFacturebtn;
+    @FXML
+    private JFXButton ajouterProduitbtn;
+    @FXML
+    private JFXButton supprimerProduitbtn;
+    @FXML
+    private Text ClientSelectText;
     @FXML
     private JFXTextField facturefield;
     @FXML
@@ -356,36 +366,57 @@ public class DeshboardController implements Initializable {
                     ResultSet rs = st.executeQuery("select *from facture inner join quantite \n" +
                                 "on '"+numeroFacture+"'=facture.numeroFacture\n" +"inner join produit\n" +
                                   "on produit.codeProduit=quantite.codeProduit and quantite.numeroFacture = '"+numeroFacture+"'");
-//                    if(rs.next()){
+                    table.getItems().clear();
+                    if(rs.next()){
+                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("totalTVA"), rs.getString("montantTotale")));
+                                        nclientfield.setText(rs.getString(2));
+                                        String idClient = rs.getString(2);
+                                        date.setText(rs.getString(3));
+                                        numeroCheaque.setText(rs.getString(5));
+                                        totalHT.setText(rs.getString(6));
+                                        totalTVA.setText(rs.getString(7));
+                                        totalTTC.setText(rs.getString(8));
+                                        remise.setText(rs.getString(9));
+                                        montantTotale.setText(rs.getString(10));
+                                        montantTotale.setText(rs.getString(10));
+                                        totaleEnLettres.setText(rs.getString(11)); 
+                                        
+                                        validerFacturebtn.setDisable(true);
+                                        ajouterProduitbtn.setDisable(true);
+                                        supprimerProduitbtn.setDisable(true);
+                                        ClientSelectText.setText("      Client Sélectionné");
+                                        //////ClientSelectText.setFill(Color.GREEN);
+                                        ClientSelectText.setStyle("-fx-fill: #00FF0B;");
                         while(rs.next()){
                 
-                 oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
-                                      rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("totalTVA"), rs.getString("montantTotale")));
-                                               nclientfield.setText(rs.getString(2));
-                     date.setText(rs.getString(3));
-                     numeroCheaque.setText(rs.getString(5));
-                     totalHT.setText(rs.getString(6));
-                     totalTVA.setText(rs.getString(7));
-                     totalTTC.setText(rs.getString(8));
-                     remise.setText(rs.getString(9));
-                     montantTotale.setText(rs.getString(10));
-                     montantTotale.setText(rs.getString(10));
-                     totaleEnLettres.setText(rs.getString(11));     
-            }
+                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("totalTVA"), rs.getString("montantTotale")));
+                                                                  nclientfield.setText(rs.getString(2));
+//                                        date.setText(rs.getString(3));
+//                                        numeroCheaque.setText(rs.getString(5));
+//                                        totalHT.setText(rs.getString(6));
+//                                        totalTVA.setText(rs.getString(7));
+//                                        totalTTC.setText(rs.getString(8));
+//                                        remise.setText(rs.getString(9));
+//                                        montantTotale.setText(rs.getString(10));
+//                                        montantTotale.setText(rs.getString(10));
+//                                        totaleEnLettres.setText(rs.getString(11));     
+                               }
                     
 //                     rs.close();
               
-//                            ResultSet rs2=st.executeQuery("select *from client where numeroClient='"+rs.getString(2)+"'");
-//                            if(rs2.next()){
-//                               raisonsocialfeild.setText(rs2.getString(2));
-//                            }else{
-//                                Toast.makeText((Stage) nclientfield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
-//                            }
+                            ResultSet rs2=st.executeQuery("select *from client where numeroClient='"+idClient+"'");
+                            if(rs2.next()){
+                               raisonsocialfeild.setText(rs2.getString(2));
+                            }else{
+                                Toast.makeText((Stage) nclientfield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
+                            }
                             //fin de recherchment client
    
-//                    }else{
-//                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "facture n'existe pas", 1500, 500, 500);
-//                    }
+                    }else{
+                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "facture n'existe pas", 1500, 500, 500);
+                    }
 
             
                 } catch (Exception e) {
@@ -414,7 +445,7 @@ public class DeshboardController implements Initializable {
                          
                     Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
                     Scene scene = new Scene(root);
-                    primaryStage.setTitle("Deashbord");
+                    primaryStage.setTitle("Deshboard");
                     primaryStage.setScene(scene);
                     primaryStage.setMinHeight(720);
                     primaryStage.setMinWidth(1280);

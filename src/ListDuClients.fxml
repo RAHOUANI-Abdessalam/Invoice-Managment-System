@@ -79,7 +79,7 @@
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Historique Client" textFill="WHITE">
+                  <JFXButton alignment="CENTER_RIGHT" onAction="#hisclientbtn" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Historique Client" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
