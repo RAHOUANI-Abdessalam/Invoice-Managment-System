@@ -235,7 +235,7 @@ public class DeshboardController implements Initializable {
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Ajouter Client");
                         primaryStage.setScene(scene);
-                    
+                        primaryStage.setResizable(false);
                         primaryStage.show();
     }
     @FXML
@@ -248,7 +248,7 @@ public class DeshboardController implements Initializable {
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Liste De Clents");
                         primaryStage.setScene(scene);
-                    
+                        primaryStage.setResizable(false);
                         primaryStage.show();
     }
      @FXML
@@ -261,7 +261,7 @@ public class DeshboardController implements Initializable {
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Modifier Client");
                         primaryStage.setScene(scene);
-                    
+                        primaryStage.setResizable(false);
                         primaryStage.show();
     }
      @FXML
@@ -274,7 +274,7 @@ public class DeshboardController implements Initializable {
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Supprimer Client");
                         primaryStage.setScene(scene);
-                    
+                        primaryStage.setResizable(false);
                         primaryStage.show();
     }
      @FXML
@@ -287,7 +287,7 @@ public class DeshboardController implements Initializable {
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Liste de Produits");
                         primaryStage.setScene(scene);
-                    
+                        primaryStage.setResizable(false);
                         primaryStage.show();
     }
      @FXML
@@ -300,7 +300,7 @@ public class DeshboardController implements Initializable {
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Ajouter Produit");
                         primaryStage.setScene(scene);
-                    
+                        primaryStage.setResizable(false);
                         primaryStage.show();
     }
      @FXML
@@ -313,7 +313,7 @@ public class DeshboardController implements Initializable {
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Modifier Produit");
                         primaryStage.setScene(scene);
-                    
+                        primaryStage.setResizable(false);
                         primaryStage.show();
     }
      @FXML
@@ -326,7 +326,7 @@ public class DeshboardController implements Initializable {
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Supprimer Produit");
                         primaryStage.setScene(scene);
-                    
+                        primaryStage.setResizable(false);
                         primaryStage.show();
     }
 //    cherche facture
@@ -402,16 +402,14 @@ public class DeshboardController implements Initializable {
                     Scene scene = new Scene(root);
                     primaryStage.setTitle("Deshboard");
                     primaryStage.setScene(scene);
-         
+                    primaryStage.setMinHeight(720);
+                    primaryStage.setMinWidth(1280);
                     primaryStage.show();
         
     }
      
-        @FXML
+    @FXML
     private void btnClose(){
-//         to close just one stage and other still running
-//         Stage stage = (Stage) motdepasseField.getScene().getWindow();
-//         stage.close();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Fermer");
             //alert.setHeaderText("SVP, Vérifier");
