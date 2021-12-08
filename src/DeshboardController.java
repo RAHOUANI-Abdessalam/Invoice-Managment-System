@@ -100,6 +100,11 @@ public class DeshboardController implements Initializable {
 
     @FXML
     private TableColumn<tableview, String> quant;
+        @FXML
+    private TableColumn<tableview, String> tva;
+
+    @FXML
+    private TableColumn<tableview, String> total;
  
     @FXML
     
@@ -195,6 +200,8 @@ public class DeshboardController implements Initializable {
         prixt.setCellValueFactory(new PropertyValueFactory<tableview, String>("PrixTransport"));
         prixu.setCellValueFactory(new PropertyValueFactory<tableview, String>("PrixUnitaire"));
         quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("qteProduit"));
+        tva.setCellValueFactory(new PropertyValueFactory<tableview, String>("totalTVA"));
+        total.setCellValueFactory(new PropertyValueFactory<tableview, String>("montantTotale"));
         
     }
      
@@ -208,11 +215,15 @@ public class DeshboardController implements Initializable {
         Toast.makeText((Stage) codeproduitfield.getScene().getWindow(), "Veuilley saisir tout les champs SVP", 1500, 500, 500);
                    return;           
     }      
+     String TVA="19%";
+     String qteProduiT= qteProduit.getText(),priunitaire= priunitairefield.getText(),
+             prixtransport= prixtransportfield.getText();
      
+    double montantTotale = (Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19)+Double.valueOf(prixtransport);
 //     taking value to new tab
-        tableview tableview = new tableview(Integer.parseInt(codeproduitfield.getText()),designationfield.getText(),
-                Double.parseDouble(prixtransportfield.getText()),Double.parseDouble(priunitairefield.getText()),
-                Double.parseDouble(qteProduit.getText()));
+
+        tableview tableview = new tableview(codeproduitfield.getText(),designationfield.getText(),
+               prixtransport,priunitaire,qteProduiT,TVA,String.valueOf(montantTotale));
         ObservableList<tableview> tableviews = table.getItems();
         tableviews.add(tableview);
         table.setItems(tableviews);
@@ -348,8 +359,8 @@ public class DeshboardController implements Initializable {
                     if(rs.next()){
                         
                         
-                                oblist.add(new tableview(rs.getInt("codeProduit"), rs.getString("designation"), rs.getDouble("prixTransport"),
-                                      rs.getDouble("prixUnitaire"), rs.getDouble("qteProduit")));
+                                oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
+                                      rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("totalTVA"), rs.getString("montantTotale")));
                                                    nclientfield.setText(rs.getString(2));
                                                    date.setText(rs.getString(3));
                                                    numeroCheaque.setText(rs.getString(5));
@@ -360,6 +371,14 @@ public class DeshboardController implements Initializable {
                                                    montantTotale.setText(rs.getString(10));
                                                    montantTotale.setText(rs.getString(10));
                                                    totaleEnLettres.setText(rs.getString(11));
+                                                     codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codeProduit"));
+        des.setCellValueFactory(new PropertyValueFactory<tableview, String>("designation"));
+        prixt.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixTransport"));
+        prixu.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixUnitaire"));
+        quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("qteProduit"));
+         tva.setCellValueFactory(new PropertyValueFactory<tableview, String>("totalTVA"));
+        total.setCellValueFactory(new PropertyValueFactory<tableview, String>("montantTotale"));
+                 table.setItems(oblist);
                            //                        qteProduit.setText(rs.getString(14));
                            //                        raisonsocialfeild.setText(rs.getString(3));
 
@@ -380,12 +399,7 @@ public class DeshboardController implements Initializable {
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,""+e.toString());
                 }
-                codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codeProduit"));
-        des.setCellValueFactory(new PropertyValueFactory<tableview, String>("designation"));
-        prixt.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixTransport"));
-        prixu.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixUnitaire"));
-        quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("qteProduit"));
-                 table.setItems(oblist);
+              
     }
 //    btnReinitialiser
     @FXML

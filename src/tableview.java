@@ -9,75 +9,74 @@
  * @author issam
  */
 public class tableview {
-    double PrixTransport,PrixUnitaire,qteProduit,Totale;
-    int codeProduit;
-    String designation,TVA;
+   
+    String codeProduit,designation,PrixTransport,PrixUnitaire,qteProduit,totalTVA,montantTotale;
 
-    public tableview(int codeProduit, String designation, double PrixTransport, double PrixUnitaire, double qteProduit) {
+    public tableview(String codeProduit, String designation, String PrixTransport, String PrixUnitaire, String qteProduit, String totalTVA, String montantTotale) {
         this.codeProduit = codeProduit;
         this.designation = designation;
         this.PrixTransport = PrixTransport;
         this.PrixUnitaire = PrixUnitaire;
         this.qteProduit = qteProduit;
-  
+        this.totalTVA = totalTVA;
+        this.montantTotale = montantTotale;
     }
 
+    public void setCodeProduit(String codeProduit) {
+        this.codeProduit = codeProduit;
+    }
 
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
 
-    public int getcodeProduit() {
+    public void setPrixTransport(String PrixTransport) {
+        this.PrixTransport = PrixTransport;
+    }
+
+    public void setPrixUnitaire(String PrixUnitaire) {
+        this.PrixUnitaire = PrixUnitaire;
+    }
+
+    public void setQteProduit(String qteProduit) {
+        this.qteProduit = qteProduit;
+    }
+
+    public void setTotalTVA(String totalTVA) {
+        this.totalTVA = totalTVA;
+    }
+
+    public void setMontantTotale(String montantTotale) {
+        this.montantTotale = montantTotale;
+    }
+
+    public String getCodeProduit() {
         return codeProduit;
     }
 
-    public String getdesignation() {
+    public String getDesignation() {
         return designation;
     }
 
-    public double getPrixTransport() {
+    public String getPrixTransport() {
         return PrixTransport;
     }
 
-    public double getPrixUnitaire() {
+    public String getPrixUnitaire() {
         return PrixUnitaire;
     }
 
-    public double getqteProduit() {
+    public String getQteProduit() {
         return qteProduit;
     }
 
-    public String getTVA() {
-        return TVA;
+    public String getTotalTVA() {
+        return totalTVA;
     }
 
-    public double getTotale() {
-        return Totale;
+    public String getMontantTotale() {
+        return montantTotale;
     }
 
-    public void setcodeProduit(int codeProduit) {
-        this.codeProduit = codeProduit;
-    }
-
-    public void setdesignation(String designation) {
-        this.designation = designation;
-    }
-
-    public void setPrixTransport(double PrixTransport) {
-        this.PrixTransport = PrixTransport;
-    }
-
-    public void setPrixUnitaire(double PrixUnitaire) {
-        this.PrixUnitaire = PrixUnitaire;
-    }
-
-    public void setqteProduit(double qteProduit) {
-        this.qteProduit = qteProduit;
-    }
-
-    public void setTVA(String TVA) {
-        this.TVA = TVA;
-    }
-
-    public void setTotale(double Totale) {
-        this.Totale = Totale;
-    }
     
 }
