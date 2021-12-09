@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -138,11 +139,11 @@ public class DeshboardController2 implements Initializable {
     @Override
      public void initialize(URL url, ResourceBundle rb) {
          
-            SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
             Date dat = new Date();
             date.setText(dFormat.format(dat));
             
-            DateTimeFormatter dtf=DateTimeFormatter.ofPattern("HH:mm:ss");
+            DateTimeFormatter dtf=DateTimeFormatter.ofPattern("HH-mm-ss");
             LocalDateTime now = LocalDateTime.now();
             time=dtf.format(now);
          
@@ -631,10 +632,10 @@ public class DeshboardController2 implements Initializable {
                     ResultSet rs= st.executeQuery("select *from client where numeroClient='"+codeClient+"'");
                     if(rs.next()){
                         raisonScociale=rs.getString(2);
-                        adresse=rs.getString(2);
-                        matriculeFiscal=rs.getString(2);
-                        nArticle=rs.getString(2);
-                        registreDeCommerce=rs.getString(2);
+                        adresse=rs.getString(3);
+                        matriculeFiscal=rs.getString(4);
+                        nArticle=rs.getString(5);
+                        registreDeCommerce=rs.getString(6);
                         
                         //jTextField1.setEditable(false);
                     }else{
@@ -646,13 +647,24 @@ public class DeshboardController2 implements Initializable {
                 }
                 
                 
-        String path="D:\\projects\\gestion de stock\\facture";
+        String path="D:\\facture\\";
         com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
         try {
-            PdfWriter.getInstance(doc, new FileOutputStream(path+" "+raisonScociale+" "+date.getText()+" "+time+".pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream(path+" "+raisonScociale+" "+date.getText()+" time "+time+".pdf"));
             doc.open();
-            Paragraph paragraph1 = new Paragraph("                                                                    Gestion De Stock \n                                            Numéro de contact : +213 777 8487 259\n\n");
-            doc.add(paragraph1);
+//            Paragraph paragraph1 = new Paragraph("                                                                    Gestion De Stock \n                                            Numéro de contact : +213 777 8487 259\n\n");
+//            doc.add(paragraph1);
+            
+            Image img= Image.getInstance("src\\topFacture2.png");
+            
+            img.scaleAbsoluteWidth(580);
+            img.scaleAbsoluteHeight(92);
+            img.setAlignment(Image.ALIGN_CENTER);
+            doc.add(img);
+            
+            
+            
+            
             Paragraph paragraph2 = new Paragraph("Date : "+date.getText()+"\n\n\nClient:\n                                  Code: "+codeClient+"\n                  Raison sociale: "+raisonScociale+"\n   "
                     + "                          Adresse: "+adresse+"\n\n                 Matricule Fiscal: "+matriculeFiscal+"\n                           N° Article: "+nArticle+"\n     Registre de Commerce: "+registreDeCommerce+"\n\n\n\n\n\n");
             doc.add(paragraph2);
