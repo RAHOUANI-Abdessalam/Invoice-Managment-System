@@ -16,7 +16,7 @@ public class Main extends Application {
         
         Scene scene = new Scene(root);
         
-        primaryStage.setTitle("Se Connecter");
+        primaryStage.setTitle(" Login");
         primaryStage.setScene(scene);
 //        primaryStage.setMinHeight(720);
 //        primaryStage.setMinWidth(1280);
