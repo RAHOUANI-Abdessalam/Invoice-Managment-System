@@ -59,24 +59,7 @@ public class ListDuClientsController implements Initializable {
 
     @FXML
     private TableColumn<tableclient, String> RegistredeCommerce;
-     @FXML
-    private TableView<historiqueClient> historiqueClient;
-
-    @FXML
-    private TableColumn<historiqueClient, Integer> numeroFacture;
-
-    @FXML
-    private TableColumn<historiqueClient, String> date;
-
-    @FXML
-    private TableColumn<historiqueClient, String> montantTotale;
-
-    @FXML
-    private TableColumn<historiqueClient, String> modeDeReglement;
-
-    
-    
-    
+     @FXML 
      ObservableList<tableclient> oblist = FXCollections.observableArrayList();
 
     @Override
@@ -97,8 +80,8 @@ public class ListDuClientsController implements Initializable {
              nClient.setCellValueFactory(new PropertyValueFactory<tableclient, Integer>("numeroClient"));
         Raisonscocial.setCellValueFactory(new PropertyValueFactory<tableclient, String>("raisonSociale"));
         Adresse.setCellValueFactory(new PropertyValueFactory<tableclient, String>("adresse"));
-        nArticle.setCellValueFactory(new PropertyValueFactory<tableclient, String>("nArticle"));
-        MatriculeFiscal.setCellValueFactory(new PropertyValueFactory<tableclient, String>("matriculeFiscale"));     
+        MatriculeFiscal.setCellValueFactory(new PropertyValueFactory<tableclient, String>("matriculeFiscale"));
+        nArticle.setCellValueFactory(new PropertyValueFactory<tableclient, String>("nArticle"));     
         RegistredeCommerce.setCellValueFactory(new PropertyValueFactory<tableclient, String>("registreDeCommerce"));
         tableclient.setItems(oblist);
         ///////////////////////////

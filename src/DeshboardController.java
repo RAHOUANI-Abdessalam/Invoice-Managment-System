@@ -17,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -247,19 +249,25 @@ public class DeshboardController implements Initializable {
         codeproduitfield.requestFocus();
                    return;           
     }      
-     String TVA="19%";
+     double sommeTVA=0,sommeMNT=0;
      String qteProduiT= qteProduit.getText(),priunitaire= priunitairefield.getText(),
              prixtransport= prixtransportfield.getText(),codeprd=codeproduitfield.getText(),desint=designationfield.getText();
-     
-    double montantTotale = (Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19)+Double.valueOf(prixtransport);
+     double TVA=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19);
+     double mntsontva=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT))+Double.valueOf(prixtransport);
+    double montantTotale = (mntsontva+TVA);
 //     taking value to new tab
 
         tableview tableview = new tableview(codeprd,desint,
-               prixtransport,priunitaire,qteProduiT,TVA,String.valueOf(montantTotale));
+               prixtransport,priunitaire,qteProduiT,String.valueOf(TVA),String.valueOf(montantTotale));
         ObservableList<tableview> tableviews = table.getItems();
         tableviews.add(tableview);
         table.setItems(tableviews);
-        
+        sommeTVA= sommeTVA + TVA;
+        sommeMNT= sommeMNT + montantTotale;
+        totalTVA.setText(String.valueOf(TVA));
+        totalHT.setText(String.valueOf(mntsontva));
+        totalTTC.setText(String.valueOf(sommeMNT));
+       // vider champs
         codeproduitfield.setText("");
         designationfield.setText("");
         prixtransportfield.setText(""); 
@@ -267,6 +275,22 @@ public class DeshboardController implements Initializable {
         qteProduit.setText("");
         codeproduitfield.requestFocus();
       
+    }
+    @FXML
+    void remise(ActionEvent event){
+        double rem;
+        
+        double TOTAL= Double.valueOf(totalTTC.getText());
+        rem= Double.valueOf(remise.getText());
+        rem= (rem/100);
+        TOTAL= TOTAL-(TOTAL*rem);
+        montantTotale.setText(String.valueOf(TOTAL));
+        try {
+            String tot= Nombre.CALCULATE.getValue(TOTAL, "Dinar");
+            totaleEnLettres.setText(tot);
+        } catch (Exception ex) {
+            Logger.getLogger(DeshboardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 //remove from table
     @FXML
