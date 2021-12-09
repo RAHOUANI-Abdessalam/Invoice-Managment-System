@@ -13,6 +13,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
@@ -129,7 +131,7 @@ public class DeshboardController implements Initializable {
     ToggleGroup radioGroup = new ToggleGroup();
     @FXML
     
-  
+  private static final DecimalFormat df = new DecimalFormat("0.00");
     @Override
      public void initialize(URL url, ResourceBundle rb) {
          
@@ -237,7 +239,7 @@ public class DeshboardController implements Initializable {
         total.setCellValueFactory(new PropertyValueFactory<tableview, String>("montantTotale"));
         
     }
-     
+      double sommeTVA=0,sommeMNT=0,sommemntsontva=0;
     //addtab button
     @FXML
     void addtabs(ActionEvent event) {
@@ -249,7 +251,7 @@ public class DeshboardController implements Initializable {
         codeproduitfield.requestFocus();
                    return;           
     }      
-     double sommeTVA=0,sommeMNT=0;
+    
      String qteProduiT= qteProduit.getText(),priunitaire= priunitairefield.getText(),
              prixtransport= prixtransportfield.getText(),codeprd=codeproduitfield.getText(),desint=designationfield.getText();
      double TVA=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19);
@@ -264,9 +266,11 @@ public class DeshboardController implements Initializable {
         table.setItems(tableviews);
         sommeTVA= sommeTVA + TVA;
         sommeMNT= sommeMNT + montantTotale;
-        totalTVA.setText(String.valueOf(TVA));
-        totalHT.setText(String.valueOf(mntsontva));
-        totalTTC.setText(String.valueOf(sommeMNT));
+        sommemntsontva= sommemntsontva + mntsontva;
+        
+        totalTVA.setText(String.valueOf(df.format(sommeTVA)));
+        totalHT.setText(String.valueOf(df.format(sommemntsontva)));
+        totalTTC.setText(String.valueOf(df.format(sommeMNT)));
        // vider champs
         codeproduitfield.setText("");
         designationfield.setText("");
@@ -276,6 +280,7 @@ public class DeshboardController implements Initializable {
         codeproduitfield.requestFocus();
       
     }
+   ////////////// remise
     @FXML
     void remise(ActionEvent event){
         double rem;
@@ -284,7 +289,9 @@ public class DeshboardController implements Initializable {
         rem= Double.valueOf(remise.getText());
         rem= (rem/100);
         TOTAL= TOTAL-(TOTAL*rem);
-        montantTotale.setText(String.valueOf(TOTAL));
+        
+        
+        montantTotale.setText(String.valueOf(df.format(TOTAL)));
         try {
             String tot= Nombre.CALCULATE.getValue(TOTAL, "Dinar");
             totaleEnLettres.setText(tot);
@@ -454,15 +461,7 @@ public class DeshboardController implements Initializable {
                                     oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
                                                          rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("totalTVA"), rs.getString("montantTotale")));
                                                                   nclientfield.setText(rs.getString(2));
-//                                        date.setText(rs.getString(3));
-//                                        numeroCheaque.setText(rs.getString(5));
-//                                        totalHT.setText(rs.getString(6));
-//                                        totalTVA.setText(rs.getString(7));
-//                                        totalTTC.setText(rs.getString(8));
-//                                        remise.setText(rs.getString(9));
-//                                        montantTotale.setText(rs.getString(10));
-//                                        montantTotale.setText(rs.getString(10));
-//                                        totaleEnLettres.setText(rs.getString(11));     
+                                
                                }
                     
 //                     rs.close();
