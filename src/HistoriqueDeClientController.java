@@ -43,6 +43,19 @@ public class HistoriqueDeClientController implements Initializable {
     private HBox numClientTxt;
     @FXML
     private TableView<historiqueClient> historiqueClient;
+
+    @FXML
+    private TableColumn<historiqueClient, String> numeroFacture;
+
+    @FXML
+    private TableColumn<historiqueClient, String> date;
+
+    @FXML
+    private TableColumn<historiqueClient, String> montantTotale;
+
+    @FXML
+    private TableColumn<historiqueClient, String> modeDeReglement;
+    
     ObservableList<historiqueClient> oblisT = FXCollections.observableArrayList();
         
     @Override
@@ -50,27 +63,27 @@ public class HistoriqueDeClientController implements Initializable {
                 String clientIDstr=Integer.toString(ListDuClientsController.idclient);
                 nClientTxt.setText(clientIDstr);
                 
-//               try {
-//            Connection con = ConnectionProvider.getCon();
-//            Statement st = con.createStatement();
-//            ResultSet rs = st.executeQuery("select *from facture");
-//            int selectedfac = tableclient.getSelectionModel().getSelectedItem().numeroClient;
-////            
-//            while(rs.next()){
-//                
-//                oblisT.add(new historiqueClient(rs.getInt("numeroFacture"), rs.getString("date"), rs.getString("montantTotale"),
-//                        rs.getString("modeDeReglement")));
-//            }
-//      
-//           }catch (Exception e) {
-//                    JOptionPane.showMessageDialog(null,""+e.toString());
-//                }
-//             numeroFacture.setCellValueFactory(new PropertyValueFactory<historiqueClient, Integer>("numeroFacture"));
-//        date.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("date"));
-//        montantTotale.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("montantTotale"));
-//        modeDeReglement.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("modeDeReglement"));
-//      
-//        historiqueClient.setItems(oblisT);       
+               try {
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select *from facture where numeroClient='"+clientIDstr+"'");
+          
+//            
+            while(rs.next()){
+                
+                oblisT.add(new historiqueClient(rs.getString("numeroFacture"), rs.getString("date"), rs.getString("montantTotale"),
+                        rs.getString("modeDeReglement")));
+            }
+      
+           }catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                }
+             numeroFacture.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("numeroFacture"));
+        date.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("date"));
+        montantTotale.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("montantTotale"));
+        modeDeReglement.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("modeDeReglement"));
+      
+        historiqueClient.setItems(oblisT);       
     }    
     
     @FXML

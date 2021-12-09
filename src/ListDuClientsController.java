@@ -125,7 +125,7 @@ public class ListDuClientsController implements Initializable {
     @FXML
     private void hisclientbtn() throws IOException{
         
-            idclient = 15;
+            idclient = tableclient.getSelectionModel().getSelectedItem().numeroClient;
             Stage stage = (Stage) listeDeClientsTxt.getScene().getWindow();
             stage.close();  
         

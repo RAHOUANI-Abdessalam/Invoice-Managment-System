@@ -9,17 +9,33 @@
  * @author issam
  */
 public class historiqueClient {
-    int numeroFacture;
-    String date,montantTotale,modeDeReglement;
+   
+    String numeroFacture,date,montantTotale,modeDeReglement;
 
-    public historiqueClient(int numeroFacture, String date, String montantTotale, String modeDeReglement) {
+    public historiqueClient(String numeroFacture, String date, String montantTotale, String modeDeReglement) {
         this.numeroFacture = numeroFacture;
         this.date = date;
         this.montantTotale = montantTotale;
         this.modeDeReglement = modeDeReglement;
     }
 
-    public void setNumeroFacture(int numeroFacture) {
+    public String getNumeroFacture() {
+        return numeroFacture;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getMontantTotale() {
+        return montantTotale;
+    }
+
+    public String getModeDeReglement() {
+        return modeDeReglement;
+    }
+
+    public void setNumeroFacture(String numeroFacture) {
         this.numeroFacture = numeroFacture;
     }
 
@@ -35,20 +51,6 @@ public class historiqueClient {
         this.modeDeReglement = modeDeReglement;
     }
 
-    public int getNumeroFacture() {
-        return numeroFacture;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getMontantTotale() {
-        return montantTotale;
-    }
-
-    public String getModeDeReglement() {
-        return modeDeReglement;
-    }
+    
     
 }
