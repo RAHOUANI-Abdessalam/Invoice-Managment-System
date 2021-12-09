@@ -285,12 +285,12 @@
                         <Image url="@images/Search%20Client.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField fx:id="nclientfield" focusColor="WHITE" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField fx:id="nclientfield" focusColor="WHITE" labelFloat="true" onAction="#clientRechNumero" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="raisonsocialfeild" focusColor="WHITE" labelFloat="true" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField fx:id="raisonsocialfeild" focusColor="WHITE" labelFloat="true" onAction="#clientRechRaison" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -317,7 +317,7 @@
                               <Image url="@images/Search.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField fx:id="codeproduitfield" focusColor="WHITE" labelFloat="true" prefWidth="130.0" promptText="Code Produit" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="codeproduitfield" focusColor="WHITE" labelFloat="true" onAction="#produitRechCode" prefWidth="130.0" promptText="Code Produit" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="18.0" />
                            </HBox.margin>
@@ -442,12 +442,12 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Text>
-                                          <RadioButton mnemonicParsing="false" prefHeight="30.0" text="Chèque" textFill="WHITE">
+                                          <RadioButton fx:id="cheqRadio" mnemonicParsing="false" onAction="#radioChange" prefHeight="30.0" text="Chèque" textFill="WHITE">
                                              <HBox.margin>
                                                 <Insets left="30.0" />
                                              </HBox.margin>
                                           </RadioButton>
-                                          <RadioButton mnemonicParsing="false" prefHeight="30.0" text="Espèces" textFill="WHITE">
+                                          <RadioButton fx:id="espcRadio" mnemonicParsing="false" onAction="#radioChange" prefHeight="30.0" text="Espèces" textFill="WHITE">
                                              <HBox.margin>
                                                 <Insets left="30.0" />
                                              </HBox.margin>

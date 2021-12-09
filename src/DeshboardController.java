@@ -13,6 +13,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -28,8 +30,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -41,6 +45,10 @@ import project.ConnectionProvider;
 
 
 public class DeshboardController implements Initializable {
+    @FXML
+    private RadioButton espcRadio;
+    @FXML
+    private RadioButton cheqRadio;
     @FXML
     private Text date;
     @FXML
@@ -116,11 +124,24 @@ public class DeshboardController implements Initializable {
     @FXML
     private TableColumn<tableview, String> total;
  
+    ToggleGroup radioGroup = new ToggleGroup();
     @FXML
     
   
     @Override
      public void initialize(URL url, ResourceBundle rb) {
+         
+            SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date dat = new Date();
+            date.setText(dFormat.format(dat));
+         
+            espcRadio.setToggleGroup(radioGroup);
+            cheqRadio.setToggleGroup(radioGroup);
+
+            espcRadio.setSelected(true);
+            numeroCheaque.setDisable(true);
+         
+         
 //         Validation
           RequiredFieldValidator validator = new RequiredFieldValidator();
           validator.setMessage("missing info....");
@@ -205,8 +226,8 @@ public class DeshboardController implements Initializable {
               }
           });
 //       setting table vakue
-        codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codecodeproduit"));
-        des.setCellValueFactory(new PropertyValueFactory<tableview, String>("Désignation"));
+        codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codeProduit"));
+        des.setCellValueFactory(new PropertyValueFactory<tableview, String>("designation"));
         prixt.setCellValueFactory(new PropertyValueFactory<tableview, String>("PrixTransport"));
         prixu.setCellValueFactory(new PropertyValueFactory<tableview, String>("PrixUnitaire"));
         quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("qteProduit"));
@@ -223,20 +244,28 @@ public class DeshboardController implements Initializable {
                 prixtransportfield.getText().isEmpty()||priunitairefield.getText().isEmpty()||
              qteProduit.getText().isEmpty()){
         Toast.makeText((Stage) codeproduitfield.getScene().getWindow(), "Veuilley saisir tout les champs SVP", 1500, 500, 500);
+        codeproduitfield.requestFocus();
                    return;           
     }      
      String TVA="19%";
      String qteProduiT= qteProduit.getText(),priunitaire= priunitairefield.getText(),
-             prixtransport= prixtransportfield.getText();
+             prixtransport= prixtransportfield.getText(),codeprd=codeproduitfield.getText(),desint=designationfield.getText();
      
     double montantTotale = (Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19)+Double.valueOf(prixtransport);
 //     taking value to new tab
 
-        tableview tableview = new tableview(codeproduitfield.getText(),designationfield.getText(),
+        tableview tableview = new tableview(codeprd,desint,
                prixtransport,priunitaire,qteProduiT,TVA,String.valueOf(montantTotale));
         ObservableList<tableview> tableviews = table.getItems();
         tableviews.add(tableview);
         table.setItems(tableviews);
+        
+        codeproduitfield.setText("");
+        designationfield.setText("");
+        prixtransportfield.setText(""); 
+        priunitairefield.setText(""); 
+        qteProduit.setText("");
+        codeproduitfield.requestFocus();
       
     }
 //remove from table
@@ -373,6 +402,14 @@ public class DeshboardController implements Initializable {
                                         nclientfield.setText(rs.getString(2));
                                         String idClient = rs.getString(2);
                                         date.setText(rs.getString(3));
+                                        String modReglemnt = rs.getString(4);
+                                        if(modReglemnt.equals("chèque")|| modReglemnt.equals("Chèque")){
+                                            cheqRadio.setSelected(true);
+                                        }
+                                        if(modReglemnt.equals("espèces")|| modReglemnt.equals("Espèces")){
+                                            espcRadio.setSelected(true);
+                                            numeroCheaque.setDisable(true);
+                                        }
                                         numeroCheaque.setText(rs.getString(5));
                                         totalHT.setText(rs.getString(6));
                                         totalTVA.setText(rs.getString(7));
@@ -472,5 +509,101 @@ public class DeshboardController implements Initializable {
             }
          
     }
-     
+    
+    @FXML
+    private void clientRechNumero(){
+                String idClient = nclientfield.getText();
+                try {
+                    Connection con=ConnectionProvider.getCon();
+                    Statement st = con.createStatement();
+                    ResultSet rs= st.executeQuery("select *from client where numeroClient like '"+idClient+"%'");
+                    if(rs.next()){
+                        raisonsocialfeild.setText(rs.getString(2));
+                        ClientSelectText.setText("      Client Sélectionné");
+                        ClientSelectText.setStyle("-fx-fill: #00FF0B;");
+                        
+                        //jTextField1.setEditable(false);
+                    }else{
+                        nclientfield.setText("");
+                        raisonsocialfeild.setText("");
+                        
+                        ClientSelectText.setText("Client non Sélectionné");
+                        ClientSelectText.setStyle("-fx-fill: #ff0000;");
+                        
+                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
+                        
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                }
+    }
+    
+    @FXML
+    private void clientRechRaison(){
+                String nomClient = raisonsocialfeild.getText();
+                try {
+                    Connection con=ConnectionProvider.getCon();
+                    Statement st = con.createStatement();
+                    ResultSet rs= st.executeQuery("select *from client where raisonSociale like '"+nomClient+"%'");
+                    if(rs.next()){
+                        nclientfield.setText(rs.getString(1));
+                        raisonsocialfeild.setText(rs.getString(2));
+                        ClientSelectText.setText("      Client Sélectionné");
+                        ClientSelectText.setStyle("-fx-fill: #00FF0B;");
+                        
+                        //jTextField1.setEditable(false);
+                    }else{
+                        nclientfield.setText("");
+                        raisonsocialfeild.setText("");
+                        
+                        ClientSelectText.setText("Client non Sélectionné");
+                        ClientSelectText.setStyle("-fx-fill: #ff0000;");
+                        
+                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
+                        
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                }
+    }
+    
+    @FXML
+    private void produitRechCode(){
+        String codeProduit = codeproduitfield.getText();
+                try {
+                    Connection con=ConnectionProvider.getCon();
+                    Statement st = con.createStatement();
+                    ResultSet rs= st.executeQuery("select *from produit where codeProduit like '"+codeProduit+"%'");
+                    if(rs.next()){
+                        codeproduitfield.setText(rs.getString(1));
+                        designationfield.setText(rs.getString(2));
+                        prixtransportfield.setText(rs.getString(3));
+                        priunitairefield.setText(rs.getString(4));
+                        qteProduit.setText("1");
+                        qteProduit.requestFocus();
+                        
+                        //jTextField1.setEditable(false);
+                    }else{
+                        codeproduitfield.setText("");
+                        designationfield.setText("");
+                        prixtransportfield.setText(""); 
+                        priunitairefield.setText(""); 
+                        qteProduit.setText("");
+                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "Produit n'existe pas", 1500, 500, 500);
+                    }
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                }
+    }
+    
+    @FXML
+    private void radioChange(){
+        if(espcRadio.isSelected()){
+            numeroCheaque.setDisable(true);
+        }
+        else{
+            numeroCheaque.setDisable(false);
+        }
+    }
+ 
 }
