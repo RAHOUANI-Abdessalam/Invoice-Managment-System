@@ -703,6 +703,7 @@ public class DeshboardController implements Initializable {
                 Connection con = ConnectionProvider.getCon();
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery("select *from facture ORDER BY numeroFacture DESC LIMIT 1");
+                
                 if(rs.next()){
                     nFacture = rs.getInt("numeroFacture");
                     nFacture=nFacture+1;
@@ -753,6 +754,14 @@ public class DeshboardController implements Initializable {
         }
         //fin d'enregistrement dans la facture
         //******************************************************************************
-        
+          try {
+                Connection con = ConnectionProvider.getCon();
+                Statement st = con.createStatement();
+               int Fid=nFacture;
+                new jasper (String.valueOf(nFacture),con);
+          }catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                    System.out.println("Error in connection"+e.toString());
+        }
     }
 }
