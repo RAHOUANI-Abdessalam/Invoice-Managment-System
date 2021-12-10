@@ -154,6 +154,9 @@
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
                   </JFXTextField>
                </children>
             </HBox>
@@ -285,15 +288,21 @@
                         <Image url="@images/Search%20Client.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField fx:id="nclientfield" focusColor="WHITE" labelFloat="true" onAction="#clientRechNumero" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField fx:id="nclientfield" focusColor="#1ba1e2" labelFloat="true" onAction="#clientRechNumero" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="raisonsocialfeild" focusColor="WHITE" labelFloat="true" onAction="#clientRechRaison" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField fx:id="raisonsocialfeild" focusColor="#1ba1e2" labelFloat="true" onAction="#clientRechRaison" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
                   </JFXTextField>
                   <Text fx:id="ClientSelectText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Client non Sélectionné">
                      <font>
@@ -317,25 +326,37 @@
                               <Image url="@images/Search.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField fx:id="codeproduitfield" focusColor="WHITE" labelFloat="true" onAction="#produitRechCode" prefWidth="130.0" promptText="Code Produit" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="codeproduitfield" focusColor="#1ba1e2" labelFloat="true" onAction="#produitRechCode" prefWidth="130.0" promptText="Code Produit" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="18.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="designationfield" focusColor="WHITE" labelFloat="true" prefWidth="200.0" promptText="Désignation " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="designationfield" focusColor="#1ba1e2" labelFloat="true" prefWidth="200.0" promptText="Désignation " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="prixtransportfield" focusColor="WHITE" labelFloat="true" prefWidth="150.0" promptText="Prix Transport " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="prixtransportfield" focusColor="#1ba1e2" labelFloat="true" prefWidth="150.0" promptText="Prix Transport " styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="priunitairefield" focusColor="WHITE" labelFloat="true" prefWidth="150.0" promptText="Prix Unitaire" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="priunitairefield" focusColor="#1ba1e2" labelFloat="true" prefWidth="150.0" promptText="Prix Unitaire" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
                         </JFXTextField>
                      </children>
                   </HBox>
@@ -346,10 +367,13 @@
                               <Image url="@images/Estimates.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField fx:id="qteProduit" alignment="CENTER" focusColor="WHITE" labelFloat="true" prefWidth="130.0" promptText="Quantité" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="qteProduit" alignment="CENTER" focusColor="#1ba1e2" labelFloat="true" prefWidth="130.0" promptText="Quantité" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
                         </JFXTextField>
                         <JFXButton fx:id="ajouterProduitbtn" alignment="CENTER_RIGHT" onAction="#addtabs" prefHeight="28.0" prefWidth="155.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
                            <graphic>
@@ -502,13 +526,16 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField fx:id="totalHT" alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                                          <JFXTextField fx:id="totalHT" alignment="CENTER_RIGHT" editable="false" focusColor="#1ba1e2" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="220.0" />
                                              </HBox.margin>
                                              <cursor>
                                                 <Cursor fx:constant="DISAPPEAR" />
                                              </cursor>
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
                                           </JFXTextField>
                                        </children>
                                        <VBox.margin>
@@ -525,12 +552,12 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField fx:id="totalTVA" alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                                          <JFXTextField fx:id="totalTVA" alignment="CENTER_RIGHT" editable="false" focusColor="#1ba1e2" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="200.0" />
                                              </HBox.margin>
                                              <font>
-                                                <Font size="17.0" />
+                                                <Font name="System Bold" size="17.0" />
                                              </font>
                                              <cursor>
                                                 <Cursor fx:constant="DISAPPEAR" />
@@ -551,12 +578,12 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField fx:id="totalTTC" alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                                          <JFXTextField fx:id="totalTTC" alignment="CENTER_RIGHT" editable="false" focusColor="#1ba1e2" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="180.0" />
                                              </HBox.margin>
                                              <font>
-                                                <Font size="19.0" />
+                                                <Font name="System Bold" size="19.0" />
                                              </font>
                                              <cursor>
                                                 <Cursor fx:constant="DISAPPEAR" />
@@ -577,12 +604,12 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField fx:id="remise" alignment="CENTER_RIGHT" focusColor="WHITE" onAction="#remise" prefWidth="190.0" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                                          <JFXTextField fx:id="remise" alignment="CENTER_RIGHT" focusColor="#1ba1e2" onAction="#remise" prefWidth="190.0" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="160.0" />
                                              </HBox.margin>
                                              <font>
-                                                <Font size="21.0" />
+                                                <Font name="System Bold" size="21.0" />
                                              </font>
                                           </JFXTextField>
                                        </children>
@@ -605,7 +632,7 @@
                                                 <Insets left="100.0" />
                                              </HBox.margin>
                                              <font>
-                                                <Font name="System Bold" size="22.0" />
+                                                <Font name="System Bold" size="25.0" />
                                              </font>
                                              <cursor>
                                                 <Cursor fx:constant="DISAPPEAR" />

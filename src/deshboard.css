@@ -7,7 +7,7 @@
 }
 .table-view .column-header .label {
         -fx-text-fill: white ;
-        -fx-font-size:10px;
+        -fx-font-size:14px;
     }
     .column-header{
           -fx-background-color: rgba(51, 51, 51, 1);
@@ -24,5 +24,5 @@
  
     .lable-empty{
         -fx-text-fill: white ;
-        -fx-prompt-text-fill: white ;
+        -fx-prompt-text-fill: gray ;
     }

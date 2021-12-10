@@ -1,5 +1,6 @@
 
 
+import com.itextpdf.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -21,6 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import project.ConnectionProvider;
@@ -93,6 +95,13 @@ public class LoginController implements Initializable {
                         Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
                         //Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
                         Scene scene = new Scene(root);
+                        Screen screen = Screen.getPrimary();
+                        javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+
+                        primaryStage.setX(bounds.getMinX());
+                        primaryStage.setY(bounds.getMinY());
+                        primaryStage.setWidth(bounds.getWidth());
+                        primaryStage.setHeight(bounds.getHeight());
                         primaryStage.setTitle("Deashbord");
                         primaryStage.setScene(scene);
                         primaryStage.setMinHeight(720);

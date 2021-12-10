@@ -44,6 +44,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import project.ConnectionProvider;
@@ -444,9 +445,9 @@ public class DeshboardController implements Initializable {
                     table.getItems().clear();
                     if(rs.next()){
                         String tva="19%";
-                        double total=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
+//                        double total=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
                                     oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
-                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva, String.valueOf(total)));
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva, rs.getString("totalP")));
                                         nclientfield.setText(rs.getString(2));
                                         String idClient = rs.getString(2);
                                         date.setText(rs.getString(3));
@@ -476,9 +477,9 @@ public class DeshboardController implements Initializable {
                         while(rs.next()){
                         
                         String tva1="19%";
-                        double total1=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
+//                        double total1=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
                                     oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
-                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva1, String.valueOf(total1)));
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva1, rs.getString("totalP")));
                                                                   nclientfield.setText(rs.getString(2));
                                 
                                }
@@ -492,7 +493,15 @@ public class DeshboardController implements Initializable {
                                 Toast.makeText((Stage) nclientfield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
                             }
                             //fin de recherchment client
+                            
    
+                            totalHT.setEditable(false);
+                            totalTVA.setEditable(false);
+                            totalTTC.setEditable(false);
+                            remise.setEditable(false);
+                            montantTotale.setEditable(false);
+                            montantTotale.setEditable(false);
+                            totaleEnLettres.setEditable(false);
                     }else{
                         Toast.makeText((Stage) facturefield.getScene().getWindow(), "facture n'existe pas", 1500, 500, 500);
                     }
@@ -524,6 +533,13 @@ public class DeshboardController implements Initializable {
                          
                     Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
                     Scene scene = new Scene(root);
+                    Screen screen = Screen.getPrimary();
+                    javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+
+                    primaryStage.setX(bounds.getMinX());
+                    primaryStage.setY(bounds.getMinY());
+                    primaryStage.setWidth(bounds.getWidth());
+                    primaryStage.setHeight(bounds.getHeight());
                     primaryStage.setTitle("Deshboard");
                     primaryStage.setScene(scene);
                     primaryStage.setMinHeight(720);
@@ -573,6 +589,8 @@ public class DeshboardController implements Initializable {
                         registreDeCommerce=rs.getString(6);
                         
                         validerFacturebtn.setDisable(false);
+                        nclientfield.setEditable(false);
+                        raisonsocialfeild.setEditable(false);
                         
                     }else{
                         nclientfield.setText("");
@@ -612,6 +630,8 @@ public class DeshboardController implements Initializable {
                         registreDeCommerce=rs.getString(6);
 
                         validerFacturebtn.setDisable(false);
+                        nclientfield.setEditable(false);
+                        raisonsocialfeild.setEditable(false);
                     }else{
                         nclientfield.setText("");
                         raisonsocialfeild.setText("");
@@ -700,8 +720,9 @@ public class DeshboardController implements Initializable {
                     for (int i = 0; i <table.getItems().size() ; i++) {
                         String codP = table.getItems().get(i).getCodeProduit();
                         String qteP = table.getItems().get(i).getQteProduit();
+                        String totalP = table.getItems().get(i).getMontantTotale();
 
-                        st2.executeUpdate("insert into quantite values('"+nFacture+"','"+codP+"','"+qteP+"')");
+                        st2.executeUpdate("insert into quantite values('"+nFacture+"','"+codP+"','"+qteP+"','"+totalP+"')");
                     }
 
                     JOptionPane.showMessageDialog(null,"Facture Enregistrée");          
@@ -713,6 +734,13 @@ public class DeshboardController implements Initializable {
                     //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
                     Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
                     Scene scene = new Scene(root);
+                    Screen screen = Screen.getPrimary();
+                    javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+
+                    primaryStage.setX(bounds.getMinX());
+                    primaryStage.setY(bounds.getMinY());
+                    primaryStage.setWidth(bounds.getWidth());
+                    primaryStage.setHeight(bounds.getHeight());
                     primaryStage.setTitle("Deashbord");
                     primaryStage.setScene(scene);
                     primaryStage.setMinHeight(720);
