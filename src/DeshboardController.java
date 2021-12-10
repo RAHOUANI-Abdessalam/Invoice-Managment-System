@@ -443,8 +443,10 @@ public class DeshboardController implements Initializable {
                                   "on produit.codeProduit=quantite.codeProduit and quantite.numeroFacture = '"+numeroFacture+"'");
                     table.getItems().clear();
                     if(rs.next()){
+                        String tva="19%";
+                        double total=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
                                     oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
-                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("totalTVA"), rs.getString("montantTotale")));
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva, String.valueOf(total)));
                                         nclientfield.setText(rs.getString(2));
                                         String idClient = rs.getString(2);
                                         date.setText(rs.getString(3));
@@ -472,9 +474,11 @@ public class DeshboardController implements Initializable {
                                         //////ClientSelectText.setFill(Color.GREEN);
                                         ClientSelectText.setStyle("-fx-fill: #00FF0B;");
                         while(rs.next()){
-                
+                        
+                        String tva1="19%";
+                        double total1=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
                                     oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
-                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("totalTVA"), rs.getString("montantTotale")));
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva1, String.valueOf(total1)));
                                                                   nclientfield.setText(rs.getString(2));
                                 
                                }
