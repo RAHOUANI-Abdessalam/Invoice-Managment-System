@@ -24,6 +24,30 @@ public class tableclient {
         this.registreDeCommerce = registreDeCommerce;
     }
 
+    public void setNumeroClient(int numeroClient) {
+        this.numeroClient = numeroClient;
+    }
+
+    public void setRaisonSociale(String raisonSociale) {
+        this.raisonSociale = raisonSociale;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setMatriculeFiscale(String matriculeFiscale) {
+        this.matriculeFiscale = matriculeFiscale;
+    }
+
+    public void setnArticle(String nArticle) {
+        this.nArticle = nArticle;
+    }
+
+    public void setRegistreDeCommerce(String registreDeCommerce) {
+        this.registreDeCommerce = registreDeCommerce;
+    }
+
     public int getNumeroClient() {
         return numeroClient;
     }
@@ -48,28 +72,5 @@ public class tableclient {
         return registreDeCommerce;
     }
 
-    public void setNumeroClient(int numeroClient) {
-        this.numeroClient = numeroClient;
-    }
-
-    public void setRaisonSociale(String raisonSociale) {
-        this.raisonSociale = raisonSociale;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public void setMatriculeFiscale(String matriculeFiscale) {
-        this.matriculeFiscale = matriculeFiscale;
-    }
-
-    public void setnArticle(String nArticle) {
-        this.nArticle = nArticle;
-    }
-
-    public void setRegistreDeCommerce(String registreDeCommerce) {
-        this.registreDeCommerce = registreDeCommerce;
-    }
    
 }
