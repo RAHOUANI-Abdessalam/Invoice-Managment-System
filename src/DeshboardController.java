@@ -52,6 +52,7 @@ import project.ConnectionProvider;
 
 
 public class DeshboardController implements Initializable {
+    static int Fid;
     String time;
     int codeClient=0;
     String raisonScociale="";
@@ -71,6 +72,8 @@ public class DeshboardController implements Initializable {
     private JFXButton ajouterProduitbtn;
     @FXML
     private JFXButton supprimerProduitbtn;
+    @FXML
+    private JFXButton imprimmerbtn;
     @FXML
     private Text ClientSelectText;
     @FXML
@@ -504,6 +507,7 @@ public class DeshboardController implements Initializable {
                                         montantTotale.setText(rs.getString(10));
                                         totaleEnLettres.setText(rs.getString(11)); 
                                         
+                                        imprimmerbtn.setVisible(true);
                                         validerFacturebtn.setDisable(true);
                                         ajouterProduitbtn.setDisable(true);
                                         supprimerProduitbtn.setDisable(true);
@@ -790,5 +794,29 @@ public class DeshboardController implements Initializable {
         //fin d'enregistrement dans la facture
         //******************************************************************************
         
+        
+        try {
+                        Connection con = ConnectionProvider.getCon();
+                       Fid=nFacture;
+                        new jasper (nFacture,con);
+                  }catch (Exception e) {
+                            JOptionPane.showMessageDialog(null,""+e.toString());
+                            System.out.println("Error in connection"+e.toString());
+                }
+        
+    }
+    
+    @FXML
+    private void btnImprimmer(){
+        
+        int nFacture= Integer.valueOf(facturefield.getText());
+                try {
+                        Connection con = ConnectionProvider.getCon();
+                       Fid=nFacture;
+                        new jasper (nFacture,con);
+                  }catch (Exception e) {
+                            JOptionPane.showMessageDialog(null,""+e.toString());
+                            System.out.println("Error in connection"+e.toString());
+                }
     }
 }
