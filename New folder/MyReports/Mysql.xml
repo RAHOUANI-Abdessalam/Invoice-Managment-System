@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>Mysql</name><driver>com.mysql.jdbc.Driver</driver><username>root</username><password>root</password><savePassword>true</savePassword><url>jdbc:mysql://localhost/gestion_stock2</url><database></database><serverAddress></serverAddress><classpath>C:\Users\issam\Documents\NetBeansProjects\Invoice-Managment-System\libs\mysql-connector-java-8.0.26.jar</classpath></jdbcDataAdapter>

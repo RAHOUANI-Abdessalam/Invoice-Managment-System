@@ -272,21 +272,36 @@ public class DeshboardController implements Initializable {
              prixtransport= prixtransportfield.getText(),codeprd=codeproduitfield.getText(),desint=designationfield.getText();
      double TVA=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19);
      double mntsontva=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT))+Double.valueOf(prixtransport);
-     double montantTotale = (mntsontva+TVA);
+     double montantTotal = (mntsontva+TVA);
 //     taking value to new tab
 
         tableview tableview = new tableview(codeprd,desint,
-        prixtransport,priunitaire,qteProduiT,String.valueOf(TVA),String.valueOf(montantTotale));
+        prixtransport,priunitaire,qteProduiT,String.valueOf(TVA),String.valueOf(montantTotal));
         ObservableList<tableview> tableviews = table.getItems();
         tableviews.add(tableview);
         table.setItems(tableviews);
         sommeTVA= sommeTVA + TVA;
-        sommeMNT= sommeMNT + montantTotale;
+        sommeMNT= sommeMNT + montantTotal;
         sommemntsontva= sommemntsontva + mntsontva;
         
         totalTVA.setText(String.valueOf(df.format(sommeTVA)));
         totalHT.setText(String.valueOf(df.format(sommemntsontva)));
         totalTTC.setText(String.valueOf(df.format(sommeMNT)));
+        
+        double TOTAL= Double.valueOf(totalTTC.getText());
+        double rem= Double.valueOf(remise.getText());
+        rem= (rem/100);
+        TOTAL= TOTAL-(TOTAL*rem);
+        
+        
+        montantTotale.setText(String.valueOf(df.format(TOTAL)));
+        try {
+            String tot= Nombre.CALCULATE.getValue(TOTAL, "Dinar");
+            totaleEnLettres.setText(tot);
+        } catch (Exception ex) {
+            Logger.getLogger(DeshboardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
        // vider champs
         codeproduitfield.setText("");
         designationfield.setText("");
@@ -299,10 +314,10 @@ public class DeshboardController implements Initializable {
    ////////////// remise
     @FXML
     void remise(ActionEvent event){
-        double rem;
+        //double rem;
         
         double TOTAL= Double.valueOf(totalTTC.getText());
-        rem= Double.valueOf(remise.getText());
+        double rem= Double.valueOf(remise.getText());
         rem= (rem/100);
         TOTAL= TOTAL-(TOTAL*rem);
         
@@ -319,6 +334,27 @@ public class DeshboardController implements Initializable {
     @FXML
     void removetabs(ActionEvent event) {
         int selectedID = table.getSelectionModel().getSelectedIndex();
+        String tvaSupp = table.getItems().get(selectedID).getTotalTVA();
+        String totalSupp = table.getItems().get(selectedID).getMontantTotale();
+        
+        double totalht= Double.valueOf(totalHT.getText());
+        double totaltva= Double.valueOf(totalTVA.getText());
+        double totalttc= Double.valueOf(totalTTC.getText());
+        double remis= Double.valueOf(remise.getText());
+        double montantTotal= Double.valueOf(montantTotale.getText());
+        
+        double newtotalTTC=totalttc-Double.valueOf(totalSupp);
+        double newtotalTva=totaltva-Double.valueOf(tvaSupp);
+        double newtotalHT=newtotalTTC-newtotalTva;
+        
+        
+        totalTTC.setText(String.valueOf(df.format(newtotalTTC)));
+        totalTVA.setText(String.valueOf(df.format(newtotalTva)));
+        totalHT.setText(String.valueOf(df.format(newtotalHT)));
+        remis= (remis/100);
+        montantTotal= newtotalTTC-(newtotalTTC*remis);
+        montantTotale.setText(String.valueOf(montantTotal));
+        
         table.getItems().remove(selectedID);
     }
      
@@ -703,7 +739,6 @@ public class DeshboardController implements Initializable {
                 Connection con = ConnectionProvider.getCon();
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery("select *from facture ORDER BY numeroFacture DESC LIMIT 1");
-                
                 if(rs.next()){
                     nFacture = rs.getInt("numeroFacture");
                     nFacture=nFacture+1;
@@ -754,14 +789,6 @@ public class DeshboardController implements Initializable {
         }
         //fin d'enregistrement dans la facture
         //******************************************************************************
-          try {
-                Connection con = ConnectionProvider.getCon();
-                Statement st = con.createStatement();
-               int Fid=nFacture;
-                new jasper (String.valueOf(nFacture),con);
-          }catch (Exception e) {
-                    JOptionPane.showMessageDialog(null,""+e.toString());
-                    System.out.println("Error in connection"+e.toString());
-        }
+        
     }
 }

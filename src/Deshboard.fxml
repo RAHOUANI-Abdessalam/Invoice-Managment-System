@@ -604,7 +604,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField fx:id="remise" alignment="CENTER_RIGHT" focusColor="#1ba1e2" onAction="#remise" prefWidth="190.0" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                                          <JFXTextField fx:id="remise" alignment="CENTER_RIGHT" focusColor="#1ba1e2" onAction="#remise" prefWidth="190.0" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" text="0" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="160.0" />
                                              </HBox.margin>
