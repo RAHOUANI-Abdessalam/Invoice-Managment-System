@@ -4,14 +4,21 @@
  * and open the template in the editor.
  */
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -669,13 +676,44 @@ public class DeshboardController2 implements Initializable {
                     + "                          Adresse: "+adresse+"\n\n                 Matricule Fiscal: "+matriculeFiscal+"\n                           N° Article: "+nArticle+"\n     Registre de Commerce: "+registreDeCommerce+"\n\n\n\n\n\n");
             doc.add(paragraph2);
             PdfPTable tb1=new PdfPTable(7);
-            tb1.addCell("Code Produit");
-            tb1.addCell("Désignation                ");
-            tb1.addCell("Prix Trqnsport");
-            tb1.addCell("Prix Unitaire");
-            tb1.addCell("Qte");
-            tb1.addCell("T.V.A");
-            tb1.addCell("Total");
+            tb1.setWidthPercentage(100);
+            PdfPCell cell ;
+            cell = new PdfPCell(new Phrase("Code Produit",FontFactory.getFont("Comic Sans MS",12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            cell.setBorder(3);
+            tb1.addCell(cell);
+                        cell = new PdfPCell(new Phrase("Désignation",FontFactory.getFont("Comic Sans MS",12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            tb1.addCell(cell);
+                        cell = new PdfPCell(new Phrase("Prix Trqnsport",FontFactory.getFont("Comic Sans MS",12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            tb1.addCell(cell);
+                        cell = new PdfPCell(new Phrase("Prix Unitaire",FontFactory.getFont("Comic Sans MS",12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            tb1.addCell(cell);
+                        cell = new PdfPCell(new Phrase("Qte",FontFactory.getFont("Comic Sans MS",12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            tb1.addCell(cell);
+                        cell = new PdfPCell(new Phrase("T.V.A",FontFactory.getFont("Comic Sans MS",12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            tb1.addCell(cell);
+                        cell = new PdfPCell(new Phrase("Total",FontFactory.getFont("Comic Sans MS",12)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            tb1.addCell(cell);
+//            tb1.addCell("Code Produit");
+//            tb1.addCell("Désignation                ");
+//            tb1.addCell("Prix Trqnsport");
+//            tb1.addCell("Prix Unitaire");
+//            tb1.addCell("Qte");
+//            tb1.addCell("T.V.A");
+//            tb1.addCell("Total");
             
             for (int i = 0; i <table.getItems().size() ; i++) {
                 String a = table.getItems().get(i).getCodeProduit();
@@ -702,10 +740,12 @@ public class DeshboardController2 implements Initializable {
 //            billing bl= new billing();
 //            bl.setLocationRelativeTo(null);
 //            bl.setVisible(true);
+            doc.close();
+            Desktop.getDesktop().open(new File(path+" "+raisonScociale+" "+date.getText()+" time "+time+".pdf"));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,""+e.toString());
         }
-        doc.close();
+
     }
  
 }

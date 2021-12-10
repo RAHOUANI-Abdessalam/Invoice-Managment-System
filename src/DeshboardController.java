@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -49,6 +51,13 @@ import project.ConnectionProvider;
 
 
 public class DeshboardController implements Initializable {
+    String time;
+    int codeClient=0;
+    String raisonScociale="";
+    String adresse="";
+    String matriculeFiscal="";
+    String nArticle="";
+    String registreDeCommerce="";
     @FXML
     private RadioButton espcRadio;
     @FXML
@@ -135,9 +144,15 @@ public class DeshboardController implements Initializable {
     @Override
      public void initialize(URL url, ResourceBundle rb) {
          
-            SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyyy");
+            validerFacturebtn.setDisable(true);
+         
+            SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
             Date dat = new Date();
             date.setText(dFormat.format(dat));
+            
+            DateTimeFormatter dtf=DateTimeFormatter.ofPattern("HH-mm-ss");
+            LocalDateTime now = LocalDateTime.now();
+            time=dtf.format(now);
          
             espcRadio.setToggleGroup(radioGroup);
             cheqRadio.setToggleGroup(radioGroup);
@@ -256,11 +271,11 @@ public class DeshboardController implements Initializable {
              prixtransport= prixtransportfield.getText(),codeprd=codeproduitfield.getText(),desint=designationfield.getText();
      double TVA=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19);
      double mntsontva=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT))+Double.valueOf(prixtransport);
-    double montantTotale = (mntsontva+TVA);
+     double montantTotale = (mntsontva+TVA);
 //     taking value to new tab
 
         tableview tableview = new tableview(codeprd,desint,
-               prixtransport,priunitaire,qteProduiT,String.valueOf(TVA),String.valueOf(montantTotale));
+        prixtransport,priunitaire,qteProduiT,String.valueOf(TVA),String.valueOf(montantTotale));
         ObservableList<tableview> tableviews = table.getItems();
         tableviews.add(tableview);
         table.setItems(tableviews);
@@ -541,17 +556,28 @@ public class DeshboardController implements Initializable {
                     Statement st = con.createStatement();
                     ResultSet rs= st.executeQuery("select *from client where numeroClient like '"+idClient+"%'");
                     if(rs.next()){
+                        nclientfield.setText(rs.getString(1));
                         raisonsocialfeild.setText(rs.getString(2));
                         ClientSelectText.setText("      Client Sélectionné");
                         ClientSelectText.setStyle("-fx-fill: #00FF0B;");
                         
-                        //jTextField1.setEditable(false);
+                        codeClient = rs.getInt(1);
+                        raisonScociale=raisonsocialfeild.getText();
+                        adresse=rs.getString(3);
+                        matriculeFiscal=rs.getString(4);
+                        nArticle=rs.getString(5);
+                        registreDeCommerce=rs.getString(6);
+                        
+                        validerFacturebtn.setDisable(false);
+                        
                     }else{
                         nclientfield.setText("");
                         raisonsocialfeild.setText("");
                         
                         ClientSelectText.setText("Client non Sélectionné");
                         ClientSelectText.setStyle("-fx-fill: #ff0000;");
+                        
+                        validerFacturebtn.setDisable(true);
                         
                         Toast.makeText((Stage) facturefield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
                         
@@ -574,7 +600,14 @@ public class DeshboardController implements Initializable {
                         ClientSelectText.setText("      Client Sélectionné");
                         ClientSelectText.setStyle("-fx-fill: #00FF0B;");
                         
-                        //jTextField1.setEditable(false);
+                        codeClient = rs.getInt(1);
+                        raisonScociale=raisonsocialfeild.getText();
+                        adresse=rs.getString(3);
+                        matriculeFiscal=rs.getString(4);
+                        nArticle=rs.getString(5);
+                        registreDeCommerce=rs.getString(6);
+
+                        validerFacturebtn.setDisable(false);
                     }else{
                         nclientfield.setText("");
                         raisonsocialfeild.setText("");
@@ -582,6 +615,7 @@ public class DeshboardController implements Initializable {
                         ClientSelectText.setText("Client non Sélectionné");
                         ClientSelectText.setStyle("-fx-fill: #ff0000;");
                         
+                        validerFacturebtn.setDisable(true);
                         Toast.makeText((Stage) facturefield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
                         
                     }
@@ -629,4 +663,64 @@ public class DeshboardController implements Initializable {
         }
     }
  
+        @FXML
+    private void validerBtn(){
+        //*******************************************************************************************************
+        //debut d'enregistrement dans la facture
+        String modeReglemnt;
+                if(espcRadio.isSelected()){
+            modeReglemnt=espcRadio.getText();
+        }
+        else{
+            modeReglemnt=cheqRadio.getText();
+        }
+        int nFacture=1;
+        try {
+                Connection con = ConnectionProvider.getCon();
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("select *from facture ORDER BY numeroFacture DESC LIMIT 1");
+                if(rs.next()){
+                    nFacture = rs.getInt("numeroFacture");
+                    nFacture=nFacture+1;
+                }else
+                    nFacture=1;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,""+e.toString());
+        }
+        try {
+                    Connection con = ConnectionProvider.getCon();
+                    Statement st = con.createStatement();
+                    st.executeUpdate("insert into facture values('0','"+codeClient+"','"+date.getText()+"','"+modeReglemnt+"','"+numeroCheaque.getText()+"','"+totalHT.getText()+"','"+totalTVA.getText()+"','"+totalTTC.getText()+"','"+remise.getText()+"','"+montantTotale.getText()+"','"+totaleEnLettres.getText()+"')");
+                    
+                    Statement st2 = con.createStatement();
+                    for (int i = 0; i <table.getItems().size() ; i++) {
+                        String codP = table.getItems().get(i).getCodeProduit();
+                        String qteP = table.getItems().get(i).getQteProduit();
+
+                        st2.executeUpdate("insert into quantite values('"+nFacture+"','"+codP+"','"+qteP+"')");
+                    }
+
+                    JOptionPane.showMessageDialog(null,"Facture Enregistrée");          
+                    Stage stage = (Stage) numeroCheaque.getScene().getWindow();
+                    stage.close();  
+                    //Creat a new Satge to Show the New frame "the Deshboard"
+                    Stage primaryStage =new Stage();
+                    FXMLLoader loader =new FXMLLoader();
+                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
+                    Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
+                    Scene scene = new Scene(root);
+                    primaryStage.setTitle("Deashbord");
+                    primaryStage.setScene(scene);
+                    primaryStage.setMinHeight(720);
+                    primaryStage.setMinWidth(1280);
+                    primaryStage.show();
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                    System.out.println("Error in connection"+e.toString());
+        }
+        //fin d'enregistrement dans la facture
+        //******************************************************************************
+        
+    }
 }
