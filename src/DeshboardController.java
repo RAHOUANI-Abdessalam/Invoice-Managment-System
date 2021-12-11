@@ -849,7 +849,24 @@ public class DeshboardController implements Initializable {
                 try {
                         Connection con = ConnectionProvider.getCon();
                        Fid=nFacture;
-                        new jasper (nFacture,con);
+                       
+//                        JasperDesign jasperReport =  JRXmlLoader.load("C:\\Users\\issam\\Documents\\NetBeansProjects\\Invoice-Managment-System\\src\\Invoice.jrxml");
+//                       Fid=nFacture;
+//                       String query= "SELECT *FROM  gestion_stock2.facture\n" +
+//"	INNER JOIN gestion_stock2.quantite ON \n" +
+//"	 gestion_stock2.quantite.`numeroFacture` = gestion_stock2.facture.`numeroFacture` \n" +
+//"	INNER JOIN gestion_stock2.produit ON \n" +
+//"	 gestion_stock2.produit.`codeProduit` = gestion_stock2.quantite.`codeProduit` \n" +
+//"	INNER JOIN gestion_stock2.client ON \n" +
+//"	 gestion_stock2.client.`numeroClient` = gestion_stock2.facture.`numeroClient` ";
+//                       JRDesignQuery updateQuery = new  JRDesignQuery();
+//                       updateQuery.setText(query);
+//                       jasperReport.setQuery(updateQuery);
+//                       JasperReport jreport = JasperCompileManager.compileReport(jasperReport);
+//                       JasperPrint jprint = JasperFillManager.fillReport(jreport, null,con);
+//                       JasperViewer.viewReport(jprint);
+////                        new jasper (nFacture,con);
+//                        new jasper (nFacture,con);
                   }catch (Exception e) {
                             JOptionPane.showMessageDialog(null,""+e.toString());
                             System.out.println("Error in connection"+e.toString());

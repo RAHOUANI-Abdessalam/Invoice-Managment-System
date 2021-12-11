@@ -398,6 +398,12 @@ WHERE
 	<title>
 		<band height="372" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<rectangle radius="5">
+				<reportElement x="190" y="85" width="200" height="25" backcolor="#918989" uuid="e0e5385e-b2b4-4c5f-89f6-45863987c8ab"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
 			<rectangle radius="20">
 				<reportElement x="0" y="119" width="420" height="160" uuid="6e4db621-7195-4576-bb0c-55c15b98cc1b"/>
 				<graphicElement>
@@ -445,7 +451,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{adresse}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="465" y="13" width="100" height="20" uuid="3bb80f37-aedf-48f0-93f8-5c054972ad33"/>
+				<reportElement x="480" y="30" width="100" height="20" uuid="3bb80f37-aedf-48f0-93f8-5c054972ad33"/>
 				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -465,7 +471,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{registreDeCommerce}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="420" y="13" width="50" height="20" uuid="aa9c2c86-3cb8-4a96-91b4-d2f12c733c36"/>
+				<reportElement x="440" y="30" width="50" height="20" uuid="aa9c2c86-3cb8-4a96-91b4-d2f12c733c36"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Date:]]></text>
@@ -515,13 +521,15 @@ WHERE
 				<text><![CDATA[Client:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="34" width="70" height="20" uuid="e6ff7f2f-c828-413b-8b27-0dc004e70c9a"/>
+				<reportElement x="205" y="89" width="70" height="20" uuid="e6ff7f2f-c828-413b-8b27-0dc004e70c9a"/>
 				<box rightPadding="4"/>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Facture N°: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="460" y="35" width="120" height="19" uuid="fd05730c-fbe8-4ff3-94cc-79b5e6093f08"/>
+				<reportElement x="277" y="90" width="120" height="19" uuid="fd05730c-fbe8-4ff3-94cc-79b5e6093f08"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{numeroFacture}]]></textFieldExpression>
 			</textField>
@@ -570,7 +578,7 @@ WHERE
 							<textField>
 								<reportElement x="0" y="0" width="144" height="30" uuid="4f6acff1-0146-45e2-a760-9fa46d256e9e"/>
 								<textElement textAlignment="Center"/>
-								<textFieldExpression><![CDATA[     $F{designation}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{designation}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -662,7 +670,7 @@ WHERE
 		</band>
 	</title>
 	<pageHeader>
-		<band height="262">
+		<band height="282">
 			<rectangle radius="10">
 				<reportElement x="110" y="122" width="260" height="20" uuid="b5857b76-f946-4669-a917-6b29ed9c604b"/>
 				<graphicElement>
@@ -670,7 +678,7 @@ WHERE
 				</graphicElement>
 			</rectangle>
 			<rectangle radius="10">
-				<reportElement x="110" y="230" width="260" height="20" uuid="4b05d8d4-9457-4bbe-9257-80c12271ea43"/>
+				<reportElement x="160" y="180" width="260" height="20" uuid="4b05d8d4-9457-4bbe-9257-80c12271ea43"/>
 				<graphicElement>
 					<pen lineWidth="2.0"/>
 				</graphicElement>
@@ -733,21 +741,41 @@ WHERE
 				<textFieldExpression><![CDATA[$F{totaleEnLettres}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="120" y="210" width="100" height="19" uuid="1d8c4f79-7253-4a26-8822-d6469aae3c3b"/>
+				<reportElement x="180" y="159" width="100" height="19" uuid="1d8c4f79-7253-4a26-8822-d6469aae3c3b"/>
 				<text><![CDATA[Mode de règlement:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="230" y="210" width="110" height="18" uuid="7dc44496-d6f8-4f2a-a4c0-3dac62782b2a"/>
+				<reportElement x="276" y="160" width="110" height="18" uuid="7dc44496-d6f8-4f2a-a4c0-3dac62782b2a"/>
 				<textFieldExpression><![CDATA[$F{modeDeReglement}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="38" y="231" width="64" height="19" uuid="5c90f653-2248-4806-a285-55eebc1d61cb"/>
+				<reportElement x="90" y="181" width="64" height="19" uuid="5c90f653-2248-4806-a285-55eebc1d61cb"/>
 				<text><![CDATA[ N°Chèque:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="130" y="233" width="100" height="14" uuid="7b510abe-2806-44d2-b735-b57ef2f6f116"/>
+				<reportElement x="180" y="183" width="100" height="14" uuid="7b510abe-2806-44d2-b735-b57ef2f6f116"/>
 				<textFieldExpression><![CDATA[$F{numeroCheaque}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="220" width="556" height="1" uuid="fb6ce472-aea4-4f1c-9d22-3d51cf8ab159">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="139" y="230" width="279" height="19" uuid="29d77f50-ddfc-4534-946b-11df6fa3ebb0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adresse: Cité ELL INTIFADA FRENDA TIARET]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="250" width="119" height="19" uuid="d0293766-ff08-4550-b280-67d4aac202a6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[mob: 0770 00 77 50]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 </jasperReport>
