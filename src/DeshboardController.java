@@ -47,6 +47,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import project.ConnectionProvider;
 
 
@@ -850,7 +858,7 @@ public class DeshboardController implements Initializable {
                         Connection con = ConnectionProvider.getCon();
                        Fid=nFacture;
                        
-//                        JasperDesign jasperReport =  JRXmlLoader.load("C:\\Users\\issam\\Documents\\NetBeansProjects\\Invoice-Managment-System\\src\\Invoice.jrxml");
+//                        JasperDesign jasperReport =  JRXmlLoader.load("src/InvoiceF.jrxml");
 //                       Fid=nFacture;
 //                       String query= "SELECT *FROM  gestion_stock2.facture\n" +
 //"	INNER JOIN gestion_stock2.quantite ON \n" +
@@ -865,8 +873,9 @@ public class DeshboardController implements Initializable {
 //                       JasperReport jreport = JasperCompileManager.compileReport(jasperReport);
 //                       JasperPrint jprint = JasperFillManager.fillReport(jreport, null,con);
 //                       JasperViewer.viewReport(jprint);
-////                        new jasper (nFacture,con);
 //                        new jasper (nFacture,con);
+
+                        new jasper (nFacture,con);
                   }catch (Exception e) {
                             JOptionPane.showMessageDialog(null,""+e.toString());
                             System.out.println("Error in connection"+e.toString());

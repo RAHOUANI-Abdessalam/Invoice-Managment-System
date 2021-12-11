@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class jasper {
@@ -20,9 +23,10 @@ public class jasper {
         parameters.put("Fid", Fid);
         
         try {
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(getClass().getResourceAsStream("Invoice.jrxml"));
+            JasperDesign jasperReport = JRXmlLoader.load("src/InvoiceF.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(jasperReport);
             
-            JasperPrint jp = JasperFillManager.fillReport(jasperReport, parameters, con);
+            JasperPrint jp = JasperFillManager.fillReport(jreport, parameters, con);
             
             JasperViewer.viewReport(jp, true);
             
