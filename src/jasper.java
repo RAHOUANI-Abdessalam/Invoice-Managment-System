@@ -23,7 +23,7 @@ public class jasper {
         parameters.put("Fid", Fid);
         
         try {
-            JasperDesign jasperReport = JRXmlLoader.load("src/InvoiceF.jrxml");
+            JasperDesign jasperReport = JRXmlLoader.load("src/Invoice.jrxml");
             JasperReport jreport = JasperCompileManager.compileReport(jasperReport);
             
             JasperPrint jp = JasperFillManager.fillReport(jreport, parameters, con);
