@@ -1,4 +1,3 @@
-import java.sql.Connection;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +26,7 @@ public class jasper {
             
             JasperViewer.viewReport(jp, true);
             
-            JasperExportManager.exportReportToPdfStream(jp, new FileOutputStream(new File(System.getProperty("user.home")+File.separator+"challanreport.pdf")));
+            //JasperExportManager.exportReportToPdfStream(jp, new FileOutputStream(new File(System.getProperty("user.home")+File.separator+"challanreport.pdf")));
         } catch (JRException ex) {
             Logger.getLogger(jasper.class.getName()).log(Level.SEVERE, null, ex);
         } 

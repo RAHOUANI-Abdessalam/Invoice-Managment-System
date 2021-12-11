@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,14 +13,18 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.print.PrinterJob;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import project.ConnectionProvider;
@@ -30,6 +35,7 @@ import project.ConnectionProvider;
  * @author abdel
  */
 public class HistoriqueDeClientController implements Initializable {
+    public static int numFacture=0 ;
 
     //adminstatic int idClient;
 
@@ -99,6 +105,33 @@ public class HistoriqueDeClientController implements Initializable {
             PrinterJob printerJob = PrinterJob.createPrinterJob();
             if(printerJob.showPrintDialog((Stage) close.getScene().getWindow()) && printerJob.printPage(numClientTxt) && printerJob.printPage(historiqueClient))
                 printerJob.endJob();
+    }
+    
+    @FXML
+    private void btnAfficherFacture() throws IOException{
+            numFacture = Integer.valueOf(historiqueClient.getSelectionModel().getSelectedItem().numeroFacture);
+            Stage stage = (Stage) close.getScene().getWindow();
+            stage.close();  
+            
+            
+            Stage primaryStage =new Stage();
+            FXMLLoader loader =new FXMLLoader();
+            //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
+            Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
+            Scene scene = new Scene(root);
+            Screen screen = Screen.getPrimary();
+            javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+
+            primaryStage.setX(bounds.getMinX());
+            primaryStage.setY(bounds.getMinY());
+            primaryStage.setWidth(bounds.getWidth());
+            primaryStage.setHeight(bounds.getHeight());
+            primaryStage.setTitle("Deashbord");
+            primaryStage.setScene(scene);
+            primaryStage.setMinHeight(720);
+            primaryStage.setMinWidth(1280);
+            primaryStage.show();
+
     }
     
 }

@@ -41,7 +41,7 @@
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="usernameField" maxHeight="40.0" maxWidth="250.0" prefHeight="40.0" prefWidth="250.0" promptText="Nom D’utilisateur" style="-fx-border-color: #1BA1E2; -fx-border-width: 2; -fx-background-color: #333333; -fx-border-radius: 5;" styleClass="text-field" stylesheets="@login.css">
+                  <TextField fx:id="usernameField" maxHeight="40.0" maxWidth="250.0" onAction="#btnEntrerFromUser" prefHeight="40.0" prefWidth="250.0" promptText="Nom D’utilisateur" style="-fx-border-color: #1BA1E2; -fx-border-width: 2; -fx-background-color: #333333; -fx-border-radius: 5;" styleClass="text-field" stylesheets="@login.css">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -49,7 +49,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </TextField>
-                  <PasswordField fx:id="motdepasseField" maxHeight="40.0" maxWidth="250.0" prefHeight="40.0" prefWidth="250.0" promptText="Mot de passe" style="-fx-border-radius: 5; -fx-background-color: #333333; -fx-border-width: 2; -fx-border-color: #1BA1E2;" styleClass="text-field" stylesheets="@login.css">
+                  <PasswordField fx:id="motdepasseField" maxHeight="40.0" maxWidth="250.0" onAction="#btnEntrerFromPass" prefHeight="40.0" prefWidth="250.0" promptText="Mot de passe" style="-fx-border-radius: 5; -fx-background-color: #333333; -fx-border-width: 2; -fx-border-color: #1BA1E2;" styleClass="text-field" stylesheets="@login.css">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

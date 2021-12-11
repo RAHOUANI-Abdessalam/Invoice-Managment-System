@@ -77,7 +77,7 @@ public class DeshboardController implements Initializable {
     @FXML
     private Text ClientSelectText;
     @FXML
-    private JFXTextField facturefield;
+    public JFXTextField facturefield;
     @FXML
     private JFXTextField nclientfield;
     @FXML
@@ -147,6 +147,12 @@ public class DeshboardController implements Initializable {
   private static final DecimalFormat df = new DecimalFormat("0.00");
     @Override
      public void initialize(URL url, ResourceBundle rb) {
+         
+         int numFactFromHist=HistoriqueDeClientController.numFacture;
+         if(numFactFromHist!=0){
+             facturefield.setText(String.valueOf(numFactFromHist));
+             recherFacture(String.valueOf(numFactFromHist));
+         }
          
             validerFacturebtn.setDisable(true);
          
@@ -262,8 +268,16 @@ public class DeshboardController implements Initializable {
     //addtab button
     @FXML
     void addtabs(ActionEvent event) {
+     ajouterTable();
      
-     if(codeproduitfield.getText().isEmpty()|| designationfield.getText().isEmpty()||
+    }
+    @FXML
+    void addtabsFromQte(ActionEvent event) {
+     ajouterTable();
+     
+    }
+    private void ajouterTable(){
+        if(codeproduitfield.getText().isEmpty()|| designationfield.getText().isEmpty()||
                 prixtransportfield.getText().isEmpty()||priunitairefield.getText().isEmpty()||
              qteProduit.getText().isEmpty()){
         Toast.makeText((Stage) codeproduitfield.getScene().getWindow(), "Veuilley saisir tout les champs SVP", 1500, 500, 500);
@@ -273,8 +287,17 @@ public class DeshboardController implements Initializable {
     
      String qteProduiT= qteProduit.getText(),priunitaire= priunitairefield.getText(),
              prixtransport= prixtransportfield.getText(),codeprd=codeproduitfield.getText(),desint=designationfield.getText();
+     int nbrCameon=0;
+     double qte=Double.valueOf(qteProduiT);
+     
+     while(qte > 0){
+         qte = qte-7; ;
+         nbrCameon++;
+     }
+     
+     double prixtransporttotal=Double.valueOf(prixtransport)*nbrCameon;
      double TVA=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19);
-     double mntsontva=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT))+Double.valueOf(prixtransport);
+     double mntsontva=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT))+Double.valueOf(prixtransporttotal);
      double montantTotal = (mntsontva+TVA);
 //     taking value to new tab
 
@@ -474,91 +497,16 @@ public class DeshboardController implements Initializable {
                     return;
                 }
                 String numeroFacture = facturefield.getText();
-                try {
-                    Connection con= ConnectionProvider.getCon();
-                    Statement st = con.createStatement();
-                     
-                    ResultSet rs = st.executeQuery("select *from facture inner join quantite \n" +
-                                "on '"+numeroFacture+"'=facture.numeroFacture\n" +"inner join produit\n" +
-                                  "on produit.codeProduit=quantite.codeProduit and quantite.numeroFacture = '"+numeroFacture+"'");
-                    table.getItems().clear();
-                    if(rs.next()){
-                        String tva="19%";
-//                        double total=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
-                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
-                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva, rs.getString("totalP")));
-                                        nclientfield.setText(rs.getString(2));
-                                        String idClient = rs.getString(2);
-                                        date.setText(rs.getString(3));
-                                        String modReglemnt = rs.getString(4);
-                                        if(modReglemnt.equals("chèque")|| modReglemnt.equals("Chèque")){
-                                            cheqRadio.setSelected(true);
-                                        }
-                                        if(modReglemnt.equals("espèces")|| modReglemnt.equals("Espèces")){
-                                            espcRadio.setSelected(true);
-                                            numeroCheaque.setDisable(true);
-                                        }
-                                        numeroCheaque.setText(rs.getString(5));
-                                        totalHT.setText(rs.getString(6));
-                                        totalTVA.setText(rs.getString(7));
-                                        totalTTC.setText(rs.getString(8));
-                                        remise.setText(rs.getString(9));
-                                        montantTotale.setText(rs.getString(10));
-                                        montantTotale.setText(rs.getString(10));
-                                        totaleEnLettres.setText(rs.getString(11)); 
-                                        
-                                        imprimmerbtn.setVisible(true);
-                                        validerFacturebtn.setDisable(true);
-                                        ajouterProduitbtn.setDisable(true);
-                                        supprimerProduitbtn.setDisable(true);
-                                        ClientSelectText.setText("      Client Sélectionné");
-                                        //////ClientSelectText.setFill(Color.GREEN);
-                                        ClientSelectText.setStyle("-fx-fill: #00FF0B;");
-                        while(rs.next()){
-                        
-                        String tva1="19%";
-//                        double total1=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
-                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
-                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva1, rs.getString("totalP")));
-                                                                  nclientfield.setText(rs.getString(2));
-                                
-                               }
-                    
-//                     rs.close();
-              
-                            ResultSet rs2=st.executeQuery("select *from client where numeroClient='"+idClient+"'");
-                            if(rs2.next()){
-                               raisonsocialfeild.setText(rs2.getString(2));
-                            }else{
-                                Toast.makeText((Stage) nclientfield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
-                            }
-                            //fin de recherchment client
-                            
-   
-                            totalHT.setEditable(false);
-                            totalTVA.setEditable(false);
-                            totalTTC.setEditable(false);
-                            remise.setEditable(false);
-                            montantTotale.setEditable(false);
-                            montantTotale.setEditable(false);
-                            totaleEnLettres.setEditable(false);
-                    }else{
-                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "facture n'existe pas", 1500, 500, 500);
-                    }
-
-            
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null,""+e.toString());
+                recherFacture(numeroFacture);
+    }
+    @FXML
+    private void btnRechercherFromField(){
+                 if(facturefield.getText().isEmpty()){
+                    Toast.makeText((Stage) facturefield.getScene().getWindow(), "Veuilley Entrer N° de Facture SVP", 1500, 500, 500);
+                    return;
                 }
-        codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codeProduit"));
-        des.setCellValueFactory(new PropertyValueFactory<tableview, String>("designation"));
-        prixt.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixTransport"));
-        prixu.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixUnitaire"));
-        quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("qteProduit"));
-         tva.setCellValueFactory(new PropertyValueFactory<tableview, String>("totalTVA"));
-        total.setCellValueFactory(new PropertyValueFactory<tableview, String>("montantTotale"));
-        table.setItems(oblist);
-              
+                String numeroFacture = facturefield.getText();
+                recherFacture(numeroFacture);
     }
 //    btnReinitialiser
     @FXML
@@ -726,6 +674,94 @@ public class DeshboardController implements Initializable {
             numeroCheaque.setDisable(false);
         }
     }
+    
+        private void recherFacture(String numeroFacture){
+        try {
+                    Connection con= ConnectionProvider.getCon();
+                    Statement st = con.createStatement();
+                     
+                    ResultSet rs = st.executeQuery("select *from facture inner join quantite \n" +
+                                "on '"+numeroFacture+"'=facture.numeroFacture\n" +"inner join produit\n" +
+                                  "on produit.codeProduit=quantite.codeProduit and quantite.numeroFacture = '"+numeroFacture+"'");
+                    table.getItems().clear();
+                    if(rs.next()){
+                        String tva="19%";
+//                        double total=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
+                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva, rs.getString("totalP")));
+                                        nclientfield.setText(rs.getString(2));
+                                        String idClient = rs.getString(2);
+                                        date.setText(rs.getString(3));
+                                        String modReglemnt = rs.getString(4);
+                                        if(modReglemnt.equals("chèque")|| modReglemnt.equals("Chèque")){
+                                            cheqRadio.setSelected(true);
+                                        }
+                                        if(modReglemnt.equals("espèces")|| modReglemnt.equals("Espèces")){
+                                            espcRadio.setSelected(true);
+                                            numeroCheaque.setDisable(true);
+                                        }
+                                        numeroCheaque.setText(rs.getString(5));
+                                        totalHT.setText(rs.getString(6));
+                                        totalTVA.setText(rs.getString(7));
+                                        totalTTC.setText(rs.getString(8));
+                                        remise.setText(rs.getString(9));
+                                        montantTotale.setText(rs.getString(10));
+                                        montantTotale.setText(rs.getString(10));
+                                        totaleEnLettres.setText(rs.getString(11)); 
+                                        
+                                        imprimmerbtn.setVisible(true);
+                                        validerFacturebtn.setDisable(true);
+                                        ajouterProduitbtn.setDisable(true);
+                                        supprimerProduitbtn.setDisable(true);
+                                        ClientSelectText.setText("      Client Sélectionné");
+                                        //////ClientSelectText.setFill(Color.GREEN);
+                                        ClientSelectText.setStyle("-fx-fill: #00FF0B;");
+                        while(rs.next()){
+                        
+                        String tva1="19%";
+//                        double total1=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
+                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva1, rs.getString("totalP")));
+                                                                  nclientfield.setText(rs.getString(2));
+                                
+                               }
+                    
+//                     rs.close();
+              
+                            ResultSet rs2=st.executeQuery("select *from client where numeroClient='"+idClient+"'");
+                            if(rs2.next()){
+                               raisonsocialfeild.setText(rs2.getString(2));
+                            }else{
+                                Toast.makeText((Stage) nclientfield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
+                            }
+                            //fin de recherchment client
+                            
+   
+                            totalHT.setEditable(false);
+                            totalTVA.setEditable(false);
+                            totalTTC.setEditable(false);
+                            remise.setEditable(false);
+                            montantTotale.setEditable(false);
+                            montantTotale.setEditable(false);
+                            totaleEnLettres.setEditable(false);
+                    }else{
+                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "facture n'existe pas", 1500, 500, 500);
+                    }
+
+            
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                }
+        codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codeProduit"));
+        des.setCellValueFactory(new PropertyValueFactory<tableview, String>("designation"));
+        prixt.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixTransport"));
+        prixu.setCellValueFactory(new PropertyValueFactory<tableview, String>("prixUnitaire"));
+        quant.setCellValueFactory(new PropertyValueFactory<tableview, String>("qteProduit"));
+         tva.setCellValueFactory(new PropertyValueFactory<tableview, String>("totalTVA"));
+        total.setCellValueFactory(new PropertyValueFactory<tableview, String>("montantTotale"));
+        table.setItems(oblist);
+              
+    }
  
         @FXML
     private void validerBtn(){
@@ -819,4 +855,6 @@ public class DeshboardController implements Initializable {
                             System.out.println("Error in connection"+e.toString());
                 }
     }
+    
+
 }

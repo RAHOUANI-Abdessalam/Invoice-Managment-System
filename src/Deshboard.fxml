@@ -150,7 +150,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Text>
-                  <JFXTextField fx:id="totaleEnLettres" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="611.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                  <JFXTextField fx:id="totaleEnLettres" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="693.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -244,7 +244,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Text>
-                        <JFXTextField fx:id="facturefield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="131.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                        <JFXTextField fx:id="facturefield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnRechercherFromField" prefHeight="30.0" prefWidth="131.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                            <padding>
                               <Insets left="5.0" right="5.0" />
                            </padding>
@@ -382,7 +382,7 @@
                               <Image url="@images/Estimates.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField fx:id="qteProduit" alignment="CENTER" focusColor="#1ba1e2" labelFloat="true" prefWidth="130.0" promptText="Quantité" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                        <JFXTextField fx:id="qteProduit" alignment="CENTER" focusColor="#1ba1e2" labelFloat="true" onAction="#addtabsFromQte" prefWidth="130.0" promptText="Quantité" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>

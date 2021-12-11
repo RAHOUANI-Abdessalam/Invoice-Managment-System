@@ -54,7 +54,18 @@ public class LoginController implements Initializable {
     
     @FXML
     private void btnEntrer() throws IOException{
-        if(usernameField.getText().isEmpty()){
+    entrer();
+    }
+    @FXML
+    private void btnEntrerFromPass(){
+         entrer();
+    }
+    @FXML
+    private void btnEntrerFromUser(){
+         entrer();
+    }
+    private void entrer(){
+            if(usernameField.getText().isEmpty()){
             //errorMsg.show("Nom D'utilisateu est vide", 1500);
 //            Alert alert = new Alert(AlertType.INFORMATION);
 //            alert.setTitle("Se Connecter");
@@ -117,7 +128,6 @@ public class LoginController implements Initializable {
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,""+e.toString());
                 }
-        
     }
     
     @FXML
