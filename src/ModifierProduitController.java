@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -53,21 +54,12 @@ public class ModifierProduitController implements Initializable {
     
     @FXML
     private void btnReinitialiser() throws IOException{
+        codeProduitField.setText("");
+        designationField.setText("");
+        prixTransportField.setText("");
+        prixUnitaireField.setText("");
         
-                    Stage stage = (Stage) designationField.getScene().getWindow();
-                    stage.close();  
-                    
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("ModifierProduit.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Modifier Produit");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
-        
+        codeProduitField.setEditable(true);
     }
     
         @FXML
@@ -111,19 +103,13 @@ public class ModifierProduitController implements Initializable {
                     Statement st = con.createStatement();
                     st.executeUpdate("update produit set designation='"+designation+"',prixTransport='"+prixTransport+"',prixUnitaire='"+prixUnitaire+"' where codeProduit='"+codeProduitField.getText()+"'");
                     
-                    Stage stage = (Stage) codeProduitField.getScene().getWindow();
-                    stage.close();  
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Modifier Produit");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Produit Modifié");
+                    alert.showAndWait();
                     
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("ModifierProduit.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Modifier Produit");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
+                    btnReinitialiser();
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,""+e.toString());

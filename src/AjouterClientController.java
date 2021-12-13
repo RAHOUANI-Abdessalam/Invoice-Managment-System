@@ -11,12 +11,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -48,20 +48,7 @@ public class AjouterClientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-                try {
-                    Connection con = ConnectionProvider.getCon();
-                    Statement st = con.createStatement();
-                    ResultSet rs = st.executeQuery("select *from client ORDER BY numeroClient DESC LIMIT 1");
-                    if(rs.next()){
-                        id = rs.getInt("numeroClient");
-                        id=id+1;
-                        String str = String.valueOf(id);
-                        numClientText.setText(str);
-                    }else
-                        numClientText.setText("1");
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null,""+e.toString());
-                }
+        lastIDclient();
     }    
     
     @FXML
@@ -83,20 +70,13 @@ public class AjouterClientController implements Initializable {
                     Statement st = con.createStatement();
                     st.executeUpdate("insert into client values('0','"+raisonScocialField.getText()+"','"+adresseField.getText()+"','"+matriculeFiscalField.getText()+"','"+n_articleField.getText()+"','"+registrDeCommrcField.getText()+"')");
                     //Toast.makeText((Stage) raisonScocialField.getScene().getWindow(), "Clien Numéro "+id+" a été Ajouté avec succès", 2000, 500, 500);
-                   
-                    Stage stage = (Stage) raisonScocialField.getScene().getWindow();
-                    stage.close();  
-                    
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("AjouterClient.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Ajouter Client");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Ajouter Client");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Clien Numéro "+id+" a été Ajouté avec succès");
+
+                    alert.showAndWait();
+                    btnReinitialiser();
                     
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,""+e.toString());
@@ -106,20 +86,28 @@ public class AjouterClientController implements Initializable {
     
     @FXML
     private void btnReinitialiser() throws IOException{
-        
-                    Stage stage = (Stage) raisonScocialField.getScene().getWindow();
-                    stage.close();  
-                    
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("AjouterClient.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Ajouter Client");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
-        
+        lastIDclient();
+        raisonScocialField.setText("");
+        adresseField.setText("");
+        matriculeFiscalField.setText("");
+        n_articleField.setText("");
+        registrDeCommrcField.setText("");
+    }
+    
+    private void lastIDclient(){
+                        try {
+                    Connection con = ConnectionProvider.getCon();
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery("select *from client ORDER BY numeroClient DESC LIMIT 1");
+                    if(rs.next()){
+                        id = rs.getInt("numeroClient");
+                        id=id+1;
+                        String str = String.valueOf(id);
+                        numClientText.setText(str);
+                    }else
+                        numClientText.setText("1");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                }
     }
 }

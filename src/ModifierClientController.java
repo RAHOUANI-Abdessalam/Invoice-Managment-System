@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -61,21 +62,13 @@ public class ModifierClientController implements Initializable {
     
         @FXML
     private void btnReinitialiser() throws IOException{
-        
-                    Stage stage = (Stage) raisonScocialField.getScene().getWindow();
-                    stage.close();  
-                    
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("ModifierClient.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Modifier Client");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
-        
+        numClientField.setText("");
+        raisonScocialField.setText("");
+        adresseField.setText("");
+        matriculeFiscalField.setText("");
+        n_articleField.setText("");
+        registrDeCommrcField.setText("");
+        numClientField.setEditable(true);
     }
     
         @FXML
@@ -125,19 +118,13 @@ public class ModifierClientController implements Initializable {
                     Statement st = con.createStatement();
                     st.executeUpdate("update client set raisonSociale='"+raisonScociale+"',adresse='"+adresse+"',matriculeFiscale='"+matriculeFiscal+"',nArticle='"+nArticle+"',registreDeCommerce='"+registreDeCommerce+"' where numeroClient='"+idClinet+"'");
                     
-                    Stage stage = (Stage) raisonScocialField.getScene().getWindow();
-                    stage.close();  
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Modifier Client");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Client Modifié");
+                    alert.showAndWait();
                     
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("ModifierClient.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Modifier Client");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
+                    btnReinitialiser();
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,""+e.toString());

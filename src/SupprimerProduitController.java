@@ -10,11 +10,14 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -53,21 +56,12 @@ public class SupprimerProduitController implements Initializable {
     
     @FXML
     private void btnReinitialiser() throws IOException{
+        codeProduitField.setText("");
+        designationField.setText("");
+        prixTransportField.setText("");
+        prixUnitaireField.setText("");
         
-                    Stage stage = (Stage) designationField.getScene().getWindow();
-                    stage.close();  
-                    
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("SupprimerProduit.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Supprimer Produit");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
-        
+        codeProduitField.setEditable(true);
     }
     
         @FXML
@@ -102,34 +96,30 @@ public class SupprimerProduitController implements Initializable {
                     Toast.makeText((Stage) codeProduitField.getScene().getWindow(), "Veuilley Entrer un Code Produit SVP", 1500, 500, 500);
                     return;
                 }
- 
+                 
+                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Selectionner");
+            //alert.setHeaderText("SVP, Vérifier");
+            alert.setHeaderText(null);
+            alert.setContentText("Voullez vous vraiment supprimer ce Produit !! ");
+            
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                 
                 String codeProduit = codeProduitField.getText();
-                int a = JOptionPane.showConfirmDialog(null, "Voullez vous vraiment supprimer ce Produit !! ","Selectionner",JOptionPane.YES_NO_OPTION);
-                if(a==0){
-                    try {
+                                    try {
                         Connection con=ConnectionProvider.getCon();
                         Statement st = con.createStatement();
                         st.executeUpdate("delete from produit where codeProduit='"+codeProduit+"'");
-                        JOptionPane.showMessageDialog(null,"Produit a été supprimé");
 
-                        Stage stage = (Stage) codeProduitField.getScene().getWindow();
-                        stage.close();  
-
-                        //Creat a new Satge to Show the New frame "the Deshboard"
-                        Stage primaryStage =new Stage();
-                        FXMLLoader loader =new FXMLLoader();
-                        //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                        Pane root = loader.load(getClass().getResource("SupprimerProduit.fxml"));
-                        Scene scene = new Scene(root);
-                        primaryStage.setTitle("Supprimer Produit");
-                        primaryStage.setScene(scene);
-                        primaryStage.setResizable(false);
-                        primaryStage.show();
+                        btnReinitialiser();
                     
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null,""+e.toString());
                     }
-                }
+            }else {
+                    alert.close();
+                   }
         
         
     }

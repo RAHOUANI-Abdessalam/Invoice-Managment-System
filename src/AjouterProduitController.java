@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -42,20 +43,7 @@ public class AjouterProduitController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        try {
-            Connection con = ConnectionProvider.getCon();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select *from produit ORDER BY codeProduit DESC LIMIT 1");
-            if(rs.next()){
-                code = rs.getInt("codeProduit");
-                code=code+1;
-                String str = String.valueOf(code);
-                codeProduitText.setText(str);
-            }else
-                codeProduitText.setText("1");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,""+e.toString());
-        }
+        lastIDProduit();
     }    
     
         @FXML
@@ -68,21 +56,10 @@ public class AjouterProduitController implements Initializable {
     
         @FXML
     private void btnReinitialiser() throws IOException{
-        
-                    Stage stage = (Stage) codeProduitText.getScene().getWindow();
-                    stage.close();  
-                    
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("AjouterProduit.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Ajouter Produit");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
-        
+        lastIDProduit();
+        designationField.setText("");
+        prixTransportField.setText("");
+        prixUnitaireField.setText("");
     }
     
         @FXML
@@ -96,24 +73,36 @@ public class AjouterProduitController implements Initializable {
                     Statement st = con.createStatement();
                     st.executeUpdate("insert into produit values('"+codeProduitText.getText()+"','"+designationField.getText()+"','"+prixTransportField.getText()+"','"+prixUnitaireField.getText()+"')");
                     //Toast.makeText((Stage) raisonScocialField.getScene().getWindow(), "Clien Numéro "+id+" a été Ajouté avec succès", 2000, 500, 500);
-                   
-                    Stage stage = (Stage) designationField.getScene().getWindow();
-                    stage.close();  
                     
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("AjouterProduit.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Ajouter Produit");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ajouter Produit");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Produit Numéro "+codeProduitText.getText()+" a été Ajouté avec succès");
+
+                    alert.showAndWait();
+                    
+                    btnReinitialiser();
                     
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,""+e.toString());
                     System.out.println("Error in connection"+e.toString());
+        }
+    }
+    
+    private void lastIDProduit(){
+                    try {
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select *from produit ORDER BY codeProduit DESC LIMIT 1");
+            if(rs.next()){
+                code = rs.getInt("codeProduit");
+                code=code+1;
+                String str = String.valueOf(code);
+                codeProduitText.setText(str);
+            }else
+                codeProduitText.setText("1");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,""+e.toString());
         }
     }
     

@@ -827,7 +827,8 @@ public class DeshboardController implements Initializable {
                         st2.executeUpdate("insert into quantite values('"+nFacture+"','"+codP+"','"+qteP+"','"+totalP+"')");
                     }
 
-                    JOptionPane.showMessageDialog(null,"Facture Enregistrée");          
+                    //JOptionPane.showMessageDialog(null,"Facture Enregistrée"); 
+
 
                     bntr();
                     
@@ -844,6 +845,13 @@ public class DeshboardController implements Initializable {
                        Fid=nFacture;
                        nom=raisonsocialfeild.getText();
                         new jasper (nFacture,con);
+                    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Facture");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Facture N°"+String.valueOf(nFacture)+ " Enregistrée dans C:/Users/PC_nom");
+
+                    alert.showAndWait();
                   }catch (Exception e) {
                             JOptionPane.showMessageDialog(null,""+e.toString());
                             System.out.println("Error in connection"+e.toString());

@@ -10,11 +10,15 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -56,21 +60,14 @@ public class SupprimerClientController implements Initializable {
     
         @FXML
     private void btnReinitialiser() throws IOException{
+        numClientField.setText("");
+        raisonScocialField.setText("");
+        adresseField.setText("");
+        matriculeFiscalField.setText("");
+        n_articleField.setText("");
+        registrDeCommrcField.setText("");
         
-                    Stage stage = (Stage) raisonScocialField.getScene().getWindow();
-                    stage.close();  
-                    
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("SupprimerClient.fxml"));
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Supprimer Client");
-                    primaryStage.setScene(scene);
-                    primaryStage.setResizable(false);
-                    primaryStage.show();
-        
+        numClientField.setEditable(true);
     }
     
         @FXML
@@ -108,36 +105,35 @@ public class SupprimerClientController implements Initializable {
                     Toast.makeText((Stage) raisonScocialField.getScene().getWindow(), "Veuilley Entrer un N° Client SVP", 1500, 500, 500);
                     return;
                 }
- 
-                String nClient = numClientField.getText();
-                int a = JOptionPane.showConfirmDialog(null, "Voullez vous vraiment supprimer ce client !! ","Selectionner",JOptionPane.YES_NO_OPTION);
-                if(a==0){
+            
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Selectionner");
+            //alert.setHeaderText("SVP, Vérifier");
+            alert.setHeaderText(null);
+            alert.setContentText("Voullez vous vraiment supprimer ce client !!");
+            
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                     String nClient = numClientField.getText();
                     try {
                         Connection con=ConnectionProvider.getCon();
                         Statement st = con.createStatement();
                         st.executeUpdate("delete from client where numeroClient='"+nClient+"'");
-                        JOptionPane.showMessageDialog(null,"Client a été supprimé");
+                        //JOptionPane.showMessageDialog(null,"Client a été supprimé");
 
-                        Stage stage = (Stage) raisonScocialField.getScene().getWindow();
-                        stage.close();  
+                        btnReinitialiser();
 
-                        //Creat a new Satge to Show the New frame "the Deshboard"
-                        Stage primaryStage =new Stage();
-                        FXMLLoader loader =new FXMLLoader();
-                        //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                        Pane root = loader.load(getClass().getResource("SupprimerClient.fxml"));
-                        Scene scene = new Scene(root);
-                        primaryStage.setTitle("Supprimer Client");
-                        primaryStage.setScene(scene);
-                        primaryStage.setResizable(false);
-                        primaryStage.show();
-                    
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null,""+e.toString());
                     }
+            }else {
+                    alert.close();
+                   }
+ 
+
                 }
         
         
     }
     
-}
+

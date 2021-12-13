@@ -627,124 +627,124 @@ public class DeshboardController2 implements Initializable {
     
     @FXML
     private void validerBtn(){
-        String codeClient = nclientfield.getText();
-        String raisonScociale="";
-        String adresse="";
-        String matriculeFiscal="";
-        String nArticle="";
-        String registreDeCommerce="";
-                try {
-                    Connection con=ConnectionProvider.getCon();
-                    Statement st = con.createStatement();
-                    ResultSet rs= st.executeQuery("select *from client where numeroClient='"+codeClient+"'");
-                    if(rs.next()){
-                        raisonScociale=rs.getString(2);
-                        adresse=rs.getString(3);
-                        matriculeFiscal=rs.getString(4);
-                        nArticle=rs.getString(5);
-                        registreDeCommerce=rs.getString(6);
-                        
-                        //jTextField1.setEditable(false);
-                    }else{
-                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
-                        
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null,""+e.toString());
-                }
-                
-                
-        String path="D:\\facture\\";
-        com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
-        try {
-            PdfWriter.getInstance(doc, new FileOutputStream(path+" "+raisonScociale+" "+date.getText()+" time "+time+".pdf"));
-            doc.open();
-//            Paragraph paragraph1 = new Paragraph("                                                                    Gestion De Stock \n                                            Numéro de contact : +213 777 8487 259\n\n");
-//            doc.add(paragraph1);
-            
-            Image img= Image.getInstance("src\\topFacture2.png");
-            
-            img.scaleAbsoluteWidth(580);
-            img.scaleAbsoluteHeight(92);
-            img.setAlignment(Image.ALIGN_CENTER);
-            doc.add(img);
-            
-            
-            
-            
-            Paragraph paragraph2 = new Paragraph("Date : "+date.getText()+"\n\n\nClient:\n                                  Code: "+codeClient+"\n                  Raison sociale: "+raisonScociale+"\n   "
-                    + "                          Adresse: "+adresse+"\n\n                 Matricule Fiscal: "+matriculeFiscal+"\n                           N° Article: "+nArticle+"\n     Registre de Commerce: "+registreDeCommerce+"\n\n\n\n\n\n");
-            doc.add(paragraph2);
-            PdfPTable tb1=new PdfPTable(7);
-            tb1.setWidthPercentage(100);
-            PdfPCell cell ;
-            cell = new PdfPCell(new Phrase("Code Produit",FontFactory.getFont("Comic Sans MS",12)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            cell.setBorder(3);
-            tb1.addCell(cell);
-                        cell = new PdfPCell(new Phrase("Désignation",FontFactory.getFont("Comic Sans MS",12)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            tb1.addCell(cell);
-                        cell = new PdfPCell(new Phrase("Prix Trqnsport",FontFactory.getFont("Comic Sans MS",12)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            tb1.addCell(cell);
-                        cell = new PdfPCell(new Phrase("Prix Unitaire",FontFactory.getFont("Comic Sans MS",12)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            tb1.addCell(cell);
-                        cell = new PdfPCell(new Phrase("Qte",FontFactory.getFont("Comic Sans MS",12)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            tb1.addCell(cell);
-                        cell = new PdfPCell(new Phrase("T.V.A",FontFactory.getFont("Comic Sans MS",12)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            tb1.addCell(cell);
-                        cell = new PdfPCell(new Phrase("Total",FontFactory.getFont("Comic Sans MS",12)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            tb1.addCell(cell);
-//            tb1.addCell("Code Produit");
-//            tb1.addCell("Désignation                ");
-//            tb1.addCell("Prix Trqnsport");
-//            tb1.addCell("Prix Unitaire");
-//            tb1.addCell("Qte");
-//            tb1.addCell("T.V.A");
-//            tb1.addCell("Total");
-            
-            for (int i = 0; i <table.getItems().size() ; i++) {
-                String a = table.getItems().get(i).getCodeProduit();
-                String b = table.getItems().get(i).getDesignation();
-                String c = table.getItems().get(i).getPrixTransport();
-                String d = table.getItems().get(i).getPrixUnitaire();
-                String e = table.getItems().get(i).getQteProduit();
-                String f = table.getItems().get(i).getTotalTVA();
-                String g = table.getItems().get(i).getMontantTotale();
-                tb1.addCell(a);
-                tb1.addCell(b);
-                tb1.addCell(c);
-                tb1.addCell(d);
-                tb1.addCell(e);
-                tb1.addCell(f);
-                tb1.addCell(g);
-            }
-            doc.add(tb1);
-            
-            Paragraph paragraph3 = new Paragraph("\n Total H.T: "+totalHT.getText()+"\n Total T.V.A :"+totalTVA.getText()+"\n Total T.T.C: "+totalTTC.getText()+"\n Remise: "+remise.getText()+"\n Montant Total: "+montantTotale.getText()+"\n\n Merci...");
-            doc.add(paragraph3);
-            JOptionPane.showMessageDialog(null,"Facture Générée");
-//            setVisible(false);
-//            billing bl= new billing();
-//            bl.setLocationRelativeTo(null);
-//            bl.setVisible(true);
-            doc.close();
-            Desktop.getDesktop().open(new File(path+" "+raisonScociale+" "+date.getText()+" time "+time+".pdf"));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,""+e.toString());
-        }
+//        String codeClient = nclientfield.getText();
+//        String raisonScociale="";
+//        String adresse="";
+//        String matriculeFiscal="";
+//        String nArticle="";
+//        String registreDeCommerce="";
+//                try {
+//                    Connection con=ConnectionProvider.getCon();
+//                    Statement st = con.createStatement();
+//                    ResultSet rs= st.executeQuery("select *from client where numeroClient='"+codeClient+"'");
+//                    if(rs.next()){
+//                        raisonScociale=rs.getString(2);
+//                        adresse=rs.getString(3);
+//                        matriculeFiscal=rs.getString(4);
+//                        nArticle=rs.getString(5);
+//                        registreDeCommerce=rs.getString(6);
+//                        
+//                        //jTextField1.setEditable(false);
+//                    }else{
+//                        Toast.makeText((Stage) facturefield.getScene().getWindow(), "Client n'existe pas", 1500, 500, 500);
+//                        
+//                    }
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(null,""+e.toString());
+//                }
+//                
+//                
+//        String path="D:\\facture\\";
+//        com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
+//        try {
+//            PdfWriter.getInstance(doc, new FileOutputStream(path+" "+raisonScociale+" "+date.getText()+" time "+time+".pdf"));
+//            doc.open();
+////            Paragraph paragraph1 = new Paragraph("                                                                    Gestion De Stock \n                                            Numéro de contact : +213 777 8487 259\n\n");
+////            doc.add(paragraph1);
+//            
+//            Image img= Image.getInstance("src\\topFacture2.png");
+//            
+//            img.scaleAbsoluteWidth(580);
+//            img.scaleAbsoluteHeight(92);
+//            img.setAlignment(Image.ALIGN_CENTER);
+//            doc.add(img);
+//            
+//            
+//            
+//            
+//            Paragraph paragraph2 = new Paragraph("Date : "+date.getText()+"\n\n\nClient:\n                                  Code: "+codeClient+"\n                  Raison sociale: "+raisonScociale+"\n   "
+//                    + "                          Adresse: "+adresse+"\n\n                 Matricule Fiscal: "+matriculeFiscal+"\n                           N° Article: "+nArticle+"\n     Registre de Commerce: "+registreDeCommerce+"\n\n\n\n\n\n");
+//            doc.add(paragraph2);
+//            PdfPTable tb1=new PdfPTable(7);
+//            tb1.setWidthPercentage(100);
+//            PdfPCell cell ;
+//            cell = new PdfPCell(new Phrase("Code Produit",FontFactory.getFont("Comic Sans MS",12)));
+//            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//            cell.setBackgroundColor(BaseColor.GRAY);
+//            cell.setBorder(3);
+//            tb1.addCell(cell);
+//                        cell = new PdfPCell(new Phrase("Désignation",FontFactory.getFont("Comic Sans MS",12)));
+//            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//            cell.setBackgroundColor(BaseColor.GRAY);
+//            tb1.addCell(cell);
+//                        cell = new PdfPCell(new Phrase("Prix Trqnsport",FontFactory.getFont("Comic Sans MS",12)));
+//            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//            cell.setBackgroundColor(BaseColor.GRAY);
+//            tb1.addCell(cell);
+//                        cell = new PdfPCell(new Phrase("Prix Unitaire",FontFactory.getFont("Comic Sans MS",12)));
+//            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//            cell.setBackgroundColor(BaseColor.GRAY);
+//            tb1.addCell(cell);
+//                        cell = new PdfPCell(new Phrase("Qte",FontFactory.getFont("Comic Sans MS",12)));
+//            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//            cell.setBackgroundColor(BaseColor.GRAY);
+//            tb1.addCell(cell);
+//                        cell = new PdfPCell(new Phrase("T.V.A",FontFactory.getFont("Comic Sans MS",12)));
+//            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//            cell.setBackgroundColor(BaseColor.GRAY);
+//            tb1.addCell(cell);
+//                        cell = new PdfPCell(new Phrase("Total",FontFactory.getFont("Comic Sans MS",12)));
+//            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//            cell.setBackgroundColor(BaseColor.GRAY);
+//            tb1.addCell(cell);
+////            tb1.addCell("Code Produit");
+////            tb1.addCell("Désignation                ");
+////            tb1.addCell("Prix Trqnsport");
+////            tb1.addCell("Prix Unitaire");
+////            tb1.addCell("Qte");
+////            tb1.addCell("T.V.A");
+////            tb1.addCell("Total");
+//            
+//            for (int i = 0; i <table.getItems().size() ; i++) {
+//                String a = table.getItems().get(i).getCodeProduit();
+//                String b = table.getItems().get(i).getDesignation();
+//                String c = table.getItems().get(i).getPrixTransport();
+//                String d = table.getItems().get(i).getPrixUnitaire();
+//                String e = table.getItems().get(i).getQteProduit();
+//                String f = table.getItems().get(i).getTotalTVA();
+//                String g = table.getItems().get(i).getMontantTotale();
+//                tb1.addCell(a);
+//                tb1.addCell(b);
+//                tb1.addCell(c);
+//                tb1.addCell(d);
+//                tb1.addCell(e);
+//                tb1.addCell(f);
+//                tb1.addCell(g);
+//            }
+//            doc.add(tb1);
+//            
+//            Paragraph paragraph3 = new Paragraph("\n Total H.T: "+totalHT.getText()+"\n Total T.V.A :"+totalTVA.getText()+"\n Total T.T.C: "+totalTTC.getText()+"\n Remise: "+remise.getText()+"\n Montant Total: "+montantTotale.getText()+"\n\n Merci...");
+//            doc.add(paragraph3);
+//            JOptionPane.showMessageDialog(null,"Facture Générée");
+////            setVisible(false);
+////            billing bl= new billing();
+////            bl.setLocationRelativeTo(null);
+////            bl.setVisible(true);
+//            doc.close();
+//            Desktop.getDesktop().open(new File(path+" "+raisonScociale+" "+date.getText()+" time "+time+".pdf"));
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null,""+e.toString());
+//        }
 
     }
  
