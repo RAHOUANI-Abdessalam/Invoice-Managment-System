@@ -61,7 +61,7 @@ import project.ConnectionProvider;
 
 public class DeshboardController implements Initializable {
     static int Fid;
-    String time;
+    static String nom;
     int codeClient=0;
     String raisonScociale="";
     String adresse="";
@@ -164,13 +164,9 @@ public class DeshboardController implements Initializable {
          
             validerFacturebtn.setDisable(true);
          
-            SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date dat = new Date();
             date.setText(dFormat.format(dat));
-            
-            DateTimeFormatter dtf=DateTimeFormatter.ofPattern("HH-mm-ss");
-            LocalDateTime now = LocalDateTime.now();
-            time=dtf.format(now);
          
             espcRadio.setToggleGroup(radioGroup);
             cheqRadio.setToggleGroup(radioGroup);
@@ -180,22 +176,22 @@ public class DeshboardController implements Initializable {
          
          
 //         Validation
-          RequiredFieldValidator validator = new RequiredFieldValidator();
-          validator.setMessage("missing info....");
-          designationfield.getValidators().add(validator);
+//          RequiredFieldValidator validator = new RequiredFieldValidator();
+//          validator.setMessage("missing info....");
+//          designationfield.getValidators().add(validator);
           NumberValidator numvad = new NumberValidator();
-          numvad.setMessage("numb only");
+          numvad.setMessage("nombres seulement");
 //          raisonsocialfeild validation
-           raisonsocialfeild.getValidators().add(numvad);
-            raisonsocialfeild.focusedProperty().addListener(new ChangeListener<Boolean>() {
-              @Override
-              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                  if(!newValue){
-                      raisonsocialfeild.validate();
-                  }
-                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-              }
-          });
+//           raisonsocialfeild.getValidators().add(numvad);
+//            raisonsocialfeild.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//              @Override
+//              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                  if(!newValue){
+//                      raisonsocialfeild.validate();
+//                  }
+//                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//              }
+//          });
 //          prixtransportfield validation
           prixtransportfield.getValidators().add(numvad);
          prixtransportfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
@@ -253,15 +249,15 @@ public class DeshboardController implements Initializable {
           });
                           
 // designationfield validation
-          designationfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
-              @Override
-              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                  if(!newValue){
-                      designationfield.validate();
-                  }
-                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-              }
-          });
+//          designationfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//              @Override
+//              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                  if(!newValue){
+//                      designationfield.validate();
+//                  }
+//                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//              }
+//          });
 //       setting table vakue
         codp.setCellValueFactory(new PropertyValueFactory<tableview, String>("codeProduit"));
         des.setCellValueFactory(new PropertyValueFactory<tableview, String>("designation"));
@@ -516,32 +512,53 @@ public class DeshboardController implements Initializable {
                 String numeroFacture = facturefield.getText();
                 recherFacture(numeroFacture);
     }
+    
+    @FXML
+    private void reSelectClient(){
+        if(!nclientfield.getText().equals("")||!raisonsocialfeild.getText().equals("")){
+            nclientfield.setText("");
+            raisonsocialfeild.setText("");
+            ClientSelectText.setText("Client non Sélectionné");
+            ClientSelectText.setStyle("-fx-fill: #ff0000;"); 
+            validerFacturebtn.setDisable(true);
+        }
+
+        
+    }
 //    btnReinitialiser
     @FXML
      private void bntr() throws IOException{
+         SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyyy");
+         Date dat = new Date();
+         date.setText(dFormat.format(dat));
+         
+         facturefield.setText("");
+         nclientfield.setText("");
+         raisonsocialfeild.setText("");
+         ClientSelectText.setText("Client non Sélectionné");
+         ClientSelectText.setStyle("-fx-fill: #ff0000;"); 
+         codeproduitfield.setText("");
+         designationfield.setText("");
+         prixtransportfield.setText("");
+         priunitairefield.setText("");
+         qteProduit.setText("");
+         espcRadio.setSelected(true);
+         numeroCheaque.setDisable(true);
+         totalHT.setText("");
+         totalTVA.setText("");
+         totalTTC.setText("");
+         remise.setText("0");
+         montantTotale.setText("");
+        totaleEnLettres.setText("");
+        imprimmerbtn.setVisible(false);
+        validerFacturebtn.setDisable(true);
         
-                    Stage stage = (Stage) facturefield.getScene().getWindow();
-                    stage.close();  
-                    
-               
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                         
-                    Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
-                    Scene scene = new Scene(root);
-                    Screen screen = Screen.getPrimary();
-                    javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
-
-                    primaryStage.setX(bounds.getMinX());
-                    primaryStage.setY(bounds.getMinY());
-                    primaryStage.setWidth(bounds.getWidth());
-                    primaryStage.setHeight(bounds.getHeight());
-                    primaryStage.setTitle("Deshboard");
-                    primaryStage.setScene(scene);
-                    primaryStage.setMinHeight(720);
-                    primaryStage.setMinWidth(1280);
-                    primaryStage.show();
-        
+        table.getItems().clear();
+        numeroCheaque.setText("");
+        ajouterProduitbtn.setDisable(false);
+        supprimerProduitbtn.setDisable(false);
+        remise.setEditable(true);
+        totaleEnLettres.setEditable(true);
     }
      
     @FXML
@@ -556,7 +573,9 @@ public class DeshboardController implements Initializable {
             if (result.get() == ButtonType.OK){
                 // ... user chose OK
                 //close the entier app
-                Platform.exit();
+                //Platform.exit();
+                Stage stage = (Stage) totaleEnLettres.getScene().getWindow();
+                stage.close();   
             } else {
                 // ... user chose CANCEL or closed the dialog
                 alert.close();
@@ -585,8 +604,7 @@ public class DeshboardController implements Initializable {
                         registreDeCommerce=rs.getString(6);
                         
                         validerFacturebtn.setDisable(false);
-                        nclientfield.setEditable(false);
-                        raisonsocialfeild.setEditable(false);
+                        codeproduitfield.requestFocus();
                         
                     }else{
                         nclientfield.setText("");
@@ -626,8 +644,7 @@ public class DeshboardController implements Initializable {
                         registreDeCommerce=rs.getString(6);
 
                         validerFacturebtn.setDisable(false);
-                        nclientfield.setEditable(false);
-                        raisonsocialfeild.setEditable(false);
+                        codeproduitfield.requestFocus();
                     }else{
                         nclientfield.setText("");
                         raisonsocialfeild.setText("");
@@ -676,6 +693,7 @@ public class DeshboardController implements Initializable {
     @FXML
     private void radioChange(){
         if(espcRadio.isSelected()){
+            numeroCheaque.setText("");
             numeroCheaque.setDisable(true);
         }
         else{
@@ -810,26 +828,8 @@ public class DeshboardController implements Initializable {
                     }
 
                     JOptionPane.showMessageDialog(null,"Facture Enregistrée");          
-                    Stage stage = (Stage) numeroCheaque.getScene().getWindow();
-                    stage.close();  
-                    //Creat a new Satge to Show the New frame "the Deshboard"
-                    Stage primaryStage =new Stage();
-                    FXMLLoader loader =new FXMLLoader();
-                    //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-                    Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
-                    Scene scene = new Scene(root);
-                    Screen screen = Screen.getPrimary();
-                    javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
 
-                    primaryStage.setX(bounds.getMinX());
-                    primaryStage.setY(bounds.getMinY());
-                    primaryStage.setWidth(bounds.getWidth());
-                    primaryStage.setHeight(bounds.getHeight());
-                    primaryStage.setTitle("Deashbord");
-                    primaryStage.setScene(scene);
-                    primaryStage.setMinHeight(720);
-                    primaryStage.setMinWidth(1280);
-                    primaryStage.show();
+                    bntr();
                     
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,""+e.toString());
@@ -842,6 +842,7 @@ public class DeshboardController implements Initializable {
         try {
                         Connection con = ConnectionProvider.getCon();
                        Fid=nFacture;
+                       nom=raisonsocialfeild.getText();
                         new jasper (nFacture,con);
                   }catch (Exception e) {
                             JOptionPane.showMessageDialog(null,""+e.toString());
@@ -857,6 +858,7 @@ public class DeshboardController implements Initializable {
                 try {
                         Connection con = ConnectionProvider.getCon();
                        Fid=nFacture;
+                       nom=raisonsocialfeild.getText();
                        
 //                        JasperDesign jasperReport =  JRXmlLoader.load("src/InvoiceF.jrxml");
 //                       Fid=nFacture;
@@ -876,10 +878,25 @@ public class DeshboardController implements Initializable {
 //                        new jasper (nFacture,con);
 
                         new jasper (nFacture,con);
+                        bntr();
                   }catch (Exception e) {
                             JOptionPane.showMessageDialog(null,""+e.toString());
                             System.out.println("Error in connection"+e.toString());
                 }
+    }
+    
+        @FXML
+    private void btnUserSettings() throws IOException{
+        
+                        Stage primaryStage =new Stage();
+                        FXMLLoader loader =new FXMLLoader();
+                        Parent root = loader.load(getClass().getResource("Users.fxml"));        
+                    
+                        Scene scene = new Scene(root);
+                        primaryStage.setTitle("Paramètres Utilisateur");
+                        primaryStage.setScene(scene);
+                        primaryStage.setResizable(false);
+                        primaryStage.show();
     }
     
 

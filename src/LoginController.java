@@ -29,6 +29,7 @@ import project.ConnectionProvider;
 
 
 public class LoginController implements Initializable {
+    
     @FXML
     private VBox bottomCenterVbox;
     
@@ -49,7 +50,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         //errorMsg = new JFXSnackbar(bottomCenterVbox);
-        
+
     }    
     
     @FXML
@@ -73,7 +74,7 @@ public class LoginController implements Initializable {
 //            alert.setHeaderText(null);
 //            alert.setContentText("Nom D'utilisateu est vide");
 //            alert.showAndWait();
-            String toastMsg = "Nom D'utilisateu est vide";
+            String toastMsg = "Nom D'utilisateur est vide";
             int toastMsgTime = 1500; //3.5 seconds
             int fadeInTime = 500; //0.5 seconds
             int fadeOutTime= 500; //0.5 seconds
@@ -97,8 +98,7 @@ public class LoginController implements Initializable {
                         
                        //close the Login Frame "Stage"
                         con.close();
-                        Stage stage = (Stage) motdepasseField.getScene().getWindow();
-                        stage.close();
+
 
                         //Creat a new Satge to Show the New frame "the Deshboard"
                         Stage primaryStage =new Stage();
@@ -106,18 +106,22 @@ public class LoginController implements Initializable {
                         Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
                         //Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
                         Scene scene = new Scene(root);
-                        Screen screen = Screen.getPrimary();
-                        javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
-
-                        primaryStage.setX(bounds.getMinX());
-                        primaryStage.setY(bounds.getMinY());
-                        primaryStage.setWidth(bounds.getWidth());
-                        primaryStage.setHeight(bounds.getHeight());
-                        primaryStage.setTitle("Deashbord");
+//                        Screen screen = Screen.getPrimary();
+//                        javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+//
+//                        primaryStage.setX(bounds.getMinX());
+//                        primaryStage.setY(bounds.getMinY());
+//                        primaryStage.setWidth(bounds.getWidth());
+//                        primaryStage.setHeight(bounds.getHeight());
+                        primaryStage.setTitle("Deshboard");
                         primaryStage.setScene(scene);
                         primaryStage.setMinHeight(720);
                         primaryStage.setMinWidth(1280);
+                        primaryStage.setMaximized(true);
                         primaryStage.show();
+                        
+                        Stage stage = (Stage) motdepasseField.getScene().getWindow();
+                        stage.close();
                     }else{
                         String toastMsg = "                   Désolé \n Vous avez mal saisi les données";
                         int toastMsgTime = 2500; //2.5 seconds

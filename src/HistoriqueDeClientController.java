@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -16,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.print.PrinterJob;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,6 +40,11 @@ public class HistoriqueDeClientController implements Initializable {
     public static int numFacture=0 ;
 
     //adminstatic int idClient;
+    @FXML
+    private JFXButton iprimmerbtn;
+
+    @FXML
+    private JFXButton voirfcturbtn;
 
     @FXML
     private ImageView close;
@@ -89,7 +96,12 @@ public class HistoriqueDeClientController implements Initializable {
         montantTotale.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("montantTotale"));
         modeDeReglement.setCellValueFactory(new PropertyValueFactory<historiqueClient, String>("modeDeReglement"));
       
-        historiqueClient.setItems(oblisT);       
+        historiqueClient.setItems(oblisT);   
+        
+        if(historiqueClient.getItems().size()==0){
+            iprimmerbtn.setDisable(true);
+            voirfcturbtn.setDisable(true);
+        }
     }    
     
     @FXML
@@ -116,20 +128,21 @@ public class HistoriqueDeClientController implements Initializable {
             
             Stage primaryStage =new Stage();
             FXMLLoader loader =new FXMLLoader();
-            //Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
-            Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
+            Parent root = loader.load(getClass().getResource("Deshboard.fxml"));        
+            //Pane root = loader.load(getClass().getResource("Deshboard.fxml"));
             Scene scene = new Scene(root);
-            Screen screen = Screen.getPrimary();
-            javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
-
-            primaryStage.setX(bounds.getMinX());
-            primaryStage.setY(bounds.getMinY());
-            primaryStage.setWidth(bounds.getWidth());
-            primaryStage.setHeight(bounds.getHeight());
+//            Screen screen = Screen.getPrimary();
+//            javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+//
+//            primaryStage.setX(bounds.getMinX());
+//            primaryStage.setY(bounds.getMinY());
+//            primaryStage.setWidth(bounds.getWidth());
+//            primaryStage.setHeight(bounds.getHeight());
             primaryStage.setTitle("Deashbord");
             primaryStage.setScene(scene);
             primaryStage.setMinHeight(720);
             primaryStage.setMinWidth(1280);
+            primaryStage.setResizable(false);
             primaryStage.show();
 
     }

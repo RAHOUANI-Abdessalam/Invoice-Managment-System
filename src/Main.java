@@ -19,17 +19,18 @@ public class Main extends Application {
         
         primaryStage.setTitle(" Login");
         primaryStage.setScene(scene);
-        Screen screen = Screen.getPrimary();
-        javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
-
-        primaryStage.setX(bounds.getMinX());
-        primaryStage.setY(bounds.getMinY());
-        primaryStage.setWidth(bounds.getWidth());
-        primaryStage.setHeight(bounds.getHeight());
+//        Screen screen = Screen.getPrimary();
+//        javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+//
+//        primaryStage.setX(bounds.getMinX());
+//        primaryStage.setY(bounds.getMinY());
+//        primaryStage.setWidth(bounds.getWidth());
+//        primaryStage.setHeight(bounds.getHeight());
 //        primaryStage.setMinHeight(720);
 //        primaryStage.setMinWidth(1280);
         //for the not resizable windows
         //primaryStage.setResizable(false);
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
 

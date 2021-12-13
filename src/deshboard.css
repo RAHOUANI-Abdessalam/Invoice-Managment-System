@@ -25,4 +25,6 @@
     .lable-empty{
         -fx-text-fill: white ;
         -fx-prompt-text-fill: gray ;
+        -fx-border-width: 0 0 2 0 ; 
+        -fx-border-color:#1BA1E2
     }

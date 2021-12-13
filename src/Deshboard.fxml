@@ -25,6 +25,11 @@
                <children>
                   <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: grey;">
                      <items>
+                        <ImageView accessibleRole="BUTTON" fitHeight="33.0" fitWidth="40.0" onMouseClicked="#btnUserSettings" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/manage-accounts.png" />
+                           </image>
+                        </ImageView>
                         <JFXButton onAction="#bntlistc" text="Liste Clients" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -122,6 +127,9 @@
                            </cursor>
                         </JFXButton>
                      </items>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </ToolBar>
                </children>
             </VBox>
@@ -150,7 +158,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Text>
-                  <JFXTextField fx:id="totaleEnLettres" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="693.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                  <JFXTextField fx:id="totaleEnLettres" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="693.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -303,7 +311,7 @@
                         <Image url="@images/Search%20Client.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField fx:id="nclientfield" focusColor="#1ba1e2" labelFloat="true" onAction="#clientRechNumero" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField fx:id="nclientfield" focusColor="#1ba1e2" labelFloat="true" onAction="#clientRechNumero" onMouseClicked="#reSelectClient" prefHeight="31.0" prefWidth="130.0" promptText="N° Client" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -311,7 +319,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="raisonsocialfeild" focusColor="#1ba1e2" labelFloat="true" onAction="#clientRechRaison" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
+                  <JFXTextField fx:id="raisonsocialfeild" focusColor="#1ba1e2" labelFloat="true" onAction="#clientRechRaison" onMouseClicked="#reSelectClient" prefWidth="200.0" promptText="Raison scocial" styleClass="lable-empty" stylesheets="@deshboard.css" unFocusColor="#1ba1e2">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -331,7 +339,7 @@
             </HBox>
             <HBox alignment="TOP_RIGHT">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefWidth="1087.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets left="23.0" top="20.0" />
                      </HBox.margin>
@@ -390,7 +398,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </JFXTextField>
-                        <JFXButton fx:id="ajouterProduitbtn" alignment="CENTER_RIGHT" onAction="#addtabs" prefHeight="28.0" prefWidth="155.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
+                        <JFXButton fx:id="ajouterProduitbtn" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addtabs" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: #1BA1E2; -fx-background-radius: 10;" text="Ajouter " textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -422,15 +430,15 @@
                <children>
                   <VBox prefHeight="400.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TableView fx:id="table" editable="true" prefHeight="400.0" prefWidth="800.0" stylesheets="@deshboard.css" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="table" editable="true" prefHeight="400.0" prefWidth="800.0" style="-fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" stylesheets="@deshboard.css" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn fx:id="codp" prefWidth="75.0" text="code produit" />
-                            <TableColumn fx:id="des" prefWidth="75.0" text="Désignation" />
-                              <TableColumn fx:id="prixt" prefWidth="75.0" text="Prix Transport" />
-                              <TableColumn fx:id="prixu" prefWidth="75.0" text="Prix Unitaire" />
-                              <TableColumn fx:id="quant" prefWidth="75.0" text="quantité" />
-                              <TableColumn fx:id="tva" prefWidth="75.0" text="TVA" />
-                              <TableColumn fx:id="total" prefWidth="75.0" text="Totale" />
+                            <TableColumn fx:id="codp" prefWidth="97.0" text="code produit" />
+                            <TableColumn fx:id="des" prefWidth="172.0" text="Désignation" />
+                              <TableColumn fx:id="prixt" prefWidth="45.0" text="Prix Transport" />
+                              <TableColumn fx:id="prixu" prefWidth="90.0" text="Prix Unitaire" />
+                              <TableColumn fx:id="quant" prefWidth="70.0" text="quantité" />
+                              <TableColumn fx:id="tva" prefWidth="36.0" text="TVA" />
+                              <TableColumn fx:id="total" prefWidth="181.0" text="Totale" />
                           </columns>
                            <VBox.margin>
                               <Insets bottom="10.0" />
@@ -503,7 +511,7 @@
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Text>
-                                          <JFXTextField fx:id="numeroCheaque" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="250.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                                          <JFXTextField fx:id="numeroCheaque" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                                              <padding>
                                                 <Insets left="10.0" right="10.0" />
                                              </padding>
@@ -513,7 +521,7 @@
                                           </JFXTextField>
                                        </children>
                                        <VBox.margin>
-                                          <Insets left="20.0" top="10.0" />
+                                          <Insets left="6.0" top="10.0" />
                                        </VBox.margin>
                                        <padding>
                                           <Insets left="15.0" />
@@ -619,7 +627,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </Text>
-                                          <JFXTextField fx:id="remise" alignment="CENTER_RIGHT" focusColor="#1ba1e2" onAction="#remise" prefWidth="190.0" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" text="0" unFocusColor="#1ba1e2">
+                                          <JFXTextField fx:id="remise" alignment="CENTER_RIGHT" focusColor="#1ba1e2" onAction="#remise" promptText="0.00" styleClass="lable-empty" stylesheets="@deshboard.css" text="0" unFocusColor="#1ba1e2">
                                              <HBox.margin>
                                                 <Insets left="160.0" />
                                              </HBox.margin>
