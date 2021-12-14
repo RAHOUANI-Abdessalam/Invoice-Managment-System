@@ -430,7 +430,7 @@
                <children>
                   <VBox prefHeight="400.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TableView fx:id="table" editable="true" prefHeight="400.0" prefWidth="800.0" style="-fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" stylesheets="@deshboard.css" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="table" editable="true" onMouseClicked="#selectFromTab" prefHeight="400.0" prefWidth="800.0" style="-fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" stylesheets="@deshboard.css" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="codp" prefWidth="97.0" text="code produit" />
                             <TableColumn fx:id="des" prefWidth="172.0" text="Désignation" />

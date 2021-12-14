@@ -291,6 +291,51 @@ public class DeshboardController implements Initializable {
     
      String qteProduiT= qteProduit.getText(),priunitaire= priunitairefield.getText(),
              prixtransport= prixtransportfield.getText(),codeprd=codeproduitfield.getText(),desint=designationfield.getText();
+     
+     //verifier si un produit existe dans la table
+     if(table.getItems().size() > 0){
+            for (int i = 0; i <table.getItems().size() ; i++) {
+           String a = table.getItems().get(i).getCodeProduit();
+           String b = table.getItems().get(i).getPrixTransport();
+           String c = table.getItems().get(i).getPrixUnitaire();
+           String d = table.getItems().get(i).getQteProduit();
+           if(codeprd.equals(a) && prixtransport.equals(b) && priunitaire.equals(c) && qteProduiT.equals(d)){
+                       Toast.makeText((Stage) codeproduitfield.getScene().getWindow(), "Produit "+a+" déja ajouté dans table !!!", 1500, 500, 500);
+                       return;
+           }
+             //Toast.makeText((Stage) codeproduitfield.getScene().getWindow(), "Sélectionnez le produite "+a+" dans la table pour modifier", 1500, 500, 500);
+           if(codeprd.equals(a) && (!prixtransport.equals(b) || !priunitaire.equals(c) || !qteProduiT.equals(d))){
+                 //***************************
+                 //remove the old line product
+                        int selectedID = i;
+                        String tvaSupp = table.getItems().get(selectedID).getTotalTVA();
+                        String totalSupp = table.getItems().get(selectedID).getMontantTotale();
+
+//                        double totalht= Double.valueOf(totalHT.getText());
+                        double totaltva= Double.valueOf(totalTVA.getText());
+                        double totalttc= Double.valueOf(totalTTC.getText());
+//                        double remis= Double.valueOf(remise.getText());
+//                        double montantTotal= Double.valueOf(montantTotale.getText());
+
+                        sommeMNT=totalttc-Double.valueOf(totalSupp);
+                        sommeTVA=totaltva-Double.valueOf(tvaSupp);
+                        sommemntsontva=sommeMNT-sommeTVA;
+
+
+//                        totalTTC.setText(String.valueOf(df.format(newtotalTTC)));
+//                        totalTVA.setText(String.valueOf(df.format(newtotalTva)));
+//                        totalHT.setText(String.valueOf(df.format(newtotalHT)));
+//                        remis= (remis/100);
+//                        montantTotal= newtotalTTC-(newtotalTTC*remis);
+//                        montantTotale.setText(String.valueOf(montantTotal));
+
+                        table.getItems().remove(selectedID);
+                        //table.getFocusModel().equals(false);
+                //*********************************
+           }
+           
+       }
+     }
      int nbrCameon=0;
      double qte=Double.valueOf(qteProduiT);
      
@@ -341,6 +386,24 @@ public class DeshboardController implements Initializable {
         codeproduitfield.requestFocus();
       
     }
+    @FXML
+    void selectFromTab(){
+             String codeprd,desint,prixtransport,priunitaire,qteProduiT;
+             int selectedID = table.getSelectionModel().getSelectedIndex();
+             
+        codeprd = table.getItems().get(selectedID).getCodeProduit();
+        desint = table.getItems().get(selectedID).getDesignation();
+        prixtransport = table.getItems().get(selectedID).getPrixTransport();
+        priunitaire = table.getItems().get(selectedID).getPrixUnitaire();
+        qteProduiT = table.getItems().get(selectedID).getQteProduit();
+        
+        codeproduitfield.setText(codeprd);
+        designationfield.setText(desint);
+        prixtransportfield.setText(prixtransport);
+        priunitairefield.setText(priunitaire);
+        qteProduit.setText(qteProduiT);
+        qteProduit.requestFocus();
+    }
    ////////////// remise
     @FXML
     void remise(ActionEvent event){
@@ -386,6 +449,30 @@ public class DeshboardController implements Initializable {
         montantTotale.setText(String.valueOf(montantTotal));
         
         table.getItems().remove(selectedID);
+        
+        codeproduitfield.setText("");
+        designationfield.setText("");
+        prixtransportfield.setText("");
+        priunitairefield.setText("");
+        qteProduit.setText("");
+        codeproduitfield.requestFocus();
+        tvaSupp="0.00";
+        totalSupp="0.00";
+        newtotalTTC=0.00;
+        newtotalTva=0.00;
+        newtotalHT=0.00;
+        
+        if(0==table.getItems().size()){
+            sommeTVA=0;sommeMNT=0;sommemntsontva=0;
+            remise.setText("0");
+        }
+        
+                try {
+            String tot= Nombre.CALCULATE.getValue(montantTotal, "Dinar");
+            totaleEnLettres.setText(tot);
+        } catch (Exception ex) {
+            Logger.getLogger(DeshboardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
      
     @FXML
@@ -846,12 +933,12 @@ public class DeshboardController implements Initializable {
                        nom=raisonsocialfeild.getText();
                         new jasper (nFacture,con);
                     
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Facture");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Facture N°"+String.valueOf(nFacture)+ " Enregistrée dans C:/Users/PC_nom");
-
-                    alert.showAndWait();
+//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                    alert.setTitle("Facture");
+//                    alert.setHeaderText(null);
+//                    alert.setContentText("Facture N°"+String.valueOf(nFacture)+ " Enregistrée dans C:/Users/PC_nom");
+//
+//                    alert.showAndWait();
                   }catch (Exception e) {
                             JOptionPane.showMessageDialog(null,""+e.toString());
                             System.out.println("Error in connection"+e.toString());
