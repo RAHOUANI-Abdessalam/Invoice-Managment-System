@@ -351,7 +351,7 @@ public class DeshboardController implements Initializable {
 //     taking value to new tab
 
         tableview tableview = new tableview(codeprd,desint,
-        prixtransport,priunitaire,qteProduiT,String.valueOf(TVA),String.valueOf(montantTotal));
+        String.valueOf(prixtransporttotal),priunitaire,qteProduiT,String.valueOf(TVA),String.valueOf(montantTotal));
         ObservableList<tableview> tableviews = table.getItems();
         tableviews.add(tableview);
         table.setItems(tableviews);
