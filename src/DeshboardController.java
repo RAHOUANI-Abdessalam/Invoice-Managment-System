@@ -367,7 +367,6 @@ String T="00%";
         tableviews.add(tableview);
         table.setItems(tableviews);
         sommemntsontva= sommemntsontva + mntsontva;
-//        sommeMNT= sommeMNT + montantTotal;
         sommeTVA= sommemntsontva*TVA;
         sommeMNT=sommemntsontva+sommeTVA;
         totalTVA.setText(String.valueOf(df.format(sommeTVA)));
@@ -657,6 +656,9 @@ String T="00%";
         supprimerProduitbtn.setDisable(false);
         remise.setEditable(true);
         totaleEnLettres.setEditable(true);
+         sommemntsontva= 0;
+        sommeTVA= 0;
+        sommeMNT=0;
     }
      
     @FXML
