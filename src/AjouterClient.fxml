@@ -132,7 +132,7 @@
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Text>
-                  <JFXTextField fx:id="raisonScocialField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                  <JFXTextField fx:id="raisonScocialField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -148,7 +148,7 @@
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Text>
-                  <JFXTextField fx:id="adresseField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                  <JFXTextField fx:id="adresseField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -167,7 +167,7 @@
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Text>
-                  <JFXTextField fx:id="matriculeFiscalField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                  <JFXTextField fx:id="matriculeFiscalField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -186,7 +186,7 @@
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Text>
-                  <JFXTextField fx:id="n_articleField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                  <JFXTextField fx:id="n_articleField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -205,7 +205,7 @@
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Text>
-                  <JFXTextField fx:id="registrDeCommrcField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                  <JFXTextField fx:id="registrDeCommrcField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>

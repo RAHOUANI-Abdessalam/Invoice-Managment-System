@@ -59,7 +59,7 @@ public class ListDuClientsController implements Initializable {
 
     @FXML
     private TableColumn<tableclient, String> RegistredeCommerce;
-     @FXML 
+     
      ObservableList<tableclient> oblist = FXCollections.observableArrayList();
 
     @Override
