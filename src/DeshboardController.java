@@ -437,23 +437,27 @@ String T="00%";
     @FXML
     void removetabs(ActionEvent event) {
         int selectedID = table.getSelectionModel().getSelectedIndex();
-        String tvaSupp = table.getItems().get(selectedID).getTotalTVA();
+//        String tvaSupp = table.getItems().get(selectedID).getTotalTVA();
         String totalSupp = table.getItems().get(selectedID).getMontantTotale();
         
         double totalht= Double.valueOf(totalHT.getText());
-        double totaltva= Double.valueOf(totalTVA.getText());
-        double totalttc= Double.valueOf(totalTTC.getText());
+//        double totaltva= Double.valueOf(totalTVA.getText());
+//        double totalttc= Double.valueOf(totalTTC.getText());
         double remis= Double.valueOf(remise.getText());
-        double montantTotal= Double.valueOf(montantTotale.getText());
+        double montantTotal;
         
-        double newtotalTTC=totalttc-Double.valueOf(totalSupp);
-        double newtotalTva=totaltva-Double.valueOf(tvaSupp);
-        double newtotalHT=newtotalTTC-newtotalTva;
-        
-        
-        totalTTC.setText(String.valueOf(df.format(newtotalTTC)));
-        totalTVA.setText(String.valueOf(df.format(newtotalTva)));
+
+
+        double newtotalHT=totalht-Double.valueOf(totalSupp);
+        double newtotalTva=newtotalHT*0.19;
+        double newtotalTTC=newtotalHT*1.19;
+                
+        //totalTTC.setText(String.valueOf(df.format(newtotalTTC)));
+        //totalTVA.setText(String.valueOf(df.format(newtotalTva)));
         totalHT.setText(String.valueOf(df.format(newtotalHT)));
+        totalTVA.setText(String.valueOf(df.format(newtotalTva)));
+        totalTTC.setText(String.valueOf(df.format(newtotalTTC)));
+        
         remis= (remis/100);
         montantTotal= newtotalTTC-(newtotalTTC*remis);
         montantTotale.setText(String.valueOf(montantTotal));
@@ -466,15 +470,16 @@ String T="00%";
         priunitairefield.setText("");
         qteProduit.setText("");
         codeproduitfield.requestFocus();
-        tvaSupp="0.00";
-        totalSupp="0.00";
-        newtotalTTC=0.00;
-        newtotalTva=0.00;
-        newtotalHT=0.00;
+        //tvaSupp="0.00";
+
         
         if(0==table.getItems().size()){
             sommeTVA=0;sommeMNT=0;sommemntsontva=0;
             remise.setText("0");
+                    totalSupp="0.00";
+                    newtotalTTC=0.00;
+                    newtotalTva=0.00;
+                    newtotalHT=0.00;
         }
         
                 try {
