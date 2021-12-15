@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Mysql"/>
 	<property name="com.jaspersoft.studio.data.sql.tables">
-		<![CDATA[Z2VzdGlvbl9zdG9jazIucXVhbnRpdGUgLDM0MywxNSw5MDI2MDA2NC00N2QxLTRhZDItYWU5My01
-YWNhMzNkOGRkMTc7Z2VzdGlvbl9zdG9jazIuZmFjdHVyZSAsNTA5LDE5LGI2OWVmMzc3LTNmYzct
-NDdlNi1hNmNkLWViYzAxMzk3OGYzMDtnZXN0aW9uX3N0b2NrMi5wcm9kdWl0ICwxOTMsMTYsYTc2
-NjVkMGItNDAxMS00MDZlLTkwY2EtNjc3M2QxNjAxZjQ4O2dlc3Rpb25fc3RvY2syLmNsaWVudCAs
-MTUsODQsZDY4ZjIyNjktZTI0MC00ODc5LTg1YzctZGNmNGNjNzU1NjZiOw==]]>
+		<![CDATA[Z2VzdGlvbl9zdG9jazIucHJvZHVpdCAsMTkzLDI1LGEyNWIzYTYxLTkxNmEtNDM4MS04MjJlLWY0
+NWE0MzgxMTM4YztnZXN0aW9uX3N0b2NrMi5mYWN0dXJlICw1MDksMTUsYzExMDc5ODctOTVmNi00
+YWM2LTk2NWItODYxZDYxMTI2NjBhO2dlc3Rpb25fc3RvY2syLmNsaWVudCAsMTUsOTMsYWUxMDVk
+YTUtYThlYy00NGJlLWE5OTctOWM2MDllODRhNmI3O2dlc3Rpb25fc3RvY2syLnF1YW50aXRlICwz
+NDMsMjQsZTEwZDViNDEtN2Q1OS00MmM5LTg4NjctOWEwMTJhN2VlYzYzOw==]]>
 	</property>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="661"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="325"/>
@@ -120,10 +120,10 @@ MTUsODQsZDY4ZjIyNjktZTI0MC00ODc5LTg1YzctZGNmNGNjNzU1NjZiOw==]]>
 	<subDataset name="Facture" uuid="ae4fa4b3-e822-4579-8030-c45eb555e432">
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Mysql"/>
 		<property name="com.jaspersoft.studio.data.sql.tables">
-			<![CDATA[Z2VzdGlvbl9zdG9jazIucHJvZHVpdCAsMTUsMTA2LDEwNjc2NGM0LTFjNWItNDQ5My1hN2Y0LTM0
-ODQyYjIwNzY3YztnZXN0aW9uX3N0b2NrMi5mYWN0dXJlICwzMzEsMTUsZWQ1MWMwMzMtNDBkNC00
-ZDk5LWI2NTctNzEwM2RmMTMwNWMxO2dlc3Rpb25fc3RvY2syLnF1YW50aXRlICwxNjUsMTA2LDNh
-ZGUyMTllLWU4NTktNDU0My05NzE0LThjNzA0YTI0YTFlZDs=]]>
+			<![CDATA[Z2VzdGlvbl9zdG9jazIucXVhbnRpdGUgLDE2NSwxMDYsMmEyZDM3MTEtYTQyOC00MjZiLTg2ZmMt
+MWIwYWE4NDk2NmYwO2dlc3Rpb25fc3RvY2syLnByb2R1aXQgLDE1LDEwNiwxMjgxN2JjOC1jM2Fk
+LTRlMGQtODQ1Yi1jMzcwM2QxOWU2Yjk7Z2VzdGlvbl9zdG9jazIuZmFjdHVyZSAsMzMxLDE1LDEx
+MmNiMmI3LTAxYjAtNDQ0Ni05NzNiLTcwNzE4YTlhYzNhYzs=]]>
 		</property>
 		<parameter name="fact" class="java.lang.String"/>
 		<queryString>
@@ -137,7 +137,8 @@ ZGUyMTllLWU4NTktNDU0My05NzE0LThjNzA0YTI0YTFlZDs=]]>
 	gestion_stock2.facture.`montantTotale`,
 	gestion_stock2.quantite.`numeroFacture`,
 	gestion_stock2.facture.`numeroFacture`,
-	gestion_stock2.quantite.`totalP`
+	gestion_stock2.quantite.`totalP`,
+	gestion_stock2.facture.tva
 FROM gestion_stock2.facture
 	INNER JOIN gestion_stock2.quantite ON 
 	 gestion_stock2.quantite.`numeroFacture` = gestion_stock2.facture.`numeroFacture` 
@@ -210,6 +211,12 @@ WHERE
 			<property name="com.jaspersoft.studio.field.tree.path" value="quantite"/>
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
+		<field name="tva" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="tva"/>
+			<property name="com.jaspersoft.studio.field.label" value="tva"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="facture"/>
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
 	</subDataset>
 	<parameter name="Fid" class="java.lang.Integer"/>
 	<queryString>
@@ -237,7 +244,8 @@ WHERE
 	gestion_stock2.produit.`prixUnitaire`,
 	gestion_stock2.quantite.`codeProduit`,
 	gestion_stock2.quantite.`numeroFacture`,
-	gestion_stock2.quantite.`totalP`
+	gestion_stock2.quantite.`totalP`,
+	gestion_stock2.facture.tva
 FROM gestion_stock2.facture
 	INNER JOIN gestion_stock2.quantite ON 
 	 gestion_stock2.quantite.`numeroFacture` = gestion_stock2.facture.`numeroFacture` 
@@ -393,6 +401,12 @@ WHERE
 		<property name="com.jaspersoft.studio.field.name" value="totalP"/>
 		<property name="com.jaspersoft.studio.field.label" value="totalP"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="quantite"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tva" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tva"/>
+		<property name="com.jaspersoft.studio.field.label" value="tva"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="facture"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
@@ -670,11 +684,11 @@ WHERE
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 1_TD" height="30">
-							<staticText>
-								<reportElement x="0" y="0" width="56" height="30" uuid="efa6c8e9-f4f5-4573-bd00-b853386c2df6"/>
+							<textField>
+								<reportElement x="0" y="0" width="56" height="30" uuid="dd2569d2-4e0c-495f-80fb-079807905a89"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[19%]]></text>
-							</staticText>
+								<textFieldExpression><![CDATA[$F{tva}]]></textFieldExpression>
+							</textField>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="99" uuid="83fe6ea4-6475-4b38-b14e-b1ed39b868b2">

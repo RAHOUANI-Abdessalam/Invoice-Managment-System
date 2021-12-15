@@ -798,8 +798,10 @@ String T="00%";
             table.getItems().forEach(item -> item.setTotalTVA("00%"));
         }
         else{
-            numeroCheaque.setDisable(false);
+           
             table.getItems().forEach(item -> item.setTotalTVA("19%"));
+            numeroCheaque.setDisable(false);
+            
         }
     }
     
