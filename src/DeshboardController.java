@@ -446,11 +446,18 @@ String T="00%";
         double remis= Double.valueOf(remise.getText());
         double montantTotal;
         
-
-
+        double newtotalTva;
+        double newtotalTTC;
+        
         double newtotalHT=totalht-Double.valueOf(totalSupp);
-        double newtotalTva=newtotalHT*0.19;
-        double newtotalTTC=newtotalHT*1.19;
+        if(cheqRadio.isSelected()){
+        newtotalTva=newtotalHT*0.19;
+        newtotalTTC=newtotalHT*1.19;
+        }else{
+            newtotalTva=0;
+            newtotalTTC=newtotalHT;
+        }
+
                 
         //totalTTC.setText(String.valueOf(df.format(newtotalTTC)));
         //totalTVA.setText(String.valueOf(df.format(newtotalTva)));
