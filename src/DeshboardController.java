@@ -943,6 +943,10 @@ String T="00%";
         }
         else{
             modeReglemnt=cheqRadio.getText();
+            if(numeroCheaque.getText().isEmpty()){
+                Toast.makeText((Stage) nclientfield.getScene().getWindow(), "Entrez un N° chèque SVP", 1500, 500, 500);
+                return;
+            }
             T="19%";
         }
         int nFacture=1;
