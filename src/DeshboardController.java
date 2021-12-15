@@ -281,17 +281,24 @@ public class DeshboardController implements Initializable {
      
     }
     private void ajouterTable(){
+        double TVA=0;
         if(codeproduitfield.getText().isEmpty()|| designationfield.getText().isEmpty()||
                 prixtransportfield.getText().isEmpty()||priunitairefield.getText().isEmpty()||
              qteProduit.getText().isEmpty()){
+            
         Toast.makeText((Stage) codeproduitfield.getScene().getWindow(), "Veuilley saisir tout les champs SVP", 1500, 500, 500);
         codeproduitfield.requestFocus();
                    return;           
     }      
-    
+       
      String qteProduiT= qteProduit.getText(),priunitaire= priunitairefield.getText(),
              prixtransport= prixtransportfield.getText(),codeprd=codeproduitfield.getText(),desint=designationfield.getText();
-     
+      if(cheqRadio.isSelected()){
+            TVA=0.19;
+          
+            
+        }
+    
      //verifier si un produit existe dans la table
      if(table.getItems().size() > 0){
             for (int i = 0; i <table.getItems().size() ; i++) {
@@ -308,17 +315,17 @@ public class DeshboardController implements Initializable {
                  //***************************
                  //remove the old line product
                         int selectedID = i;
-                        String tvaSupp = table.getItems().get(selectedID).getTotalTVA();
+                       
                         String totalSupp = table.getItems().get(selectedID).getMontantTotale();
 
 //                        double totalht= Double.valueOf(totalHT.getText());
-                        double totaltva= Double.valueOf(totalTVA.getText());
+                        
                         double totalttc= Double.valueOf(totalTTC.getText());
 //                        double remis= Double.valueOf(remise.getText());
 //                        double montantTotal= Double.valueOf(montantTotale.getText());
 
                         sommeMNT=totalttc-Double.valueOf(totalSupp);
-                        sommeTVA=totaltva-Double.valueOf(tvaSupp);
+                        
                         sommemntsontva=sommeMNT-sommeTVA;
 
 
@@ -345,20 +352,24 @@ public class DeshboardController implements Initializable {
      }
      
      double prixtransporttotal=Double.valueOf(prixtransport)*nbrCameon;
-     double TVA=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19);
+//     double TVA=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT)*0.19);
      double mntsontva=(Double.valueOf(priunitaire)*Double.valueOf(qteProduiT))+Double.valueOf(prixtransporttotal);
-     double montantTotal = (mntsontva+TVA);
+     double montantTotal = mntsontva*TVA;
 //     taking value to new tab
-
+String T="00%";
+   if(cheqRadio.isSelected()){
+       T="19%";
+   }
         tableview tableview = new tableview(codeprd,desint,
-        String.valueOf(prixtransporttotal),priunitaire,qteProduiT,String.valueOf(TVA),String.valueOf(montantTotal));
+        String.valueOf(prixtransporttotal),priunitaire,qteProduiT,T,String.valueOf(mntsontva));
+        
         ObservableList<tableview> tableviews = table.getItems();
         tableviews.add(tableview);
         table.setItems(tableviews);
-        sommeTVA= sommeTVA + TVA;
-        sommeMNT= sommeMNT + montantTotal;
         sommemntsontva= sommemntsontva + mntsontva;
-        
+//        sommeMNT= sommeMNT + montantTotal;
+        sommeTVA= sommemntsontva*TVA;
+        sommeMNT=sommemntsontva+sommeTVA;
         totalTVA.setText(String.valueOf(df.format(sommeTVA)));
         totalHT.setText(String.valueOf(df.format(sommemntsontva)));
         totalTTC.setText(String.valueOf(df.format(sommeMNT)));
@@ -367,7 +378,7 @@ public class DeshboardController implements Initializable {
         double rem= Double.valueOf(remise.getText());
         rem= (rem/100);
         TOTAL= TOTAL-(TOTAL*rem);
-        
+//        TOTAL=TOTAL*TVA;
         
         montantTotale.setText(String.valueOf(df.format(TOTAL)));
         try {
@@ -782,9 +793,11 @@ public class DeshboardController implements Initializable {
         if(espcRadio.isSelected()){
             numeroCheaque.setText("");
             numeroCheaque.setDisable(true);
+            table.getItems().forEach(item -> item.setTotalTVA("00%"));
         }
         else{
             numeroCheaque.setDisable(false);
+            table.getItems().forEach(item -> item.setTotalTVA("19%"));
         }
     }
     
@@ -798,10 +811,10 @@ public class DeshboardController implements Initializable {
                                   "on produit.codeProduit=quantite.codeProduit and quantite.numeroFacture = '"+numeroFacture+"'");
                     table.getItems().clear();
                     if(rs.next()){
-                        String tva="19%";
+                       
 //                        double total=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
                                     oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
-                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva, rs.getString("totalP")));
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"),rs.getString("tva") , rs.getString("totalP")));
                                         nclientfield.setText(rs.getString(2));
                                         String idClient = rs.getString(2);
                                         date.setText(rs.getString(3));
@@ -821,6 +834,7 @@ public class DeshboardController implements Initializable {
                                         montantTotale.setText(rs.getString(10));
                                         montantTotale.setText(rs.getString(10));
                                         totaleEnLettres.setText(rs.getString(11)); 
+                                       
                                         
                                         imprimmerbtn.setVisible(true);
                                         validerFacturebtn.setDisable(true);
@@ -831,10 +845,10 @@ public class DeshboardController implements Initializable {
                                         ClientSelectText.setStyle("-fx-fill: #00FF0B;");
                         while(rs.next()){
                         
-                        String tva1="19%";
+                     
 //                        double total1=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
                                     oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
-                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), tva1, rs.getString("totalP")));
+                                                         rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("tva"), rs.getString("totalP")));
                                                                   nclientfield.setText(rs.getString(2));
                                 
                                }
@@ -880,12 +894,15 @@ public class DeshboardController implements Initializable {
     private void validerBtn(){
         //*******************************************************************************************************
         //debut d'enregistrement dans la facture
-        String modeReglemnt;
+        String modeReglemnt,T;
+       
                 if(espcRadio.isSelected()){
             modeReglemnt=espcRadio.getText();
+            T="00%";
         }
         else{
             modeReglemnt=cheqRadio.getText();
+            T="19%";
         }
         int nFacture=1;
         try {
@@ -903,7 +920,7 @@ public class DeshboardController implements Initializable {
         try {
                     Connection con = ConnectionProvider.getCon();
                     Statement st = con.createStatement();
-                    st.executeUpdate("insert into facture values('0','"+codeClient+"','"+date.getText()+"','"+modeReglemnt+"','"+numeroCheaque.getText()+"','"+totalHT.getText()+"','"+totalTVA.getText()+"','"+totalTTC.getText()+"','"+remise.getText()+"','"+montantTotale.getText()+"','"+totaleEnLettres.getText()+"')");
+                    st.executeUpdate("insert into facture values('0','"+codeClient+"','"+date.getText()+"','"+modeReglemnt+"','"+numeroCheaque.getText()+"','"+totalHT.getText()+"','"+totalTVA.getText()+"','"+totalTTC.getText()+"','"+remise.getText()+"','"+montantTotale.getText()+"','"+totaleEnLettres.getText()+"','"+T+"')");
                     
                     Statement st2 = con.createStatement();
                     for (int i = 0; i <table.getItems().size() ; i++) {
