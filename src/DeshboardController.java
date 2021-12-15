@@ -808,11 +808,34 @@ String T="00%";
             numeroCheaque.setText("");
             numeroCheaque.setDisable(true);
             table.getItems().forEach(item -> item.setTotalTVA("00%"));
+        
+            double totalht =Double.valueOf(totalHT.getText());
+            totalTVA.setText(String.valueOf(df.format(0)));
+            totalTTC.setText(String.valueOf(df.format(totalht)));
+
+
+            double remis =Double.valueOf(remise.getText());
+
+            remis= (remis/100);
+            double montantTotal= totalht-(totalht*remis);
+            montantTotale.setText(String.valueOf(montantTotal));
         }
         else{
            
             table.getItems().forEach(item -> item.setTotalTVA("19%"));
             numeroCheaque.setDisable(false);
+            
+            double totalht =Double.valueOf(totalHT.getText());
+            totalTVA.setText(String.valueOf(df.format(totalht*0.19)));
+            double totalttc = totalht*1.19;
+            totalTTC.setText(String.valueOf(df.format(totalttc)));
+
+
+            double remis =Double.valueOf(remise.getText());
+
+            remis= (remis/100);
+            double montantTotal= totalttc-(totalttc*remis);
+            montantTotale.setText(String.valueOf(montantTotal));
             
         }
     }
