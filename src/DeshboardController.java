@@ -808,6 +808,7 @@ String T="00%";
             numeroCheaque.setText("");
             numeroCheaque.setDisable(true);
             table.getItems().forEach(item -> item.setTotalTVA("00%"));
+            table.refresh();
         
             double totalht =Double.valueOf(totalHT.getText());
             totalTVA.setText(String.valueOf(df.format(0)));
@@ -823,6 +824,7 @@ String T="00%";
         else{
            
             table.getItems().forEach(item -> item.setTotalTVA("19%"));
+            table.refresh();
             numeroCheaque.setDisable(false);
             
             double totalht =Double.valueOf(totalHT.getText());
