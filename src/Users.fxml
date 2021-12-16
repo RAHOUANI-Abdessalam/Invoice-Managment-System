@@ -113,7 +113,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Text>
-                  <JFXTextField fx:id="userNameField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#selectUser" onMouseClicked="#reSelectUser" prefHeight="30.0" prefWidth="183.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                  <JFXTextField fx:id="userNameField" focusColor="#333333" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#selectUser" onMouseClicked="#reSelectUser" prefHeight="30.0" prefWidth="183.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css" unFocusColor="#333333">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -143,7 +143,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <JFXTextField fx:id="newUserNameField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css">
+                  <JFXTextField fx:id="newUserNameField" focusColor="#333333" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="text-field" stylesheets="@login.css" unFocusColor="#333333">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding>
@@ -160,7 +160,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <JFXPasswordField fx:id="passwordField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-radius: 5; -fx-border-color: #1BA1E2; -fx-border-width: 2;" styleClass="password-field" stylesheets="@users.css">
+                  <JFXPasswordField fx:id="passwordField" focusColor="#333333" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-radius: 5; -fx-border-color: #1BA1E2; -fx-border-width: 2;" styleClass="password-field" stylesheets="@users.css" unFocusColor="#333333">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -179,7 +179,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <JFXPasswordField fx:id="newPasswordField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="password-field" stylesheets="@users.css">
+                  <JFXPasswordField fx:id="newPasswordField" focusColor="#333333" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="password-field" stylesheets="@users.css" unFocusColor="#333333">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -198,7 +198,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <JFXPasswordField fx:id="confirmPasswordField" focusColor="#4d4d4d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="password-field" stylesheets="@users.css">
+                  <JFXPasswordField fx:id="confirmPasswordField" focusColor="#333333" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #1BA1E2; -fx-border-radius: 5; -fx-border-width: 2;" styleClass="password-field" stylesheets="@users.css" unFocusColor="#333333">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
