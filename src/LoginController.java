@@ -20,6 +20,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
@@ -114,6 +115,7 @@ public class LoginController implements Initializable {
 //                        primaryStage.setWidth(bounds.getWidth());
 //                        primaryStage.setHeight(bounds.getHeight());
                         primaryStage.setTitle("Deshboard");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setMinHeight(720);
                         primaryStage.setMinWidth(1280);

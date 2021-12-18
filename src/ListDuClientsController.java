@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -118,6 +119,7 @@ public class ListDuClientsController implements Initializable {
 
             Scene scene = new Scene(root);
             primaryStage.setTitle("Historique de Client");
+            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();

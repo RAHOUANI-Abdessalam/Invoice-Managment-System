@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -139,6 +140,7 @@ public class HistoriqueDeClientController implements Initializable {
 //            primaryStage.setWidth(bounds.getWidth());
 //            primaryStage.setHeight(bounds.getHeight());
             primaryStage.setTitle("Deashbord");
+            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
             primaryStage.setScene(scene);
             primaryStage.setMinHeight(720);
             primaryStage.setMinWidth(1280);

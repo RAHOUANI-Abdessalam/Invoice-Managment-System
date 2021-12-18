@@ -41,6 +41,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -506,6 +507,7 @@ String T="00%";
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Ajouter Client");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setResizable(false);
                         primaryStage.show();
@@ -519,6 +521,7 @@ String T="00%";
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Liste De Clents");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setResizable(false);
                         primaryStage.show();
@@ -532,6 +535,7 @@ String T="00%";
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Modifier Client");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setResizable(false);
                         primaryStage.show();
@@ -545,6 +549,7 @@ String T="00%";
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Supprimer Client");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setResizable(false);
                         primaryStage.show();
@@ -558,6 +563,7 @@ String T="00%";
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Liste de Produits");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setResizable(false);
                         primaryStage.show();
@@ -571,6 +577,7 @@ String T="00%";
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Ajouter Produit");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setResizable(false);
                         primaryStage.show();
@@ -584,6 +591,7 @@ String T="00%";
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Modifier Produit");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setResizable(false);
                         primaryStage.show();
@@ -597,6 +605,7 @@ String T="00%";
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Supprimer Produit");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setResizable(false);
                         primaryStage.show();
@@ -993,7 +1002,13 @@ String T="00%";
                         Connection con = ConnectionProvider.getCon();
                        Fid=nFacture;
                        nom=raisonsocialfeild.getText();
+                    try {
                         new jasper (nFacture,con);
+                    } catch (Exception e) {
+                        //System.out.println("Error in new jasper"+e.toString());
+                        JOptionPane.showMessageDialog(null,"Error in new jasper"+e.toString());
+                    }
+                      //  new jasper (nFacture,con);
                     
 //                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //                    alert.setTitle("Facture");
@@ -1034,7 +1049,13 @@ String T="00%";
 //                       JasperViewer.viewReport(jprint);
 //                        new jasper (nFacture,con);
 
+                    try {
                         new jasper (nFacture,con);
+                    } catch (Exception e) {
+//                        System.out.println("Error in new jasper"+e.toString());
+                        JOptionPane.showMessageDialog(null,"Error in new jasper"+e.toString());
+                    }
+                        
                         bntr();
                   }catch (Exception e) {
                             JOptionPane.showMessageDialog(null,""+e.toString());
@@ -1051,6 +1072,7 @@ String T="00%";
                     
                         Scene scene = new Scene(root);
                         primaryStage.setTitle("Paramètres Utilisateur");
+                        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
                         primaryStage.setScene(scene);
                         primaryStage.setResizable(false);
                         primaryStage.show();

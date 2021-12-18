@@ -2,12 +2,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -28,16 +30,23 @@ public class jasper {
         parameters.put("Fid", Fid);
         
         try {
-            JasperDesign jasperReport = JRXmlLoader.load("src/Invoice.jrxml");
+            JasperDesign jasperReport = JRXmlLoader.load(getClass().getResourceAsStream("Invoice.jrxml"));
             JasperReport jreport = JasperCompileManager.compileReport(jasperReport);
             
             JasperPrint jp = JasperFillManager.fillReport(jreport, parameters, con);
             
             JasperViewer.viewReport(jp, false);
-            
-            JasperExportManager.exportReportToPdfStream(jp, new FileOutputStream(new File(System.getProperty("user.home")+File.separator+"facture_"+DeshboardController.nom+"_"+date+"_N°"+DeshboardController.Fid+".pdf")));
+            FileOutputStream fileOutputStream =new FileOutputStream(new File(System.getProperty("user.home")+File.separator+"facture_"+DeshboardController.nom+"_"+date+"_N°"+DeshboardController.Fid+".pdf"));
+            JasperExportManager.exportReportToPdfStream(jp,fileOutputStream);
+        try {
+            fileOutputStream.close();
+        } catch (IOException ex) {
+            Logger.getLogger(jasper.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Error in close jasper pdf file"+ex.toString());
+        }
         } catch (JRException ex) {
             Logger.getLogger(jasper.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Error in second jasper"+ex.toString());
         } 
         
     }
