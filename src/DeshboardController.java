@@ -154,6 +154,7 @@ public class DeshboardController implements Initializable {
     @FXML
     
   private static final DecimalFormat df = new DecimalFormat("0.00");
+      private static final DecimalFormat df2 = new DecimalFormat("###,###,##0.00");
     @Override
      public void initialize(URL url, ResourceBundle rb) {
          
@@ -993,13 +994,17 @@ String T="00%";
         try {
                     Connection con = ConnectionProvider.getCon();
                     Statement st = con.createStatement();
-                    st.executeUpdate("insert into facture values('0','"+codeClient+"','"+date.getText()+"','"+modeReglemnt+"','"+numeroCheaque.getText()+"','"+totalHT.getText()+"','"+totalTVA.getText()+"','"+totalTTC.getText()+"','"+remise.getText()+"','"+montantTotale.getText()+"','"+totaleEnLettres.getText()+"','"+T+"')");
+                    String totlht=df2.format(Double.valueOf(totalHT.getText()));
+                    String totltva=df2.format(Double.valueOf(totalTVA.getText()));
+                    String totlttc=df2.format(Double.valueOf(totalTTC.getText()));
+                    String mnttotl=df2.format(Double.valueOf(montantTotale.getText()));
+                    st.executeUpdate("insert into facture values('0','"+codeClient+"','"+date.getText()+"','"+modeReglemnt+"','"+numeroCheaque.getText()+"','"+totlht+"','"+totltva+"','"+totlttc+"','"+remise.getText()+"','"+mnttotl+"','"+totaleEnLettres.getText()+"','"+T+"')");
                     
                     Statement st2 = con.createStatement();
                     for (int i = 0; i <table.getItems().size() ; i++) {
-                        String codP = table.getItems().get(i).getCodeProduit();
-                        String qteP = table.getItems().get(i).getQteProduit();
-                        String totalP = table.getItems().get(i).getMontantTotale();
+                        String codP = df2.format(Double.valueOf(table.getItems().get(i).getCodeProduit()));
+                        String qteP = df2.format(Double.valueOf(table.getItems().get(i).getQteProduit()));
+                        String totalP = df2.format(Double.valueOf(table.getItems().get(i).getMontantTotale()));
 
                         st2.executeUpdate("insert into quantite values('"+nFacture+"','"+codP+"','"+qteP+"','"+totalP+"')");
                     }
