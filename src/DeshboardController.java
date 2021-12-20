@@ -235,6 +235,42 @@ codeproduitfield.textProperty().addListener(new ChangeListener<String>(){
              }
 
 });
+remise.textProperty().addListener(new ChangeListener<String>() {
+    @Override
+    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        if(!newValue.matches("\\d{0,3}([\\.]\\d{0,2})?") || (Double.valueOf(newValue)<0 || Double.valueOf(newValue)>100)){
+            remise.setText(oldValue);
+        }
+
+    }
+});
+prixtransportfield.textProperty().addListener(new ChangeListener<String>() {
+    @Override
+    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            if (!newValue.matches("\\d{0,9}([\\.]\\d{0,2})?")) {
+                prixtransportfield.setText(oldValue);
+            }
+
+    }
+});
+priunitairefield.textProperty().addListener(new ChangeListener<String>() {
+    @Override
+    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            if (!newValue.matches("\\d{0,9}([\\.]\\d{0,2})?")) {
+                priunitairefield.setText(oldValue);
+            }
+
+    }
+});
+qteProduit.textProperty().addListener(new ChangeListener<String>() {
+    @Override
+    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            if (!newValue.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+                qteProduit.setText(oldValue);
+            }
+
+    }
+});
 //           codeproduitfield validation
 //          codeproduitfield.getValidators().add(numvad);
 //          codeproduitfield.focusedProperty().addListener(new ChangeListener<Boolean>() {

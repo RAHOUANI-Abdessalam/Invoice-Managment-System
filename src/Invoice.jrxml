@@ -893,16 +893,16 @@ WHERE
 			<staticText>
 				<reportElement mode="Opaque" x="138" y="-1" width="279" height="19" forecolor="#000000" uuid="29d77f50-ddfc-4534-946b-11df6fa3ebb0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<font fontName="DejaVu Sans" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[حيداري محمد للخرسانة الجاهزة]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="220" y="32" width="119" height="18" uuid="d0293766-ff08-4550-b280-67d4aac202a6"/>
+				<reportElement x="211" y="32" width="150" height="18" uuid="d0293766-ff08-4550-b280-67d4aac202a6"/>
 				<textElement>
-					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[mob: 0770 00 77 50]]></text>
+				<text><![CDATA[N°mobile: 0770 00 77 50]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="-2" width="556" height="1" uuid="fb6ce472-aea4-4f1c-9d22-3d51cf8ab159">
@@ -911,9 +911,9 @@ WHERE
 				</reportElement>
 			</line>
 			<staticText>
-				<reportElement x="139" y="14" width="279" height="19" uuid="9073a33c-fffc-48d0-ac13-c6be07be9954"/>
+				<reportElement x="139" y="13" width="279" height="19" uuid="9073a33c-fffc-48d0-ac13-c6be07be9954"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[العنوان : المنطقة الصناعية فرندة تيارت]]></text>
 			</staticText>
