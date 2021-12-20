@@ -34,8 +34,10 @@ public class jasper {
             JasperReport jreport = JasperCompileManager.compileReport(jasperReport);
             
             JasperPrint jp = JasperFillManager.fillReport(jreport, parameters, con);
-            
-            JasperViewer.viewReport(jp, false);
+            JasperViewer jv = new JasperViewer(jp,false);
+            jv.setTitle("Facture");
+            jv.setVisible(true);
+            //JasperViewer.viewReport(jp, false);
             FileOutputStream fileOutputStream =new FileOutputStream(new File(System.getProperty("user.home")+File.separator+"facture_"+DeshboardController.nom+"_"+date+"_N°"+DeshboardController.Fid+".pdf"));
             JasperExportManager.exportReportToPdfStream(jp,fileOutputStream);
         try {
