@@ -382,7 +382,7 @@ String T="00%";
        T="19%";
    }
         tableview tableview = new tableview(codeprd,desint,
-        String.valueOf(prixtransporttotal),priunitaire,qteProduiT,T,String.valueOf(mntsontva));
+        df.format(prixtransporttotal),priunitaire,qteProduiT,T,df.format(mntsontva));
         
         ObservableList<tableview> tableviews = table.getItems();
         tableviews.add(tableview);
@@ -853,9 +853,9 @@ String T="00%";
 
             remis= (remis/100);
             double montantTotal= totalht-(totalht*remis);
-            montantTotale.setText(String.valueOf(montantTotal));
+            montantTotale.setText(df.format(montantTotal));
             try {
-                String tot= Nombre.CALCULATE.getValue(montantTotal, "Dinar");
+                String tot= Nombre.CALCULATE.getValue(Double.valueOf(df.format(montantTotal)), "Dinar");
                 totaleEnLettres.setText(tot);
             } catch (Exception ex) {
                 Logger.getLogger(DeshboardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -877,9 +877,9 @@ String T="00%";
 
             remis= (remis/100);
             double montantTotal= totalttc-(totalttc*remis);
-            montantTotale.setText(String.valueOf(montantTotal));
+            montantTotale.setText(df.format(montantTotal));
             try {
-                String tot= Nombre.CALCULATE.getValue(montantTotal, "Dinar");
+                String tot= Nombre.CALCULATE.getValue(Double.valueOf(df.format(montantTotal)), "Dinar");
                 totaleEnLettres.setText(tot);
             } catch (Exception ex) {
                 Logger.getLogger(DeshboardController.class.getName()).log(Level.SEVERE, null, ex);

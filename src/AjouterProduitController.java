@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,7 @@ public class AjouterProduitController implements Initializable {
     @FXML
     private JFXTextField prixUnitaireField;
     int code;
-    
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,7 +72,7 @@ public class AjouterProduitController implements Initializable {
                 try {
                     Connection con = ConnectionProvider.getCon();
                     Statement st = con.createStatement();
-                    st.executeUpdate("insert into produit values('"+codeProduitText.getText()+"','"+designationField.getText()+"','"+prixTransportField.getText()+"','"+prixUnitaireField.getText()+"')");
+                    st.executeUpdate("insert into produit values('"+codeProduitText.getText()+"','"+designationField.getText()+"','"+df.format(Double.valueOf(prixTransportField.getText()))+"','"+df.format(Double.valueOf(prixUnitaireField.getText()))+"')");
                     //Toast.makeText((Stage) raisonScocialField.getScene().getWindow(), "Clien Numéro "+id+" a été Ajouté avec succès", 2000, 500, 500);
                     
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);

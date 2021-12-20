@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +38,7 @@ public class ModifierProduitController implements Initializable {
     private JFXTextField prixTransportField;
     @FXML
     private JFXTextField prixUnitaireField;
-    
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -95,8 +96,8 @@ public class ModifierProduitController implements Initializable {
                     return;
                 }
                 String designation = designationField.getText();
-                String prixTransport = prixTransportField.getText();
-                String prixUnitaire = prixUnitaireField.getText();
+                String prixTransport = df.format(Double.valueOf(prixTransportField.getText()));
+                String prixUnitaire = df.format(Double.valueOf(prixUnitaireField.getText()));
 
                 try {
                     Connection con = ConnectionProvider.getCon();
