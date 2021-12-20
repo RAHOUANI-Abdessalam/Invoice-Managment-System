@@ -45,12 +45,29 @@ public class LoginController implements Initializable {
     
     @FXML
     private CheckBox affichMdpsCheckBox;
+    private String passw,usrnam;
     
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         //errorMsg = new JFXSnackbar(bottomCenterVbox);
+        try {
+                    Connection con=ConnectionProvider.getCon();
+                    Statement st = con.createStatement();
+                    ResultSet rs= st.executeQuery("select *from user where idUser='"+1+"'");
+                    if(rs.next()){
+                        usernameField.setText(rs.getString(2));
+                        usrnam = rs.getString(2);
+                        passw=rs.getString(3);
+                    }else{
+
+                        Toast.makeText((Stage) affichMdpsCheckBox.getScene().getWindow(), "No User", 1500, 500, 500);
+                        
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,""+e.toString());
+                }
 
     }    
     
@@ -92,13 +109,13 @@ public class LoginController implements Initializable {
         }
         
          try {
-                    Connection con=ConnectionProvider.getCon();
-                    Statement st = con.createStatement();
-                    ResultSet rs= st.executeQuery("select *from user where username='"+usernameField.getText()+"' and password='"+motdepasseField.getText()+"'");
-                    if(rs.next()){
-                        
+//                    Connection con=ConnectionProvider.getCon();
+//                    Statement st = con.createStatement();
+//                    ResultSet rs= st.executeQuery("select *from user where username='"+usernameField.getText()+"' and password='"+motdepasseField.getText()+"'");
+//                    if(rs.next()){
+                        if(passw.equals(motdepasseField.getText()) && usrnam.equals(usernameField.getText())){
                        //close the Login Frame "Stage"
-                        con.close();
+//                        con.close();
 
 
                         //Creat a new Satge to Show the New frame "the Deshboard"

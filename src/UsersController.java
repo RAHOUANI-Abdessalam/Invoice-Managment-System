@@ -60,6 +60,7 @@ public class UsersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        userNameField.requestFocus();
     }    
     
     
@@ -137,6 +138,7 @@ public class UsersController implements Initializable {
                     Statement st = con.createStatement();
                     ResultSet rs= st.executeQuery("select *from user where username like '"+username+"%'");
                     if(rs.next()){
+                        userNameField.setText(rs.getString(2));
                         newUserNameField.setText(rs.getString(2));
                         checkMark.setVisible(true);
                         
@@ -172,7 +174,7 @@ public class UsersController implements Initializable {
          try {
                     Connection con=ConnectionProvider.getCon();
                     Statement st = con.createStatement();
-                    ResultSet rs= st.executeQuery("select *from user where username='"+newUserNameField.getText()+"' and password='"+passwordField.getText()+"'");
+                    ResultSet rs= st.executeQuery("select *from user where username='"+userNameField.getText()+"' and password='"+passwordField.getText()+"'");
                     if(rs.next()){ 
                         iduser = rs.getInt("idUser");
                         return true;

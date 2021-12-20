@@ -700,6 +700,11 @@ String T="00%";
          sommemntsontva= 0;
         sommeTVA= 0;
         sommeMNT=0;
+
+        cheqRadio.setDisable(false);
+        espcRadio.setDisable(false);
+        qteProduit.setDisable(false);
+        
     }
      
     @FXML
@@ -849,6 +854,12 @@ String T="00%";
             remis= (remis/100);
             double montantTotal= totalht-(totalht*remis);
             montantTotale.setText(String.valueOf(montantTotal));
+            try {
+                String tot= Nombre.CALCULATE.getValue(montantTotal, "Dinar");
+                totaleEnLettres.setText(tot);
+            } catch (Exception ex) {
+                Logger.getLogger(DeshboardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
         else{
            
@@ -867,6 +878,12 @@ String T="00%";
             remis= (remis/100);
             double montantTotal= totalttc-(totalttc*remis);
             montantTotale.setText(String.valueOf(montantTotal));
+            try {
+                String tot= Nombre.CALCULATE.getValue(montantTotal, "Dinar");
+                totaleEnLettres.setText(tot);
+            } catch (Exception ex) {
+                Logger.getLogger(DeshboardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
         }
     }
@@ -881,9 +898,17 @@ String T="00%";
                                   "on produit.codeProduit=quantite.codeProduit and quantite.numeroFacture = '"+numeroFacture+"'");
                     table.getItems().clear();
                     if(rs.next()){
+                             int nbrCameon=0;
+                            double qte=Double.valueOf(rs.getString("qteProduit"));
+
+                            while(qte > 0){
+                                qte = qte-7; ;
+                                nbrCameon++;
+                            }
+                            double prixtransporttotal=Double.valueOf(rs.getString("prixTransport"))*nbrCameon;
                        
 //                        double total=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
-                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
+                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), String.valueOf(prixtransporttotal),
                                                          rs.getString("prixUnitaire"), rs.getString("qteProduit"),rs.getString("tva") , rs.getString("totalP")));
                                         nclientfield.setText(rs.getString(2));
                                         String idClient = rs.getString(2);
@@ -913,11 +938,23 @@ String T="00%";
                                         ClientSelectText.setText("      Client Sélectionné");
                                         //////ClientSelectText.setFill(Color.GREEN);
                                         ClientSelectText.setStyle("-fx-fill: #00FF0B;");
+                                        cheqRadio.setDisable(true);
+                                        espcRadio.setDisable(true);
+                                        qteProduit.setDisable(true);
                         while(rs.next()){
+
+                             int nbrCameon2=0;
+                            double qte2=Double.valueOf(rs.getString("qteProduit"));
+
+                            while(qte2 > 0){
+                                qte2 = qte2-7; ;
+                                nbrCameon2++;
+                            }
+                            double prixtransporttotal2=Double.valueOf(rs.getString("prixTransport"))*nbrCameon2;
                         
                      
 //                        double total1=(((Double.valueOf(rs.getString("prixUnitaire"))*Double.valueOf(rs.getString("qteProduit")))*0.19)+Double.valueOf(rs.getString("prixTransport")));
-                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), rs.getString("prixTransport"),
+                                    oblist.add(new tableview(rs.getString("codeProduit"), rs.getString("designation"), String.valueOf(prixtransporttotal2),
                                                          rs.getString("prixUnitaire"), rs.getString("qteProduit"), rs.getString("tva"), rs.getString("totalP")));
                                                                   nclientfield.setText(rs.getString(2));
                                 
@@ -1002,8 +1039,8 @@ String T="00%";
                     
                     Statement st2 = con.createStatement();
                     for (int i = 0; i <table.getItems().size() ; i++) {
-                        String codP = df2.format(Double.valueOf(table.getItems().get(i).getCodeProduit()));
-                        String qteP = df2.format(Double.valueOf(table.getItems().get(i).getQteProduit()));
+                        String codP = table.getItems().get(i).getCodeProduit();
+                        String qteP = table.getItems().get(i).getQteProduit();
                         String totalP = df2.format(Double.valueOf(table.getItems().get(i).getMontantTotale()));
 
                         st2.executeUpdate("insert into quantite values('"+nFacture+"','"+codP+"','"+qteP+"','"+totalP+"')");
