@@ -180,8 +180,8 @@ public class DeshboardController implements Initializable {
 //          RequiredFieldValidator validator = new RequiredFieldValidator();
 //          validator.setMessage("missing info....");
 //          designationfield.getValidators().add(validator);
-          NumberValidator numvad = new NumberValidator();
-          numvad.setMessage("nombres seulement");
+//          NumberValidator numvad = new NumberValidator();
+//          numvad.setMessage("nombres seulement");
 //          raisonsocialfeild validation
 //           raisonsocialfeild.getValidators().add(numvad);
 //            raisonsocialfeild.focusedProperty().addListener(new ChangeListener<Boolean>() {
@@ -194,60 +194,79 @@ public class DeshboardController implements Initializable {
 //              }
 //          });
 //          prixtransportfield validation
-          prixtransportfield.getValidators().add(numvad);
-         prixtransportfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
-              @Override
-              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                  if(!newValue){
-                      prixtransportfield.validate();
-                  }
-                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-              }
-          });
+//          prixtransportfield.getValidators().add(numvad);
+//         prixtransportfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//              @Override
+//              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                  if(!newValue){
+//                      prixtransportfield.validate();
+//                  }
+//                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//              }
+//          });
 //         nclientfield validation
-          nclientfield.getValidators().add(numvad);
-           nclientfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
-              @Override
-              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                  if(!newValue){
-                      nclientfield.validate();
-                  }
-                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-              }
-          });      
+////          nclientfield.getValidators().add(numvad);
+////           nclientfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+////              @Override
+////              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+////                  if(!newValue){
+////                      nclientfield.validate();
+////                  }
+////                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+////              }
+////          });      
+
+nclientfield.textProperty().addListener(new ChangeListener<String>(){
+             @Override
+             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                 if(!newValue.matches("\\d*")){
+                     nclientfield.setText(newValue.replaceAll("[^\\d]", ""));
+                 }
+             }
+
+});
+codeproduitfield.textProperty().addListener(new ChangeListener<String>(){
+             @Override
+             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                 if(!newValue.matches("\\d*")){
+                     codeproduitfield.setText(newValue.replaceAll("[^\\d]", ""));
+                 }
+             }
+
+});
 //           codeproduitfield validation
-          codeproduitfield.getValidators().add(numvad);
-          codeproduitfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
-              @Override
-              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                  if(!newValue){
-                      codeproduitfield.validate();
-                  }
-                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-              }
-          });
+//          codeproduitfield.getValidators().add(numvad);
+//          codeproduitfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//              @Override
+//              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                  if(!newValue){
+//                      codeproduitfield.validate();
+//                  }
+//                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//              }
+//          });
 //          priunitairefield validation
-          priunitairefield.getValidators().add(numvad);
-          priunitairefield.focusedProperty().addListener(new ChangeListener<Boolean>() {
-              @Override
-              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                  if(!newValue){
-                      priunitairefield.validate();
-                  }
-                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-              }
-          });
+//          priunitairefield.getValidators().add(numvad);
+//          priunitairefield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//              @Override
+//              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                  if(!newValue){
+//                      priunitairefield.validate();
+//                  }
+//                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//              }
+//          });
 //          quantitefield validation
-          qteProduit.getValidators().add(numvad);
-          qteProduit.focusedProperty().addListener(new ChangeListener<Boolean>() {
-              @Override
-              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                  if(!newValue){
-                      qteProduit.validate();
-                  }
-                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-              }
-          });
+//          qteProduit.getValidators().add(numvad);
+//          qteProduit.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//              @Override
+//              public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                  if(!newValue){
+//                      qteProduit.validate();
+//                  }
+//                  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//              }
+//          });
                           
 // designationfield validation
 //          designationfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
@@ -468,7 +487,7 @@ String T="00%";
         
         remis= (remis/100);
         montantTotal= newtotalTTC-(newtotalTTC*remis);
-        montantTotale.setText(String.valueOf(montantTotal));
+        montantTotale.setText(String.valueOf(df.format(montantTotal)));
         
         table.getItems().remove(selectedID);
         
@@ -710,9 +729,9 @@ String T="00%";
                 try {
                     Connection con=ConnectionProvider.getCon();
                     Statement st = con.createStatement();
-                    ResultSet rs= st.executeQuery("select *from client where numeroClient like '"+idClient+"%'");
+                    ResultSet rs= st.executeQuery("select *from client where numeroClient='"+idClient+"'");
                     if(rs.next()){
-                        nclientfield.setText(rs.getString(1));
+                        //nclientfield.setText(rs.getString(1));
                         raisonsocialfeild.setText(rs.getString(2));
                         ClientSelectText.setText("      Client Sélectionné");
                         ClientSelectText.setStyle("-fx-fill: #00FF0B;");
@@ -788,9 +807,9 @@ String T="00%";
                 try {
                     Connection con=ConnectionProvider.getCon();
                     Statement st = con.createStatement();
-                    ResultSet rs= st.executeQuery("select *from produit where codeProduit like '"+codeProduit+"%'");
+                    ResultSet rs= st.executeQuery("select *from produit where codeProduit='"+codeProduit+"'");
                     if(rs.next()){
-                        codeproduitfield.setText(rs.getString(1));
+                        //codeproduitfield.setText(rs.getString(1));
                         designationfield.setText(rs.getString(2));
                         prixtransportfield.setText(rs.getString(3));
                         priunitairefield.setText(rs.getString(4));
