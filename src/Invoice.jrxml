@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Mysql"/>
 	<property name="com.jaspersoft.studio.data.sql.tables">
@@ -413,7 +413,7 @@ WHERE
 		<band height="372" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<rectangle radius="5">
-				<reportElement x="94" y="89" width="200" height="25" backcolor="#FCFAFA" uuid="e0e5385e-b2b4-4c5f-89f6-45863987c8ab"/>
+				<reportElement x="94" y="89" width="245" height="25" backcolor="#FCFAFA" uuid="e0e5385e-b2b4-4c5f-89f6-45863987c8ab"/>
 				<graphicElement>
 					<pen lineWidth="2.0"/>
 				</graphicElement>
@@ -559,7 +559,7 @@ WHERE
 				<text><![CDATA[Client:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="120" y="91" width="84" height="20" uuid="e6ff7f2f-c828-413b-8b27-0dc004e70c9a"/>
+				<reportElement x="105" y="91" width="84" height="20" uuid="e6ff7f2f-c828-413b-8b27-0dc004e70c9a"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
@@ -567,7 +567,7 @@ WHERE
 				<text><![CDATA[Facture N°: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="179" y="92" width="120" height="19" uuid="fd05730c-fbe8-4ff3-94cc-79b5e6093f08"/>
+				<reportElement x="154" y="92" width="120" height="19" uuid="fd05730c-fbe8-4ff3-94cc-79b5e6093f08"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -710,6 +710,22 @@ WHERE
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<textField pattern="yyyy">
+				<reportElement x="253" y="86" width="98" height="30" uuid="0830290b-36c5-43c9-b2ff-2beb97108ffb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="242" y="92" width="4" height="20" uuid="7004b225-8f83-4a61-9d3e-fe39c35501a6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -875,11 +891,11 @@ WHERE
 	<pageFooter>
 		<band height="50">
 			<staticText>
-				<reportElement x="138" y="2" width="279" height="19" uuid="29d77f50-ddfc-4534-946b-11df6fa3ebb0"/>
+				<reportElement x="138" y="-1" width="279" height="19" uuid="29d77f50-ddfc-4534-946b-11df6fa3ebb0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[المنطقة الصناعية للخرسانة الجاهزة  فرندة - تيارت]]></text>
+				<text><![CDATA[حيداري محمد للخرسانة الجاهزة ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="220" y="30" width="119" height="19" uuid="d0293766-ff08-4550-b280-67d4aac202a6"/>
@@ -895,11 +911,11 @@ WHERE
 				</reportElement>
 			</line>
 			<staticText>
-				<reportElement x="139" y="14" width="279" height="19" uuid="9073a33c-fffc-48d0-ac13-c6be07be9954"/>
+				<reportElement x="139" y="13" width="279" height="19" uuid="9073a33c-fffc-48d0-ac13-c6be07be9954"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ حيداري محمد]]></text>
+				<text><![CDATA[العنوان : المنطقة الصناعية فرندة تيارت]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
